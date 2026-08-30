@@ -95,7 +95,7 @@ export default function HomePage() {
               {/* Status pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-indigo-200 bg-white shadow-xs text-xs text-indigo-700 font-mono font-semibold mb-6">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 dot-pulse" />
-                <span>Singapore · Sovereign AI & FDE Specialist</span>
+                <span>Singapore · Sovereign AI & AI Engineering Specialist</span>
               </div>
 
               <div className="mb-6">

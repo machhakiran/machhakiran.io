@@ -21,7 +21,7 @@ export default function HomePage() {
       />
 
       {/* ===== HEADER NAVIGATION ===== */}
-      <header className="fixed top-0 inset-x-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-xs">
+      <header className="fixed top-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
           <a href="#" className="flex items-center gap-3 group">
             <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center font-bold text-white text-base shadow-sm group-hover:bg-indigo-700 transition-colors">
@@ -60,7 +60,8 @@ export default function HomePage() {
           <div className="flex items-center gap-3">
             <a
               href="#contact"
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-mono uppercase tracking-wider font-bold transition-all shadow-xs"
+              className="btn-primary px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider font-bold shadow-xs"
+              style={{ color: '#ffffff' }}
             >
               Get in Touch
             </a>
@@ -81,12 +82,16 @@ export default function HomePage() {
                 <span>Singapore · Sovereign AI & FDE Specialist · Open to Roles</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12] mb-5">
-                Senior AI Engineer <br />
-                <span className="text-indigo-600">Forward Deployed Engineer</span>
-              </h1>
+              <div className="mb-5">
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                  Senior AI Engineer
+                </h1>
+                <p className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-indigo-600 tracking-tight leading-tight mt-1">
+                  Forward Deployed Engineer
+                </p>
+              </div>
 
-              <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mb-8 font-normal">
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mb-8 font-normal">
                 Taking private LLMs, autonomous agent systems, and sovereign AI infrastructure from high-level business problems to production-grade deployments inside client VPCs and air-gapped clusters.
               </p>
 
@@ -94,7 +99,8 @@ export default function HomePage() {
               <div className="flex flex-wrap items-center gap-3.5 mb-10 w-full sm:w-auto">
                 <a
                   href="#projects"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-bold transition-all shadow-md shadow-indigo-600/20 hover:scale-[1.01]"
+                  className="btn-primary px-6 py-3.5 rounded-xl text-sm font-bold shadow-md shadow-indigo-600/20 hover:scale-[1.01] gap-2"
+                  style={{ color: '#ffffff' }}
                 >
                   <span>🚀 Explore 11 Production Systems</span>
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 1v12M1 7l6 6 6-6" /></svg>
@@ -156,11 +162,12 @@ export default function HomePage() {
                   ))}
                 </div>
 
-                {/* Quick actions */}
+                {/* Quick actions with High-Contrast White Text */}
                 <div className="grid grid-cols-2 gap-2.5 w-full">
                   <a
                     href={`mailto:${profile.email}`}
-                    className="py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-mono font-bold transition-colors"
+                    className="btn-primary py-2.5 rounded-xl text-xs font-mono font-bold shadow-xs"
+                    style={{ color: '#ffffff' }}
                   >
                     Direct Email
                   </a>
@@ -168,7 +175,7 @@ export default function HomePage() {
                     href={profile.linkedin}
                     target="_blank"
                     rel="noopener"
-                    className="py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-mono font-bold transition-colors"
+                    className="py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-mono font-bold transition-colors flex items-center justify-center"
                   >
                     LinkedIn
                   </a>
@@ -286,7 +293,8 @@ export default function HomePage() {
                       e.stopPropagation();
                       setSelectedProject(p);
                     }}
-                    className="w-full py-2.5 bg-slate-900 hover:bg-indigo-600 text-white rounded-xl text-xs font-mono uppercase tracking-wider font-bold transition-colors flex items-center justify-center gap-2"
+                    className="btn-dark w-full py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider font-bold transition-colors flex items-center justify-center gap-2"
+                    style={{ color: '#ffffff' }}
                   >
                     <span>View System Architecture</span>
                     <span>→</span>
@@ -317,7 +325,8 @@ export default function HomePage() {
               <div className="flex flex-col gap-2.5 w-full">
                 <a
                   href={`mailto:${profile.email}`}
-                  className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-mono uppercase font-bold text-center transition-colors"
+                  className="btn-primary w-full py-2.5 rounded-xl text-xs font-mono uppercase font-bold text-center transition-colors shadow-xs"
+                  style={{ color: '#ffffff' }}
                 >
                   Direct Email
                 </a>
@@ -541,7 +550,8 @@ export default function HomePage() {
           <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
             <a
               href={`mailto:${profile.email}`}
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-bold transition-all shadow-lg"
+              className="btn-primary px-7 py-3.5 rounded-xl text-sm font-bold shadow-lg gap-2"
+              style={{ color: '#ffffff' }}
             >
               Email {profile.email}
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M1 7h12M9 3l4 4-4 4" /></svg>

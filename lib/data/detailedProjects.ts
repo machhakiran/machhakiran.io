@@ -2,65 +2,78 @@ import { DetailedProject } from '@/components/ProjectArchitectureModal';
 
 export const detailedProjectsList: DetailedProject[] = [
   {
-    id: 'ods',
+    id: 'openforge-ai',
     number: '01',
-    title: 'ODS — Osmantic Deployment System',
-    tagline: 'Turn your PC, Mac, or Linux box into a self-hosted private AI server with a single command',
-    badge: 'Private Local AI Platform',
+    title: 'OpenForge AI (formerly ODS)',
+    tagline: 'Self-hosted Sovereign AI platform with 24 bundled services, OpenClaw & Hermes agents, and hardware-accelerated local inference',
+    badge: 'Sovereign AI Infrastructure',
     description:
-      'A self-hosted AI deployment platform built around 24 bundled Docker service manifests, hardware-accelerated overlays (NVIDIA, AMD, Apple Silicon, Intel Arc), a control dashboard, LiteLLM gateway, RAG pipeline, local voice STT/TTS, and privacy tools.',
+      'A comprehensive, self-hosted Sovereign AI deployment platform built with 24 containerized service manifests. Bundles llama-server and vLLM local inference, OpenClaw and Hermes autonomous agent frameworks, LiteLLM gateway, Qdrant hybrid RAG, SearXNG private search, local voice STT/TTS, Privacy-Shield PII masking, and real-time GPU VRAM telemetry.',
     architectureDiagram: `
-┌─────────────────────────────────────────────────────────────────────────┐
-│                           User Access (localhost:3000)                  │
-│   Open-WebUI (Chat) ──► Control Dashboard (:3001) ──► LiteLLM Proxy (:4000) │
-└────────────────────────────────────┬────────────────────────────────────┘
-                                     │
-         ┌───────────────────────────┼───────────────────────────┐
-         ▼                           ▼                           ▼
-┌─────────────────┐         ┌─────────────────┐         ┌─────────────────┐
-│ Core Inference  │         │ Voice Pipeline  │         │ Search & RAG    │
-│ llama-server    │         │ Whisper (:9000) │         │ Qdrant (:6333)  │
-│ Ollama (:11434) │         │ Kokoro  (:8880) │         │ SearXNG (:8888) │
-└─────────────────┘         └─────────────────┘         └─────────────────┘
-         │                           │                           │
-         └───────────────────────────┼───────────────────────────┘
-                                     ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│                         Agents, Media & Privacy                         │
-│   Hermes Agent (:9120) ──► ComfyUI Image Gen ──► Privacy Shield PII     │
-└─────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                       USER ACCESS & CLIENT LAYER                                 │
+│    Open-WebUI (:3000)   │   OpenForge Control Dashboard (:3001)   │   OpenForge CLI (ods-cli)   │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                  UNIFIED ROUTING & PROXY GATEWAY                                 │
+│                                  LiteLLM Proxy Gateway (:4000)                                   │
+│              (OpenAI-compatible endpoints, Dynamic Quantization, Token-Spy Metering)             │
+└───────────────────────┬────────────────────────┼────────────────────────┬────────────────────────┘
+                        │                        │                        │
+       ┌────────────────┴───────────────┐        │       ┌────────────────┴───────────────┐
+       ▼                                ▼        │       ▼                                ▼
+┌─────────────────────────┐ ┌──────────────────┐ │ ┌──────────────────────┐ ┌──────────────────────┐
+│  CORE INFERENCE ENGINE  │ │ AUTONOMOUS AGENTS│ │ │    RAG & SEARCH      │ │    VOICE PIPELINE    │
+│  llama-server (:8080)   │ │ OpenClaw (:18789)│ │ │ Qdrant Vector (:6333)│ │ Faster-Whisper(:9000)│
+│  Ollama Engine (:11434) │ │ Hermes Agent     │ │ │ SearXNG Search(:8888)│ │ Kokoro TTS (:8880)   │
+│  vLLM GPU Container     │ │ (:9120)+SOUL.md  │ │ │ Perplexica AI Search │ │ Piper Local Speech   │
+└─────────────────────────┘ └──────────────────┘ │ └──────────────────────┘ └──────────────────────┘
+                                                 │
+                        ┌────────────────────────┴────────────────────────┐
+                        ▼                                                 ▼
+┌─────────────────────────────────────────────────┐ ┌──────────────────────────────────────────────┐
+│          AUTOMATION & CREATIVE ENGINES          │ │       SECURITY, PRIVACY & OBSERVABILITY      │
+│   n8n Automation Engine (:5678)                 │ │ Privacy-Shield PII Masking & Redaction Engine │
+│   ComfyUI Generative Diffusion (:8188)          │ │ Langfuse LLM Observability & Tracing (:3006) │
+└─────────────────────────────────────────────────┘ └──────────────────────────────────────────────┘
 `,
     problemStatement:
-      'Setting up a private local AI homelab requires manually compiling and wiring together Ollama, Open WebUI, LiteLLM, Qdrant, Whisper, SearXNG, and n8n while configuring GPU drivers and authentication.',
+      'Deploying an enterprise-grade private AI server requires compiling CUDA/ROCm runtimes, configuring multi-agent harnesses (OpenClaw, Hermes), orchestrating hybrid vector search with SearXNG, configuring speech STT/TTS, and securing endpoints with PII masking—a process taking weeks of manual infrastructure plumbing.',
     solution:
-      'Engineered ODS, an open-source single-command installer (`curl -fsSL install.osmantic.com/ods.sh | bash`) that automatically detects hardware (Apple Silicon, NVIDIA, AMD, CPU), provisions 24 Docker compose services, picked optimal models, and launches a local web control center.',
+      'Engineered OpenForge AI (formerly ODS), an automated deployment system that auto-provisions 24 Docker service manifests with a single bash command. Automatically detects host GPU hardware (NVIDIA CUDA, Apple Metal, AMD ROCm, Intel Arc), mounts persistent agent memory (SOUL.md), configures LiteLLM proxying, and launches a real-time host management dashboard.',
     features: [
-      'Single-command bootstrap (`curl -fsSL install.osmantic.com/ods.sh | bash`) for Linux, macOS, and Windows WSL2',
-      'Bundles 24 service manifests: llama-server, Open WebUI, LiteLLM, Qdrant, ComfyUI, Whisper, Kokoro, n8n, SearXNG',
-      'Hardware auto-detection applying compose overlays for NVIDIA CUDA, Apple Metal, AMD ROCm, and Intel Arc GPUs',
-      'LiteLLM proxy gateway providing OpenAI-compatible API endpoints for all local models',
-      'Privacy-Shield PII protection masking sensitive credentials before sending prompts to optional cloud fallbacks',
-      'Control Dashboard (:3001) for real-time GPU VRAM monitoring, model downloading, and service extensions',
+      'Single-command bootstrap (`curl -fsSL https://install.osmantic.com/ods.sh | bash`) supporting Linux, macOS, and Windows WSL2',
+      '24 bundled production services: llama-server, OpenClaw Agent, Hermes Agent, LiteLLM, Qdrant, SearXNG, ComfyUI, Faster-Whisper, Kokoro, n8n, Langfuse',
+      'Hardware auto-detection applying hardware overlays for NVIDIA CUDA, Apple Silicon Metal, AMD ROCm, and Intel Arc GPUs',
+      'Autonomous Agent Engines: OpenClaw (:18789) with LAN device pairing, and Hermes Agent (:9120) with SOUL.md persistent memory',
+      'Privacy-Shield PII engine masking credentials, credit cards, and sensitive tokens before prompts hit models',
+      'OpenForge Control Cockpit (:3001) providing live GPU VRAM telemetry, container health monitoring, and one-click model switching',
+      'OpenAI-compatible LiteLLM proxy (:4000) routing traffic to local models with Token-Spy cost accounting',
     ],
     techStack: [
-      { category: 'Installer', name: 'Shell Bootstrap & PowerShell CLI' },
-      { category: 'Inference', name: 'llama-server & Ollama' },
-      { category: 'API Proxy Gateway', name: 'LiteLLM Proxy (:4000)' },
-      { category: 'Frontend Chat UI', name: 'Open WebUI (:3000)' },
-      { category: 'Control Center', name: 'ODS Dashboard (:3001)' },
-      { category: 'Voice STT/TTS', name: 'Faster-Whisper & Kokoro TTS' },
-      { category: 'Search & RAG', name: 'SearXNG & Qdrant Vector DB' },
+      { category: 'Platform Name', name: 'OpenForge AI (ODS)' },
+      { category: 'Agent Runtimes', name: 'OpenClaw (:18789) & Hermes (:9120)' },
+      { category: 'Local Inference', name: 'llama-server, Ollama & vLLM' },
+      { category: 'Proxy Gateway', name: 'LiteLLM Proxy (:4000)' },
+      { category: 'Vector & Search', name: 'Qdrant & SearXNG Metasearch' },
+      { category: 'Speech STT/TTS', name: 'Faster-Whisper & Kokoro TTS' },
       { category: 'Automation & Media', name: 'n8n & ComfyUI (:8188)' },
+      { category: 'Security & Telemetry', name: 'Privacy-Shield & Langfuse (:3006)' },
     ],
     apiEndpoints: [
-      { method: 'GET', endpoint: 'http://localhost:3000', desc: 'Open WebUI ChatGPT-style Chat Interface' },
-      { method: 'GET', endpoint: 'http://localhost:3001', desc: 'ODS Control Dashboard & GPU VRAM monitor' },
-      { method: 'POST', endpoint: 'http://localhost:4000/v1/chat/completions', desc: 'LiteLLM OpenAI-compatible gateway' },
+      { method: 'GET', endpoint: 'http://localhost:3000', desc: 'Open-WebUI Multi-Model Chat Interface' },
+      { method: 'GET', endpoint: 'http://localhost:3001', desc: 'OpenForge Control Cockpit & GPU Monitor' },
+      { method: 'POST', endpoint: 'http://localhost:4000/v1/chat/completions', desc: 'LiteLLM OpenAI-compatible Gateway' },
+      { method: 'WS', endpoint: 'ws://localhost:18789', desc: 'OpenClaw Autonomous Agent Protocol' },
+      { method: 'GET', endpoint: 'http://localhost:9120', desc: 'Hermes Agent Web UI & SOUL Harness' },
     ],
     metrics: [
-      { label: 'Services Bundled', value: '24 Manifests' },
-      { label: 'Setup Time', value: 'Single Command' },
-      { label: 'Hardware Support', value: 'Mac, NVIDIA, AMD, CPU' },
+      { label: 'Bundled Services', value: '24 Container Manifests' },
+      { label: 'Agent Engines', value: 'OpenClaw & Hermes' },
+      { label: 'Hardware Acceleration', value: 'NVIDIA, Apple Metal, AMD, CPU' },
+      { label: 'Deployment Latency', value: 'Single Command (~2 min)' },
     ],
     githubUrl: 'https://github.com/Osmantic/ODS',
     localPath: 'ODS',
@@ -72,32 +85,42 @@ export const detailedProjectsList: DetailedProject[] = [
     tagline: 'Local-first personal assistant with SQLite memory state, local web cockpit, and 95-line plain Python loop',
     badge: 'Autonomous Local Agent',
     description:
-      'A local-first personal AI assistant framework demonstrating the four pillars of serious agents: Harness, Reasoning Loop, Stateful Memory (SQLite), and LLM-as-Judge Evals. Features a local web dashboard cockpit at localhost:7777.',
+      'A local-first personal AI assistant framework demonstrating the four foundational pillars of production agents: Harness, Reasoning Loop, Stateful Memory (SQLite), and LLM-as-Judge Evals. Features a local web dashboard cockpit at localhost:7777 and Telegram bot integration.',
     architectureDiagram: `
-User Input (Terminal / Web / Telegram / Voice)
-                     │
-                     ▼
-           Retrieval Gate (Skip vs Retrieve)
-                     │
-         ┌───────────┴───────────┐
-         ▼                       ▼
-SQLite Memory (.kavi/state.db)   Plain Python Agent Loop (~95 lines)
-(Semantic, Episodic, Procedural) ├── Tool Calling (Calendar, Web Search)
-                                 ├── Model Adapter (Claude, OpenAI, Gemini)
-                                 └── Self-Correction Reflection
-                     │
-                     ▼
-    Browser Cockpit Dashboard (:7777) & Telegram Bot Bridge
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                       USER INTERFACE CHANNELS                                    │
+│       Terminal CLI (uv run kavi)   │   Browser Cockpit (:7777)   │   Telegram Bot Bridge        │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                       SMART RETRIEVAL GATE                                       │
+│                       Evaluates context per turn: Skip Retrieval vs Retrieve Memory              │
+└───────────────────────┬──────────────────────────────────────────────────┬───────────────────────┘
+                        │                                                  │
+                        ▼                                                  ▼
+┌─────────────────────────────────────────────────┐ ┌──────────────────────────────────────────────┐
+│          STATEFUL MEMORY SYSTEM (.kavi/state.db) │ │       PLAIN PYTHON AGENT LOOP (~95 LINES)    │
+│  - Semantic Memory: Entities, facts & preferences│ │  - Tool Registry: Calendar, Search, Bash    │
+│  - Episodic Memory: Conversation history & state│ │  - Multi-Provider Adapter (Claude, GPT, Ollama)│
+│  - Procedural Memory: Learned workflows & skills│ │  - Self-Correction & Reflection Subroutine   │
+└─────────────────────────────────────────────────┘ └──────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                  EVALUATION & OBSERVABILITY SUITE                                │
+│                   Side-by-side LLM-as-Judge evaluations with deterministic unit tests            │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
 `,
     problemStatement:
-      'Popular AI agents rely on complex black-box frameworks (LangChain/AutoGPT) that obscure the execution loop, lack persistent transparent memory, and send all data to closed cloud APIs.',
+      'Mainstream agent frameworks (LangChain, AutoGPT) introduce bloated abstractions that obscure the core execution loop, lack persistent transparent memory, and send confidential data to closed cloud APIs.',
     solution:
-      'Built KaviAgent in clean, readable Python with a ~95-line execution loop, an explicit SQLite memory store (`state.db`), a local web cockpit dashboard (`localhost:7777`), multi-provider adapters (Claude, OpenAI, DeepSeek, Ollama), and Telegram bot integration.',
+      'Engineered KaviAgent in clean, readable Python around a ~95-line execution loop, an explicit SQLite memory store (`state.db`), a local web cockpit dashboard (`localhost:7777`), multi-provider adapters (Claude, OpenAI, DeepSeek, Ollama), and Telegram bot integration.',
     features: [
-      'Local-first memory architecture stored in a single SQLite database file (`.kavi/state.db`)',
-      'Three-tier memory system: semantic facts, episodic conversations, and procedural skills',
-      'Smart retrieval gate evaluating per turn whether memory retrieval is required',
-      'Browser Cockpit Dashboard (:7777) rendering real-time message flow through the harness',
+      'Local-first memory architecture stored in a single transparent SQLite database file (`.kavi/state.db`)',
+      'Three-tier memory system: semantic facts, episodic conversations, and procedural execution skills',
+      'Smart retrieval gate evaluating per turn whether memory retrieval is required to reduce token bloat',
+      'Browser Cockpit Dashboard (:7777) rendering real-time message flow and agent reasoning state',
       'Multi-provider adapter supporting Anthropic Claude, OpenAI GPT-4o, Gemini, DeepSeek, and OpenRouter',
       'Built-in LLM-as-judge evaluation harness side-by-side with deterministic unit tests',
     ],
@@ -128,22 +151,23 @@ SQLite Memory (.kavi/state.db)   Plain Python Agent Loop (~95 lines)
     description:
       'A Tauri v2 + Rust desktop application and multi-agent development environment that autonomously writes, builds, deploys, and live-demos full-stack applications through a three-phase AI swarm pipeline (KaviSwarm).',
     architectureDiagram: `
-┌────────────────────────────────────────────────────────────────────────┐
-│                   KaviSpace Desktop (Tauri v2 + Rust)                  │
-│  React 19 SPA ──► Zustand ──► xterm.js Terminals ──► Grid Canvas       │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                   Node.js Express Backend (:3001)                      │
-│  REST API & WebSocket Server ──► Session Manager (node-pty)            │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                KaviSwarm Autonomous Multi-Agent Pipeline              │
-│  Phase 1: PRD & Mission ──► Phase 2: Code Build ──► Phase 3: Playwright│
-└────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 KAVISPACE DESKTOP (TAURI V2 + RUST)                              │
+│       React 19 SPA   │   Zustand State   │   xterm.js Terminals   │   Draggable Grid Canvas      │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   NODE.JS EXPRESS BACKEND (:3001)                                │
+│       REST API   │   WebSocket Server   │   Session Manager (node-pty)   │   KaviTest Router     │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                               KAVISWARM AUTONOMOUS 3-PHASE PIPELINE                              │
+│  Phase 1: PRD & Architecture ──► Phase 2: Autonomous Code Build ──► Phase 3: Playwright Pilot  │
+│  (Claude SDK Streaming)         (Multi-Agent Tool-Use Loop)         (Live Browser Test & Demo)   │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
 `,
     problemStatement:
       'Developing complex full-stack applications with AI requires juggling multiple terminal windows, code editors, browser previews, and agent prompts without unified orchestration.',
@@ -181,21 +205,24 @@ SQLite Memory (.kavi/state.db)   Plain Python Agent Loop (~95 lines)
     description:
       'An enterprise AI agent platform for growth, marketing, and distribution. Uses Google Gemini with LiteLLM gateway and OpenAI fallback to automate SEO, Reddit, LinkedIn, X, Instagram, and YouTube publishing.',
     architectureDiagram: `
-Your Brand
-    │
-    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                   🤖 AI Agents (Vercel AI SDK 6.x)                     │
-│  Reddit Distribution · SEO/GEO Target · LinkedIn Writer · X · YouTube  │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-         ┌──────────────────────────┼──────────────────────────┐
-         ▼                          ▼                          ▼
-┌──────────────────┐       ┌──────────────────┐       ┌──────────────────┐
-│ LLM Engine       │       │ Database & Auth  │       │ Publishing       │
-│ Gemini 2.5 Flash │       │ Supabase Postgres│       │ 10+ Channels     │
-│ LiteLLM Proxy    │       │ RLS + SSR Cookie │       │ Reddit, X, LIn   │
-└──────────────────┘       └──────────────────┘       └──────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                          BRAND GOAL & SEED INPUT                                 │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   🤖 AUTONOMOUS AI AGENT SQUAD                                   │
+│  Reddit Distribution  │  SEO/GEO Targeting  │  LinkedIn Writer  │  X / Threads  │  YouTube Shorts│
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                   ┌─────────────────────────────┼─────────────────────────────┐
+                   ▼                             ▼                             ▼
+┌──────────────────────────────────┐ ┌───────────────────────┐ ┌──────────────────────────────────┐
+│        AI INFERENCE LAYER        │ │   DATABASE & AUTH     │ │    DISTRIBUTION & PUBLISHING     │
+│ Google Gemini 2.5 Flash Primary  │ │ Supabase PostgreSQL   │ │ 10+ Connected Channels           │
+│ LiteLLM Proxy Gateway            │ │ Row-Level Security RLS│ │ Reddit, LinkedIn, X, Instagram   │
+│ GPT-4o-mini Fallback Routing     │ │ SSR Cookie Session    │ │ YouTube, TikTok, Threads, FB     │
+└──────────────────────────────────┘ └───────────────────────┘ └──────────────────────────────────┘
 `,
     problemStatement:
       'Growth teams waste massive time rewriting, formatting, scheduling, and posting content across dozens of social networks while tracking brand reach across analytics tool silos.',
@@ -225,24 +252,25 @@ Your Brand
   {
     id: 'agentic-coding-platform',
     number: '05',
-    title: 'Agentic Coding Platform & Workspaces',
+    title: 'Agentic Coding Platform & Sandboxes',
     tagline: 'Self-hosted AI development infrastructure for secure, governed agentic coding',
     badge: 'Developer AI Infrastructure',
     description:
       'A self-hosted developer platform providing containerized workspace environments, AI coding agents, and governance controls. Allows developers and AI agents to code side-by-side inside controlled sandbox environments.',
     architectureDiagram: `
-┌────────────────────────────────────────────────────────────────────────┐
-│                          Control Plane & Governance                    │
-│  ┌──────────────────┐   ┌──────────────────┐   ┌────────────────────┐ │
-│  │ Workspace Mgr    │   │ Agent Runner     │   │ Policy & Audit Log │ │
-│  └─────────┬────────┘   └─────────┬────────┘   └─────────┬──────────┘ │
-└────────────┼──────────────────────┼──────────────────────┼────────────┘
-             │                      │                      │
-             ▼                      ▼                      ▼
-┌───────────────────────────┬───────────────────────────┬───────────────┐
-│ Workspace 01 (Python AI)  │ Workspace 02 (Node Full)  │ Agent Sandbox │
-│ Docker / K8s Pod Sandbox  │ Docker / K8s Pod Sandbox  │ (MCP Tools)   │
-└───────────────────────────┴───────────────────────────┴───────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    CONTROL PLANE & GOVERNANCE                                    │
+│   Workspace Orchestrator (FastAPI)  │  Agent Runner Service  │  Token Quota & Audit Log Router   │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   EPHEMERAL SANDBOX CLUSTER                                      │
+│  ┌───────────────────────────┐   ┌───────────────────────────┐   ┌────────────────────────────┐  │
+│  │ Workspace 01 (Python/UV)  │   │ Workspace 02 (Node Full)  │   │ Agent Execution Sandbox    │  │
+│  │ Isolated Docker/K8s Pod   │   │ Isolated Docker/K8s Pod   │   │ Model Context Protocol MCP │  │
+│  └───────────────────────────┘   └───────────────────────────┘   └────────────────────────────┘  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
 `,
     problemStatement:
       'Uncontrolled developer use of public AI tools poses data-leakage and compliance risks. Companies need self-hosted developer environments where AI agents execute code under strict token budgets and audit logs.',
@@ -276,7 +304,23 @@ Your Brand
     description:
       'A complete corporate organization RAG system that ingests internal documents, enables hybrid search across organizational knowledge, and provides intelligent Q&A through agentic retrieval with LangGraph.',
     architectureDiagram: `
-Document Ingestion ──► OpenSearch Vector DB (BM25 + Vector) ──► RRF Fusion ──► LangGraph Agentic RAG
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                DOCUMENT INGESTION & PARSING PIPELINE                             │
+│                  PDF / Docx / Confluence Ingestion ──► Apache Airflow 3.0 Workers                │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 OPENSEARCH 2.19 HYBRID SEARCH ENGINE                             │
+│              BM25 Keyword Matching (Exact Terms)  +  Dense Vector Embeddings (Semantics)         │
+│                           Reciprocal Rank Fusion (RRF) Re-ranking                                │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                      LANGGRAPH AGENTIC RAG LOOP                                  │
+│  Redis Semantic Cache (Hit? Return in 2ms) ──► Document Grading ──► Query Rewriter ──► LLM Gen   │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
 `,
     problemStatement:
       'Enterprise teams struggle with fragmented internal knowledge across PDFs and policy documents. Third-party cloud APIs are banned, requiring on-premises vector search and local model serving.',
@@ -310,7 +354,31 @@ Document Ingestion ──► OpenSearch Vector DB (BM25 + Vector) ──► RRF 
     description:
       'A production-ready Bank Cheque OCR API automating the extraction and verification of critical information from scanned bank cheques. Designed for high-volume banking back-offices processing 5,000+ cheques daily.',
     architectureDiagram: `
-Cheque Scan Image ──► Upload API ──► OpenCV Preprocessing ──► OCR Field Extraction ──► Fraud Detection
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   CHEQUE SCAN INGESTION (JPG / PNG)                              │
+│                                  FastAPI Async Streaming Upload Gateway                          │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 OPENCV COMPUTER VISION PREPROCESSING                             │
+│                  Adaptive Thresholding  │  Deskew & Normalization  │  Noise Filtering            │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   FIELD EXTRACTION & OCR PIPELINE                                │
+│       Payee & Payer Name (Handwritten)  │  Date Line  │  Numeric & Written English Amounts       │
+│                             MICR E-13B Transit & Account Code Strip                              │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    AUTOMATED FRAUD SCORING ENGINE                                │
+│  - Amount Parity Cross-Check (Digits vs Written Words)                                           │
+│  - MICR Checksum Directory Verification                                                          │
+│  - Stale / Post-Dated Cheque Range Verification                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
 `,
     problemStatement:
       'Manual bank cheque processing is slow and error-prone. Banks require automated extraction of handwritten payee names, amounts, MICR codes, and automated cross-validation against fraud.',
@@ -342,7 +410,25 @@ Cheque Scan Image ──► Upload API ──► OpenCV Preprocessing ──► 
     description:
       'A complete customer service voice agent system capable of handling inbound and outbound telephone calls with sub-second speech recognition, intelligent tool-calling responses, knowledge lookup, and conversation tracing.',
     architectureDiagram: `
-Caller ──► Twilio Telephony ──► FastRTC Voice Loop (Whisper STT + LLM + Kokoro TTS) ──► Opik Tracing
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                  TELEPHONY INGESTION (TWILIO SIP)                                │
+│                        Inbound & Outbound Webhooks ──► Bi-directional Audio Stream               │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                     FASTRTC LOW-LATENCY AUDIO LOOP                               │
+│  1. Speech-to-Text: Moonshine / Faster-Whisper (Sub-200ms)                                       │
+│  2. Decision Engine: Low-Latency LLM with Realtime Tool Calling                                  │
+│  3. Knowledge Retrieval: Superlinked + Qdrant Vector Search                                      │
+│  4. Text-to-Speech: Kokoro / Orpheus 3B Speech Synthesis on GPU pods                             │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                     OPIK OBSERVABILITY & TELEMETRY                               │
+│                     End-to-end trace tracking audio latency, tool calls, and caller sentiment    │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
 `,
     problemStatement:
       'Traditional IVR call centers annoy customers with rigid menus. Organizations need human-sounding voice agents capable of querying live databases in real time.',
@@ -374,7 +460,24 @@ Caller ──► Twilio Telephony ──► FastRTC Voice Loop (Whisper STT + LL
     description:
       'A curated collection of 17 enterprise-grade n8n automation workflows integrating LLM agents, automated triage, email notification generators, IT ticket processors, and daily reporting systems.',
     architectureDiagram: `
-Trigger (Webhook/Cron) ──► n8n Engine ──► GPT-4o Triage Node ──► Gmail & Slack Notifications
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                     EVENT TRIGGERS & SENSORS                                     │
+│            Webhooks  │  Cron Schedules  │  Gmail Inbound  │  Slack Events  │  GitHub Webhooks    │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                     n8n AI AGENT WORKFLOW ENGINE                                 │
+│  - GPT-4o / GPT-4o-mini Autonomous Reasoning & Tool Nodes                                        │
+│  - Strict JSON Schema Output Validation                                                          │
+│  - Conditional Error Routing & Fallback Branches                                                 │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                      ENTERPRISE ACTIONS & OUTPUTS                                │
+│       Automated IT Ticket Routing  │  Customer Draft Responses  │  Server Health Alerts (Email)  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
 `,
     problemStatement:
       'Operations teams waste thousands of hours manually classifying support tickets, summarizing standups, triaging bugs, and generating release notes.',
@@ -406,7 +509,24 @@ Trigger (Webhook/Cron) ──► n8n Engine ──► GPT-4o Triage Node ──�
     description:
       'A multi-stage asynchronous invoice processing system engineered with vLLM vision model inference, a high-concurrency Rust API gateway, and async task queues for enterprise accounting teams.',
     architectureDiagram: `
-Invoice PDFs ──► Rust API Gateway (Axum) ──► Redis Queue ──► vLLM GPU Vision Workers ──► PostgreSQL
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                      HIGH-THROUGHPUT INGESTION                                   │
+│                        Rust API Gateway (Axum & Tokio) ──► Redis Job Queue                       │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                  KUBERNETES GPU WORKER POOL                                      │
+│  - vLLM Vision Inference Workers (Serving Qwen2-VL & Donut Models)                               │
+│  - Scale-to-Zero GPU Node Autoscaling                                                            │
+│  - Line-Item Table Extraction & Subtotal/Tax/VAT Math Validation                                 │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 POSTGRESQL & ERP INTEGRATION LAYER                               │
+│                  Structured JSON Invoices ──► SAP / NetSuite Accounting Feeds                    │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
 `,
     problemStatement:
       'Enterprise AP departments process millions of complex multi-page invoices with varying layouts, hitting severe throughput bottlenecks on legacy software.',
@@ -437,7 +557,26 @@ Invoice PDFs ──► Rust API Gateway (Axum) ──► Redis Queue ──► v
     description:
       'An open-source Model Context Protocol (MCP) server connecting AI coding assistants (Cursor, Windsurf, Claude Desktop, Cline) to PageBolt capture APIs for screenshotting, PDF generation, and page inspection.',
     architectureDiagram: `
-Cursor / Claude Desktop ──► MCP Server ──► Puppeteer / PageBolt Engine (Screenshots, PDFs, Video)
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                      AI CODING CLIENTS & AGENTS                                  │
+│              Cursor IDE  │  Windsurf IDE  │  Claude Desktop  │  Cline Autonomous Agent           │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   PAGEBOLT MCP SERVER (TYPESCRIPT)                               │
+│  9 Specialized MCP Tools:                                                                        │
+│  - take_screenshot: Full-page & element captures with device emulation                           │
+│  - generate_pdf: Headless print-to-pdf generation                                                │
+│  - observe_page: Token-budgeted DOM inspection for browser agents                                 │
+│  - record_video: Browser interaction capture                                                     │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+                                                 ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    PUPPETEER CAPTURE ENGINE                                      │
+│                  Headless Chrome Cluster (25+ Viewports: iPhone, iPad, MacBook)                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
 `,
     problemStatement:
       'AI coding agents operate "blind" when developing web applications, unable to see the visual rendered UI or inspect interactive DOM element selectors.',

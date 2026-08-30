@@ -21,17 +21,17 @@ export default function HomePage() {
       />
 
       {/* ===== NAV ===== */}
-      <header className="fixed top-0 inset-x-0 z-40 bg-white/85 backdrop-blur-xl border-b border-slate-200/80 shadow-sm">
+      <header className="fixed top-0 inset-x-0 z-40 bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
           <a href="#" className="flex items-center gap-3 group">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-600 via-purple-600 to-cyan-500 flex items-center justify-center font-serif font-bold text-white text-lg shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
               K
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col text-left">
               <span className="font-serif font-bold text-base tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">
                 {site.name}
               </span>
-              <span className="text-[10px] font-mono text-slate-500 font-medium -mt-0.5">Senior AI & FDE Engineer</span>
+              <span className="text-[10px] font-mono text-slate-500 font-semibold -mt-0.5">Senior AI & FDE Engineer</span>
             </div>
           </a>
 
@@ -49,7 +49,7 @@ export default function HomePage() {
               <a
                 key={l.href}
                 href={l.href}
-                className="px-3.5 py-1.5 text-xs font-mono tracking-wide text-slate-600 hover:text-indigo-600 transition-colors rounded-lg hover:bg-slate-100/80 font-medium"
+                className="px-3 py-1.5 text-xs font-mono tracking-wide text-slate-600 hover:text-indigo-600 transition-colors rounded-lg hover:bg-slate-100/80 font-medium"
               >
                 {l.label}
               </a>
@@ -59,7 +59,7 @@ export default function HomePage() {
           <div className="flex items-center gap-3">
             <a
               href="#contact"
-              className="px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl text-xs font-mono tracking-wider uppercase font-semibold hover:opacity-95 transition-opacity shadow-md shadow-indigo-500/25"
+              className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-mono tracking-wider uppercase font-semibold transition-all shadow-md shadow-indigo-600/25"
             >
               Get in Touch
             </a>
@@ -67,45 +67,45 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* ===== HERO SECTION WITH PHOTO ===== */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden bg-gradient-to-b from-indigo-50/70 via-purple-50/30 to-[#FAFAFD]">
+      {/* ===== HERO SECTION WITH REFINED PHOTO ALIGNMENT ===== */}
+      <section className="relative pt-32 pb-20 px-6 overflow-hidden bg-gradient-to-b from-indigo-50/60 via-purple-50/25 to-[#FAFAFD]">
         {/* Glow ambient background circles */}
         <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-tr from-indigo-300/20 to-purple-300/20 blur-[120px] pointer-events-none rounded-full" />
         <div className="absolute top-1/3 right-10 w-[350px] h-[350px] bg-cyan-200/20 blur-[100px] pointer-events-none rounded-full" />
 
         <div className="max-w-6xl mx-auto relative">
           <Reveal className="flex flex-col items-center text-center max-w-4xl mx-auto">
-            {/* Status dot */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-indigo-200 bg-white/90 shadow-sm text-xs text-indigo-700 font-mono tracking-wider mb-8">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 dot-pulse" />
-              <span>Singapore · Sovereign AI & Private LLM Specialist · Open to Opportunities</span>
+            {/* Status badge */}
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-indigo-200 bg-white/95 shadow-sm text-xs text-indigo-700 font-mono tracking-wider mb-8">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 dot-pulse" />
+              <span>Singapore · Sovereign AI & Private LLM Specialist · Available for Roles</span>
             </div>
 
-            {/* Profile Photo & Headline Layout */}
-            <div className="flex flex-col items-center mb-8">
-              <div className="relative mb-6 group">
-                <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-500 opacity-70 blur-md group-hover:opacity-100 transition-opacity" />
-                <img
-                  src={profile.portrait}
-                  width={190}
-                  height={190}
-                  alt={profile.name}
-                  className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-3xl object-cover ring-4 ring-white shadow-2xl group-hover:scale-105 transition-transform"
-                />
-                <div className="absolute -bottom-2 -right-2 px-3 py-1 bg-slate-900 text-white text-[11px] font-mono font-semibold rounded-full shadow-lg border border-slate-700">
-                  Senior FDE
-                </div>
-              </div>
+            {/* Profile Photo Presentation */}
+            <div className="mb-8 relative group">
+              <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-500 opacity-60 blur-md group-hover:opacity-100 transition-opacity" />
+              <img
+                src={profile.portrait}
+                width={160}
+                height={160}
+                alt={profile.name}
+                className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full object-cover ring-4 ring-white shadow-2xl group-hover:scale-105 transition-transform"
+              />
+            </div>
 
-              <h1 className="font-serif font-extrabold text-4xl sm:text-6xl md:text-7xl text-slate-900 tracking-tight leading-[1.05] mb-6">
-                Senior AI Engineer <br />
-                <span className="text-gradient-primary">Forward Deployed Engineer</span>
+            {/* Clean Headline Typography */}
+            <div className="mb-8 max-w-4xl">
+              <h1 className="font-serif font-extrabold text-4xl sm:text-6xl md:text-7xl text-slate-900 tracking-tight leading-[1.1] mb-4">
+                Senior AI Engineer
               </h1>
-
-              <p className="text-slate-600 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed font-text">
-                Taking AI solutions from business problems to production-grade systems inside client VPCs, air-gapped networks, and Kubernetes GPU clusters.
+              <p className="text-2xl sm:text-4xl md:text-5xl font-serif font-bold text-gradient-primary tracking-tight leading-tight">
+                Forward Deployed AI Infrastructure Specialist
               </p>
             </div>
+
+            <p className="text-slate-600 text-base sm:text-xl max-w-3xl mx-auto leading-relaxed font-text mb-10">
+              Taking AI solutions from business problems to production-grade systems inside client VPCs, air-gapped networks, and Kubernetes GPU clusters.
+            </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
@@ -189,7 +189,7 @@ export default function HomePage() {
                 width={140}
                 height={140}
                 alt={profile.name}
-                className="w-32 h-32 rounded-2xl object-cover ring-4 ring-indigo-100 shadow-lg mb-4"
+                className="w-32 h-32 rounded-full object-cover ring-4 ring-indigo-100 shadow-lg mb-4"
               />
               <h2 className="font-serif font-bold text-2xl text-slate-900 mb-1">{profile.name}</h2>
               <p className="text-xs font-mono text-indigo-600 font-semibold mb-2">{profile.role}</p>

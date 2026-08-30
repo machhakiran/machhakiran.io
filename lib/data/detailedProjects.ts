@@ -4,7 +4,7 @@ export const detailedProjectsList: DetailedProject[] = [
   {
     id: 'openforge-ai',
     number: '01',
-    title: 'OpenForge AI (formerly ODS)',
+    title: 'OpenForge AI',
     tagline: 'Self-hosted Sovereign AI platform with 24 bundled services, OpenClaw & Hermes agents, and hardware-accelerated local inference',
     badge: 'Sovereign AI Infrastructure',
     description:
@@ -42,7 +42,7 @@ export const detailedProjectsList: DetailedProject[] = [
     problemStatement:
       'Deploying an enterprise-grade private AI server requires compiling CUDA/ROCm runtimes, configuring multi-agent harnesses (OpenClaw, Hermes), orchestrating hybrid vector search with SearXNG, configuring speech STT/TTS, and securing endpoints with PII masking—a process taking weeks of manual infrastructure plumbing.',
     solution:
-      'Engineered OpenForge AI (formerly ODS), an automated deployment system that auto-provisions 24 Docker service manifests with a single bash command. Automatically detects host GPU hardware (NVIDIA CUDA, Apple Metal, AMD ROCm, Intel Arc), mounts persistent agent memory (SOUL.md), configures LiteLLM proxying, and launches a real-time host management dashboard.',
+      'Engineered OpenForge AI, an automated deployment system that auto-provisions 24 Docker service manifests with a single bash command. Automatically detects host GPU hardware (NVIDIA CUDA, Apple Metal, AMD ROCm, Intel Arc), mounts persistent agent memory (SOUL.md), configures LiteLLM proxying, and launches a real-time host management dashboard.',
     features: [
       'Single-command bootstrap (`curl -fsSL https://install.osmantic.com/ods.sh | bash`) supporting Linux, macOS, and Windows WSL2',
       '24 bundled production services: llama-server, OpenClaw Agent, Hermes Agent, LiteLLM, Qdrant, SearXNG, ComfyUI, Faster-Whisper, Kokoro, n8n, Langfuse',
@@ -53,7 +53,7 @@ export const detailedProjectsList: DetailedProject[] = [
       'OpenAI-compatible LiteLLM proxy (:4000) routing traffic to local models with Token-Spy cost accounting',
     ],
     techStack: [
-      { category: 'Platform Name', name: 'OpenForge AI (ODS)' },
+      { category: 'Platform Name', name: 'OpenForge AI' },
       { category: 'Agent Runtimes', name: 'OpenClaw (:18789) & Hermes (:9120)' },
       { category: 'Local Inference', name: 'llama-server, Ollama & vLLM' },
       { category: 'Proxy Gateway', name: 'LiteLLM Proxy (:4000)' },

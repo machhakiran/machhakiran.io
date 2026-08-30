@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The FDE Workflow — Kiran Machha</title>
+<meta name="description" content="How Kiran Machha runs a forward-deployed engagement: audit the real workflow, decide what to automate, prove behaviour with evals, deploy inside the customer estate, then hand it over — with a twelve-week timeline and the deliverable at each gate.">
+<meta name="author" content="Kiran Machha">
+<link rel="canonical" href="https://machhakiran.io/workflow.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="The FDE Workflow">
+<meta property="og:description" content="Audit, evals, deployment and hand-over — the method I use to take an AI system into a customer’s production estate.">
+<meta property="og:url" content="https://machhakiran.io/workflow.html">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23141310'/><text x='50' y='72' font-family='Georgia,serif' font-size='64' font-weight='900' fill='%23FAF7F0' text-anchor='middle'>K</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<script>
+  (function () {
+    var r = document.documentElement;
+    r.className = (r.className ? r.className + ' ' : '') + 'js';
+    try {
+      var t = localStorage.getItem('mk-theme');
+      if (t === 'light' || t === 'dark') r.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<!-- ============================ MASTHEAD ============================ -->
+<header class="mast wrap">
+  <div class="dateline">
+    <span><a class="backlink" href="index.html">← Front page</a></span>
+    <span class="mid" id="today">The Method</span>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle colour scheme">
+      <span class="on" data-mode="light">Day</span><span data-mode="dark">Night</span>
+    </button>
+    <span>machhakiran.io</span>
+  </div>
+
+  <h1 class="name">THE FDE <span class="surname">WORKFLOW</span></h1>
+
+  <div class="role-line">
+    <span class="role-mark">How I run an engagement</span>
+    <span class="where">Method · Twelve weeks, four gates</span>
+  </div>
+
+  <ul class="rail">
+    <li>Audit</li>
+    <li>Build</li>
+    <li>Evals</li>
+    <li>Deploy</li>
+    <li>Hand Over</li>
+  </ul>
+
+  <nav class="strip" id="nav">
+    <span class="brand">Kiran Machha</span>
+    <a href="#thesis">Why</a>
+    <a href="#job">The Method</a>
+    <a href="#workflow">The Rebuild</a>
+    <a href="#evals">Evals</a>
+    <a href="#deploy">Deploy</a>
+    <a href="#timeline">Timeline</a>
+    <a class="tab" href="fde.html">A Day in the FDE →</a>
+    <a class="tab" href="index.html">Front page →</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- ============================ THESIS ============================ -->
+  <section class="band reveal" id="thesis">
+    <div class="paper-grid">
+      <div class="col">
+        <p class="kicker">Why · the case for deployment</p>
+
+        <p class="deck">Every company can now buy intelligence. If everyone can access it,
+          intelligence alone cannot be the moat. So the advantage moves into
+          <span class="hl">deployment</span>.</p>
+
+        <p class="lede">The same foundational capability is becoming available to anyone able to
+          pay for it. The edge is no longer who has intelligence — it is where, how, and why they
+          use it. Someone has to decide where intelligence belongs. That person is the forward
+          deployed engineer.</p>
+
+        <p class="kicker" style="margin-top:26px">The through-line</p>
+        <p class="loop">
+          <span>Business reality</span><i>→</i>
+          <span>FDE judgment</span><i>→</i>
+          <span>Deployed AI system</span>
+        </p>
+
+        <dl class="clauses">
+          <div class="clause">
+            <dt>Business reality</dt>
+            <dd>How the work actually happens today — tools, people, exceptions.</dd>
+          </div>
+          <div class="clause">
+            <dt>FDE judgment</dt>
+            <dd>Where intelligence belongs, and where it does not.</dd>
+          </div>
+          <div class="clause">
+            <dt>Deployed AI system</dt>
+            <dd>Working software carrying real responsibility inside the business.</dd>
+          </div>
+        </dl>
+
+        <p style="margin-top:18px">FDEs are in demand because they control how intelligence enters
+          the business. The role requires two kinds of judgment that rarely exist in one person.</p>
+
+        <div class="table-wrap">
+          <table class="paper" style="min-width:0">
+            <thead>
+              <tr><th>The commercial world</th><th>The technical world</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Workflows</td><td>Models</td></tr>
+              <tr><td>Cost</td><td>Systems</td></tr>
+              <tr><td>Incentives</td><td>APIs</td></tr>
+              <tr><td>Risk</td><td>Data</td></tr>
+              <tr><td>Adoption</td><td>Code</td></tr>
+              <tr class="emph"><td>Business value</td><td>Reliability</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="meta" style="margin-top:12px">The FDE turns business understanding into working
+          software.</p>
+      </div>
+
+      <div class="col">
+        <p class="kicker">What this page is</p>
+
+        <p class="lede">The method I use to take an AI system from someone's messy real workflow
+          into their production estate — and the deliverable that closes each stage.</p>
+
+        <p>It is deliberately unglamorous. Most AI projects do not fail on model quality; they
+          fail because nobody audited the real workflow, nobody agreed what "working" meant, or
+          nobody could deploy it inside the customer's security boundary.</p>
+
+        <div class="notice">
+          <div class="t">Each stage earns the next</div>
+          <p>No building before the audit is signed off. No deployment before the evals pass.
+            No hand-over before their team has run it themselves. <b>Gates, not phases.</b></p>
+        </div>
+
+        <div class="notice">
+          <div class="t">Built to hand over</div>
+          <p>The engagement ends with the customer's own people operating the system — documented,
+            monitored and owned by someone who is not me.</p>
+          <a class="cta" href="#timeline">See the timeline →</a>
+        </div>
+
+        <p class="source-note" style="margin-top:22px">
+          The audit / evals / deployment framing draws on
+          <a href="https://learn.varickagents.com/fde-in-30-days" target="_blank" rel="noopener">Varick's guide to AI Forward Deployed Engineering</a>.
+          The twelve-week timeline and the gates are how I run it.
+        </p>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ THE JOB ============================ -->
+  <section class="band reveal" id="job">
+    <p class="kicker">The job · three parts</p>
+    <h2 class="head" style="max-width:26ch">Each stage earns the right to the next.</h2>
+
+    <div class="beats three">
+      <article class="beat">
+        <span class="no">Part 01</span>
+        <h3>Audit</h3>
+        <p>Identifies the right problem and maps reality. The documented process is rarely the
+          real process, so the audit determines what should be automated before anyone begins
+          building.</p>
+        <ul>
+          <li>Interviews, emails, spreadsheets</li>
+          <li>SOPs, systems, approvals</li>
+          <li>Exception paths</li>
+          <li>Bottlenecks &amp; repetitive work</li>
+          <li>Judgment points &amp; failure modes</li>
+        </ul>
+      </article>
+
+      <article class="beat">
+        <span class="no">Part 02</span>
+        <h3>Evals</h3>
+        <p>Turns non-determinism into evidence. A graded set of cases — normal, edge, incomplete,
+          ambiguous, high-risk — produces a pass rate, failure categories and thresholds you can
+          argue from.</p>
+        <ul>
+          <li>Right data · required steps</li>
+          <li>Matches expert · safe to act</li>
+          <li>Pass rate &amp; failure taxonomy</li>
+          <li>Confidence thresholds</li>
+          <li>Escalation rules</li>
+        </ul>
+      </article>
+
+      <article class="beat">
+        <span class="no">Part 03</span>
+        <h3>Deployment</h3>
+        <p>Makes it work inside the business. Build over current data and systems, prove it in a
+          sandbox, then grant authority only as reliability is demonstrated.</p>
+        <ul>
+          <li>Existing data &amp; internal APIs</li>
+          <li>Identity &amp; permissions</li>
+          <li>Sandbox → production users</li>
+          <li>Human review, logs, alerts</li>
+          <li>Rollback</li>
+        </ul>
+      </article>
+    </div>
+
+    <p class="kicker" style="margin-top:34px">The audit artifact · one operating map</p>
+    <ol class="deliverables">
+      <li><span><b>Current-state workflow</b> — how the work actually happens today.</span></li>
+      <li><span><b>Future-state workflow</b> — the same work, rebuilt around AI.</span></li>
+      <li><span><b>Selected use case</b> — one workflow, chosen for value.</span></li>
+      <li><span><b>Boundaries</b> — what the system may and may not do.</span></li>
+      <li><span><b>Expected business value</b> — hours, cost and errors, quantified.</span></li>
+    </ol>
+  </section>
+
+  <!-- ============================ WORKFLOW ============================ -->
+  <section class="band reveal" id="workflow">
+    <p class="kicker">The workflow · before and after</p>
+    <h2 class="head" style="max-width:28ch">First understand how the work is really being done.</h2>
+    <p class="lede" style="max-width:60ch">The worked example from the guide: invoice processing.
+      Five manual steps, each hiding more work than the “simple” version admits — then the same
+      work with intelligence built into it.</p>
+
+    <div class="split" style="margin-top:24px">
+      <div>
+        <h3>Current state</h3>
+        <ol class="steps">
+          <li><b>An email arrives</b><span>The trigger.</span></li>
+          <li><b>Copied into a spreadsheet</b><span>Re-keyed by hand.</span></li>
+          <li><b>Checked in an internal system</b><span>Tribal knowledge.</span></li>
+          <li><b>Approved in Slack</b><span>Waits on a reply.</span></li>
+          <li><b>Entered into the ERP</b><span>Forty required fields.</span></li>
+        </ol>
+        <p class="meta" style="margin-top:12px">The FDE traces every step.</p>
+      </div>
+      <div>
+        <h3>AI-native</h3>
+        <ol class="steps">
+          <li><b>Deterministic software</b><span>Intake · validation · routing.</span></li>
+          <li><b>The agent acts</b><span>Gathers · decides · drafts.</span></li>
+          <li class="human"><b>A human approves</b><span>One clear decision.</span></li>
+          <li><b>Record updated</b><span>The ERP, without re-keying.</span></li>
+        </ol>
+        <p class="meta" style="margin-top:12px">Evidence log — every step recorded. An exception
+          escalates to a person.</p>
+      </div>
+    </div>
+
+    <p class="kicker" style="margin-top:34px">The decision · what should be automated</p>
+    <div class="beats three">
+      <article class="beat">
+        <span class="no">Option 01</span>
+        <h3>Deterministic software</h3>
+        <p>When the rules and inputs are predictable.</p>
+      </article>
+      <article class="beat">
+        <span class="no">Option 02</span>
+        <h3>An agent</h3>
+        <p>When the objective is clear but the inputs, path, or required actions vary.</p>
+      </article>
+      <article class="beat">
+        <span class="no">Option 03</span>
+        <h3>A human in control</h3>
+        <p>When the decision carries material ambiguity, accountability, or irreversible
+          consequences.</p>
+      </article>
+    </div>
+    <p style="margin-top:18px;max-width:60ch">Prioritise lengthy, high-volume workflows where the
+      improvement is large enough to matter.</p>
+  </section>
+
+  <!-- ============================ EVALS ============================ -->
+  <section class="band reveal" id="evals">
+    <p class="kicker">Evals · turn non-determinism into evidence</p>
+    <h2 class="head" style="max-width:24ch">Five cases, four questions, one grade.</h2>
+
+    <div class="table-wrap">
+      <table class="paper">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Right data</th>
+            <th>Required steps</th>
+            <th>Matches expert</th>
+            <th>Safe to act</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>The normal case</td>
+            <td><span class="tick">✓</span></td><td><span class="tick">✓</span></td>
+            <td><span class="tick">✓</span></td><td><span class="tick">✓</span></td>
+          </tr>
+          <tr>
+            <td>The edge case</td>
+            <td><span class="tick">✓</span></td><td><span class="tick">✓</span></td>
+            <td><span class="cross">✗</span></td><td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>Incomplete information</td>
+            <td><span class="cross">✗</span></td><td><span class="dash">—</span></td>
+            <td><span class="dash">—</span></td><td><span class="esc">→ human</span></td>
+          </tr>
+          <tr>
+            <td>An ambiguous request</td>
+            <td><span class="tick">✓</span></td><td><span class="cross">✗</span></td>
+            <td><span class="dash">—</span></td><td><span class="esc">→ human</span></td>
+          </tr>
+          <tr>
+            <td>A high-risk action</td>
+            <td><span class="tick">✓</span></td><td><span class="tick">✓</span></td>
+            <td><span class="tick">✓</span></td><td><span class="esc">→ human</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="meta" style="margin-top:12px">✓ expected behaviour · ✗ failure, with the evidence
+      kept · → human escalated by rule</p>
+
+    <p class="kicker" style="margin-top:34px">The evaluation report</p>
+    <div class="stats">
+      <div class="stat">
+        <span class="fig">82%</span>
+        <span class="lab">Pass rate<br>41 of 50 graded runs passed</span>
+      </div>
+      <div class="stat">
+        <span class="fig">9</span>
+        <span class="lab">Failed runs<br>Missing data ×5 · wrong record pulled ×4</span>
+      </div>
+      <div class="stat">
+        <span class="fig">0.80</span>
+        <span class="lab">Confidence floor<br>Below it, the system must escalate</span>
+      </div>
+    </div>
+
+    <div class="beats three" style="margin-top:30px">
+      <article class="beat">
+        <span class="no">Rule 01</span>
+        <h3>Confidence</h3>
+        <p>Below 0.80, the system must escalate rather than act.</p>
+      </article>
+      <article class="beat">
+        <span class="no">Rule 02</span>
+        <h3>Escalation</h3>
+        <p>High-risk actions always reach a person, whatever the score.</p>
+      </article>
+      <article class="beat">
+        <span class="no">Rule 03</span>
+        <h3>Readiness</h3>
+        <p>Pilot — with human review on every action.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================ DEPLOY ============================ -->
+  <section class="band reveal" id="deploy">
+    <p class="kicker">Deployment · make it work inside the business</p>
+    <h2 class="head" style="max-width:28ch">Where software begins carrying operational
+      responsibility.</h2>
+
+    <div class="paper-grid">
+      <div class="col">
+        <ol class="steps">
+          <li><b>Integrate with what already exists</b><span>Build over the current data and
+            systems rather than beginning with a large replacement project.</span></li>
+          <li><b>Test inside a controlled environment</b><span>Use a sandbox within the company's
+            infrastructure to run, inspect and debug safely.</span></li>
+          <li><b>Increase autonomy gradually</b><span>Begin with the smallest useful action and
+            grant more authority only after the system proves reliable.</span></li>
+        </ol>
+
+        <p class="kicker" style="margin-top:26px">And then it runs again</p>
+        <p class="loop">
+          <span>Audit</span><i>→</i>
+          <span>Build</span><i>→</i>
+          <span>Evals</span><i>→</i>
+          <span>Deploy</span><i>→</i>
+          <span>Observe</span><i>→</i>
+          <span>Improve</span><i>↺</i>
+        </p>
+        <p style="max-width:58ch">An FDE owns the path from messy workflow to a trusted production
+          system.</p>
+      </div>
+      <div class="col">
+        <p class="kicker">What sits around the system</p>
+        <div class="item"><div class="t">Existing data</div><div class="s">Build over, not around</div></div>
+        <div class="item"><div class="t">Internal APIs</div><div class="s">The real integration surface</div></div>
+        <div class="item"><div class="t">Identity &amp; permissions</div><div class="s">Who the agent is allowed to be</div></div>
+        <div class="item"><div class="t">Human review</div><div class="s">On every action, at pilot</div></div>
+        <div class="item"><div class="t">Logs &amp; alerts</div><div class="s">Evidence, not vibes</div></div>
+        <div class="item"><div class="t">Rollback</div><div class="s">The condition of being allowed to ship</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ TIMELINE ============================ -->
+  <section class="band reveal" id="timeline">
+    <p class="kicker">The timeline · a twelve-week engagement</p>
+    <h2 class="head" style="max-width:26ch">Four gates. Nothing starts until the last one
+      closes.</h2>
+    <p class="lede" style="max-width:64ch">Engagements vary, but the shape does not. Each block
+      ends with something the customer can hold — a signed statement, a working prototype on their
+      own data, an evaluation report, a system their team is running without me.</p>
+
+    <div class="milestones" style="margin:26px 0 40px">
+      <div class="milestone"><span class="d">Gate 01 · Week 2</span><span class="m">Problem signed off</span></div>
+      <div class="milestone"><span class="d">Gate 02 · Week 4</span><span class="m">Prototype on real data</span></div>
+      <div class="milestone"><span class="d">Gate 03 · Week 8</span><span class="m">Evaluated system</span></div>
+      <div class="milestone"><span class="d">Gate 04 · Week 12</span><span class="m">In production, handed over</span></div>
+    </div>
+
+    <!-- PHASE 1 -->
+    <p class="kicker">Weeks 1–2 · Audit</p>
+    <h3 class="head" style="font-size:clamp(20px,2.3vw,25px);max-width:30ch">Find the workflow
+      worth rebuilding.</h3>
+    <p class="week-goal">By <b>week 2</b> we agree what we are building and what it is worth —
+      in writing, before a line of production code exists.</p>
+
+    <div class="days" style="margin-bottom:40px">
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Stakeholder map</h4>
+        <p>Who does the work, who owns the systems, who signs the release, and who quietly
+          blocks it.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Current-state workflow</h4>
+        <p>How the work actually happens today, traced step by step — including every exception
+          handled by hand.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Future-state workflow</h4>
+        <p>The same work rebuilt around AI, with the human decision points marked explicitly.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Data &amp; access review</h4>
+        <p>Where the records live, who may see them, and what the security boundary permits.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Boundaries</h4>
+        <p>What the system may and may not do, and where autonomy stops.</p>
+      </article>
+      <article class="day-card mark">
+        <span class="n">Gate 01</span>
+        <h4>Problem statement, signed</h4>
+        <p>One use case, chosen for value, with the hours and errors it should remove
+          quantified.</p>
+      </article>
+    </div>
+
+    <!-- PHASE 2 -->
+    <p class="kicker">Weeks 3–4 · Build</p>
+    <h3 class="head" style="font-size:clamp(20px,2.3vw,25px);max-width:30ch">Something real, on
+      their data, in front of the people who do the work.</h3>
+    <p class="week-goal">By <b>week 4</b> an operator has used it and told me what is wrong with
+      it. That feedback is worth more than another month of design.</p>
+
+    <div class="days" style="margin-bottom:40px">
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Domain model</h4>
+        <p>The objects, links and actions of their business — the spine everything else hangs
+          from.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Data pipeline</h4>
+        <p>A first real extract from the source systems, ingested and refreshed rather than
+          hand-loaded.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Retrieval layer</h4>
+        <p>Their corpus indexed, permission-aware, returning the right document with a
+          citation.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Agent v1</h4>
+        <p>The loop, the tools it may call, guardrails and a full audit trail from the first
+          run.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Operator interface</h4>
+        <p>The screen the actual user works in — not a notebook, not a chat window bolted on.</p>
+      </article>
+      <article class="day-card mark">
+        <span class="n">Gate 02</span>
+        <h4>Working prototype</h4>
+        <p>Running end to end on their own data, demonstrated to the people who will use it.</p>
+      </article>
+    </div>
+
+    <!-- PHASE 3 -->
+    <p class="kicker">Weeks 5–8 · Harden &amp; evaluate</p>
+    <h3 class="head" style="font-size:clamp(20px,2.3vw,25px);max-width:32ch">Turn a demo into
+      something on-call can defend.</h3>
+    <p class="week-goal">By <b>week 8</b> we know how it fails, how often, what it costs per run,
+      and what it does when it is unsure.</p>
+
+    <div class="days" style="margin-bottom:40px">
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Golden dataset</h4>
+        <p>Real cases with hand-labelled correct outputs — normal, edge, ambiguous and
+          high-risk.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Eval suite in CI</h4>
+        <p>Correctness, format, tool selection and escalation behaviour, gated on every
+          change.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Failure taxonomy</h4>
+        <p>Named categories with counts, so "it sometimes gets it wrong" becomes a number.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Recovery behaviour</h4>
+        <p>Checkpointing, resume, retries with backoff, and explicit rules for unsafe
+          continuation.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Cost per run</h4>
+        <p>Model routing, caching and token budgets, measured — not estimated.</p>
+      </article>
+      <article class="day-card mark">
+        <span class="n">Gate 03</span>
+        <h4>Evaluation report</h4>
+        <p>Pass rate, failure categories, confidence thresholds and the open risks, written
+          down.</p>
+      </article>
+    </div>
+
+    <!-- PHASE 4 -->
+    <p class="kicker">Weeks 9–12 · Deploy &amp; hand over</p>
+    <h3 class="head" style="font-size:clamp(20px,2.3vw,25px);max-width:30ch">Into production, then
+      out of my hands.</h3>
+    <p class="week-goal">By <b>week 12</b> it is live inside their estate and their team is
+      running it. If that has not happened, the engagement has not finished.</p>
+
+    <div class="days">
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Deployment</h4>
+        <p>On their infrastructure — on-premise, VPC or air-gapped — through their own release
+          process.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Security review passed</h4>
+        <p>Identity, permissions, data handling and audit trails signed off by the people whose
+          job that is.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Monitoring &amp; alerting</h4>
+        <p>Self-hosted traces, quality and cost dashboards, with alerts that reach a human who
+          can act.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Runbook</h4>
+        <p>What breaks, how it looks when it does, and the first three things to try.</p>
+      </article>
+      <article class="day-card">
+        <span class="n">Deliverable</span>
+        <h4>Team enablement</h4>
+        <p>Their engineers extend it and their operators run it, while I am still there to
+          answer.</p>
+      </article>
+      <article class="day-card mark">
+        <span class="n">Gate 04</span>
+        <h4>Owned by their team</h4>
+        <p>In production, adopted, and no longer dependent on me being in the room.</p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="colophon wrap">
+  <span>© <span id="year">2026</span> Kiran Machha · Singapore</span>
+  <span><a href="index.html" class="backlink">← Back to the front page</a></span>
+  <span>“Prototype → production → handed over.”</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

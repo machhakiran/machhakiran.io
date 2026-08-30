@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kiran Machha — Forward Deployed AI Engineer</title>
+<meta name="description" content="Kiran Machha — Forward Deployed AI Engineer in Singapore. Sovereign and on-premise enterprise AI: open models, agent frameworks, fine-tuning, vLLM inference, Kubernetes and GPU infrastructure, vector databases, and self-hosted observability with Opik, Phoenix, Langfuse and Grafana.">
+<meta name="author" content="Kiran Machha">
+<link rel="canonical" href="https://machhakiran.io/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kiran Machha — Forward Deployed AI Engineer">
+<meta property="og:description" content="Sovereign, on-premise enterprise AI — open models, tuning, GPU infrastructure and self-hosted observability, deployed inside your walls.">
+<meta property="og:image" content="https://machhakiran.io/portrait.jpg">
+<meta property="og:url" content="https://machhakiran.io/">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23141310'/><text x='50' y='72' font-family='Georgia,serif' font-size='64' font-weight='900' fill='%23FAF7F0' text-anchor='middle'>K</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<script>
+  /* Runs before first paint: opts in to the reveal animation and restores the
+     saved colour scheme, so there is no flash of the wrong theme. */
+  (function () {
+    var r = document.documentElement;
+    r.className = (r.className ? r.className + ' ' : '') + 'js';
+    try {
+      var t = localStorage.getItem('mk-theme');
+      if (t === 'light' || t === 'dark') r.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<!-- ============================ MASTHEAD ============================ -->
+<header class="mast wrap">
+  <div class="dateline">
+    <span>Vol. I</span>
+    <span class="mid" id="today">Portfolio</span>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle colour scheme">
+      <span class="on" data-mode="light">Day</span><span data-mode="dark">Night</span>
+    </button>
+    <span>machhakiran.io</span>
+  </div>
+
+  <h1 class="name">KIRAN <span class="surname">MACHHA</span></h1>
+
+  <div class="role-line">
+    <span class="role-mark">Forward Deployed AI Engineer</span>
+    <span class="where">Singapore · Open to connect</span>
+  </div>
+
+  <ul class="rail">
+    <li>AI Agents</li>
+    <li>AI Infrastructure</li>
+    <li>AI Observability</li>
+    <li>AI at Scale</li>
+    <li>Sovereign AI</li>
+  </ul>
+
+  <nav class="strip" id="nav">
+    <span class="brand">Kiran Machha</span>
+    <a href="#lead">Profile</a>
+    <a href="#capabilities">Capabilities</a>
+    <a href="#stack">Stack</a>
+    <a href="#domains">Domains</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#wire">Contact</a>
+    <a class="tab" href="fde.html">A Day in the FDE →</a>
+    <a class="tab" href="workflow.html">The FDE Workflow →</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- ============================ THE LEAD ============================ -->
+  <section class="band reveal" id="lead">
+    <div class="paper-grid profile-first">
+      <div class="col">
+        <p class="kicker">The lead</p>
+        <h2 class="head">An engineer who flies to where the model actually has to work.</h2>
+
+        <p class="dropcap lede">Kiran Machha is a Forward Deployed AI Engineer. He sits inside the customer's
+        team — their repo, their cluster, their compliance review — and takes an AI system from
+        a promising notebook to something on-call can defend at three in the morning. Enterprise
+        delivery across <mark>banking, payments, telecom, logistics, ecommerce and government</mark>, based in
+        Singapore.</p>
+
+        <p>The specialism is <b>sovereign AI</b> — open-weight models running inside the
+        customer's own datacentre, VPC or air-gapped network. Banks, hospitals and government
+        suppliers who want the capability but cannot send a single record to a third-party API.
+        Everything in the stack is open source and self-hosted, so nothing is rented and no
+        vendor holds the keys.</p>
+
+        <p>That covers the whole line: <b>tuning</b> open models on the customer's own corpus,
+        <b>serving</b> them on Kubernetes and GPUs at a cost per request that survives scrutiny,
+        <b>observing</b> them with self-hosted tracing and evals, and <b>integrating</b> them with
+        the ERP, the core banking API and the ticketing queue they already run on.</p>
+
+        <p>Most of it is published in the open — LLMs on Kubernetes, KubeRay and GPU quickstarts,
+        agent harnesses, RAG platforms for regulated industries — as workshops other engineers can
+        run end to end.</p>
+
+        <div class="item">
+          <div class="t"><a href="#stack">The open-source stack →</a></div>
+          <div class="s">Self-hosted, top to bottom</div>
+        </div>
+        <div class="item">
+          <div class="t"><a href="#work">Selected work →</a></div>
+          <div class="s">github.com/machhakiran · 70+ repos</div>
+        </div>
+        <div class="item">
+          <div class="t"><a href="fde.html">What an FDE actually does →</a></div>
+          <div class="s">The role, summarised</div>
+        </div>
+      </div>
+
+      <div class="col">
+        <p class="kicker">The desk</p>
+
+        <figure class="portrait">
+          <img src="portrait.jpg" width="320" height="320"
+               alt="Kiran Machha, FDE AI Engineer, Singapore">
+          <figcaption class="who">
+            <span class="n">Kiran Machha</span>
+            <span class="role">FDE AI Engineer</span>
+            <span class="r">Singapore · KaviAI</span>
+          </figcaption>
+        </figure>
+
+        <span class="badge">
+          <span class="dot"></span>Open to connect
+          <span class="sep">·</span>
+          <span class="ready">Ready to bring AI into your business</span>
+        </span>
+
+        <ul class="facts">
+          <li><span class="k">Focus</span><span class="v">Sovereign · On-prem AI</span></li>
+          <li><span class="k">Sectors</span><span class="v">Banking · Telecom · Gov +3</span></li>
+          <li><span class="k">Base</span><span class="v">Singapore</span></li>
+          <li><span class="k">Works</span><span class="v">On-site · Remote APAC &amp; EMEA</span></li>
+          <li><span class="k">Open source</span><span class="v">70+ repositories</span></li>
+        </ul>
+
+        <div class="cta-row">
+          <a class="cta" href="mailto:machhakiran@gmail.com?subject=Role%20enquiry">Email me →</a>
+          <a class="cta ghost" href="https://www.linkedin.com/in/machhakiran/" target="_blank" rel="noopener">LinkedIn →</a>
+          <a class="cta ghost" href="https://github.com/machhakiran" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+
+        <p class="kicker" style="margin-top:26px">Engagements</p>
+
+        <div class="notice">
+          <div class="t">Forward deployment</div>
+          <p>Embedded with your team for a defined push. Discovery, a working prototype on your
+            data, then the unglamorous mile: evals, guardrails, CI/CD and a runbook.
+            <b>Prototype → production.</b></p>
+          <a class="cta" href="mailto:machhakiran@gmail.com?subject=Forward%20deployment">Enquire →</a>
+        </div>
+
+        <div class="notice">
+          <div class="t">Platform build</div>
+          <p>The layer underneath the product: an LLM gateway, an evaluation harness, GPU
+            autoscaling on Kubernetes, and the dashboards that make cost and quality legible.
+            <b>Built to hand over.</b></p>
+          <a class="cta" href="mailto:machhakiran@gmail.com?subject=Platform%20build">Enquire →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CAPABILITIES ============================ -->
+  <section class="band reveal" id="capabilities">
+    <p class="kicker">Capabilities · what I am hired to build</p>
+    <h2 class="head" style="max-width:26ch">Six things, one delivery: an AI system your business
+      actually runs on.</h2>
+
+    <div class="caps">
+      <article class="cap">
+        <span class="no">01 · AI agents</span>
+        <h3>Agents that finish the job</h3>
+        <p>Multi-step agents with real tool access, planning and memory — built to complete a
+          workflow, not to demo one. Every run leaves an audit trail a reviewer can replay.</p>
+      </article>
+
+      <article class="cap">
+        <span class="no">02 · Model tuning &amp; training</span>
+        <h3>Your data, your weights</h3>
+        <p>Fine-tuning open models on the customer's own corpus — LoRA and QLoRA, SFT and
+          preference tuning — alongside the classical ML models that still beat an LLM at
+          tabular work.</p>
+      </article>
+
+      <article class="cap">
+        <span class="no">03 · AI infrastructure</span>
+        <h3>Serving it at scale</h3>
+        <p>AI workloads are not stateless web apps. Long requests, fat weights and queue-shaped
+          traffic need a Kubernetes and GPU strategy designed for them.</p>
+      </article>
+
+      <article class="cap">
+        <span class="no">04 · AI observability</span>
+        <h3>Knowing it still works</h3>
+        <p>Traces, evals, drift and cost per request — self-hosted, so quality is a number on a
+          dashboard rather than a complaint from a user.</p>
+      </article>
+
+      <article class="cap">
+        <span class="no">05 · Sovereign &amp; on-premise AI</span>
+        <h3>Nothing leaves the estate</h3>
+        <p>Open weights served inside the customer's own datacentre, VPC or air-gapped network.
+          No third-party API, no data egress, no vendor holding the keys.</p>
+      </article>
+
+      <article class="cap">
+        <span class="no">06 · Enterprise integration</span>
+        <h3>Into the stack you already have</h3>
+        <p>The last mile, and where most pilots stall. ERPs, core banking, ticketing and
+          warehouses — reached through typed, permissioned tools with a human approval step.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================ THE STACK ============================ -->
+  <section class="band reveal" id="stack">
+    <p class="kicker">The stack · open source, self-hosted</p>
+    <h2 class="head" style="max-width:28ch">Everything here runs inside your walls.</h2>
+
+    <p class="oss-note"><b>Sovereign</b> No data leaves the estate — on-premise, air-gapped or VPC</p>
+
+    <p class="lede" style="max-width:64ch">One stack, chosen so a bank, a hospital or a government
+      supplier can run it without a third-party API call. Open weights, open frameworks, open
+      telemetry — every layer replaceable, nothing rented.</p>
+
+    <div class="layers" style="margin-top:26px">
+
+      <div class="layer">
+        <div>
+          <h3 class="lname">Open models</h3>
+          <div class="lnote">Weights you hold · Text, embedding, speech, vision</div>
+        </div>
+        <div class="tools">
+          <span class="key">Llama</span><span class="key">Qwen</span><span class="key">Mistral</span>
+          <span>DeepSeek</span><span>Gemma</span><span>Phi</span>
+          <span>BGE embeddings</span><span>E5</span><span>Nomic</span><span>bge-reranker</span>
+          <span class="key">Whisper</span><span>Piper TTS</span><span>Coqui</span>
+          <span>YOLO</span><span>LayoutLM</span>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div>
+          <h3 class="lname">Inference &amp; serving</h3>
+          <div class="lnote">Throughput per GPU · Continuous batching · Quantized</div>
+        </div>
+        <div class="tools">
+          <span class="key">vLLM</span><span>SGLang</span><span>TGI</span>
+          <span>TensorRT-LLM</span><span>llama.cpp</span><span>Ollama</span>
+          <span class="key">KServe</span><span>Ray Serve</span><span>Triton</span>
+          <span>GPTQ</span><span>AWQ</span><span>GGUF</span><span>Paged attention</span>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div>
+          <h3 class="lname">Training &amp; tuning</h3>
+          <div class="lnote">LLM fine-tuning and classical ML, on your own data</div>
+        </div>
+        <div class="tools">
+          <span class="key">LoRA / QLoRA</span><span class="key">PEFT</span><span>TRL — SFT &amp; DPO</span>
+          <span>Unsloth</span><span>Axolotl</span><span>DeepSpeed</span><span>FSDP</span>
+          <span>Transformers</span><span class="key">PyTorch</span>
+          <span>scikit-learn</span><span>XGBoost</span><span>Ray Train</span>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div>
+          <h3 class="lname">Agent frameworks</h3>
+          <div class="lnote">Orchestration, tools and memory</div>
+        </div>
+        <div class="tools">
+          <span class="key">LangGraph</span><span>LangChain</span><span>LlamaIndex</span>
+          <span class="key">MCP</span><span>CrewAI</span><span>DSPy</span>
+          <span>LiteLLM gateway</span><span>NeMo Guardrails</span>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div>
+          <h3 class="lname">Vector &amp; data</h3>
+          <div class="lnote">Retrieval and the pipelines that keep it current</div>
+        </div>
+        <div class="tools">
+          <span class="key">PGVector</span><span class="key">Qdrant</span><span>Milvus</span>
+          <span>Weaviate</span><span>Chroma</span>
+          <span>PostgreSQL</span><span>Redis</span><span>Kafka</span>
+          <span class="key">Airflow</span><span>MinIO</span><span>DVC</span>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div>
+          <h3 class="lname">Kubernetes &amp; GPU</h3>
+          <div class="lnote">The substrate · Scale to zero · Multi-tenant</div>
+        </div>
+        <div class="tools">
+          <span class="key">Kubernetes</span><span class="key">KubeRay</span><span>Kubeflow</span>
+          <span>KEDA</span><span>Karpenter</span><span>Helm</span><span>Terraform</span><span>ArgoCD</span>
+          <span class="key">NVIDIA GPU Operator</span><span>DCGM</span><span>MIG</span>
+          <span>Time-slicing</span><span>NCCL</span>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div>
+          <h3 class="lname">Observability &amp; evals</h3>
+          <div class="lnote">Traces, quality and cost — self-hosted, not a SaaS dashboard</div>
+        </div>
+        <div class="tools">
+          <span class="key">Opik</span><span class="key">Phoenix</span><span class="key">Langfuse</span>
+          <span class="key">Grafana</span><span>Prometheus</span><span>Loki</span>
+          <span>OpenTelemetry</span><span>MLflow</span>
+          <span>RAGAS</span><span>DeepEval</span><span>Evidently</span>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div>
+          <h3 class="lname">Access &amp; integration</h3>
+          <div class="lnote">How the estate lets the system in</div>
+        </div>
+        <div class="tools">
+          <span class="key">Keycloak SSO</span><span>SAML / OIDC</span><span>OPA</span>
+          <span>Vault</span><span>NGINX</span><span>Envoy</span>
+          <span class="key">FastAPI</span><span>Spring Boot</span><span>REST &amp; GraphQL</span>
+          <span>ERP &amp; core-banking APIs</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================ DOMAINS ============================ -->
+  <section class="band reveal" id="domains">
+    <p class="kicker">Domains · where the work has landed</p>
+    <h2 class="head" style="max-width:28ch">Every industry has its own definition of “done”.</h2>
+    <p class="lede" style="max-width:62ch">The model is the easy part. What changes between
+      sectors is the data, the regulator, the tolerance for a wrong answer, and who has to sign
+      the release.</p>
+
+    <div class="domains" style="margin-top:26px">
+      <article class="domain">
+        <span class="sector">Banking</span>
+        <h3>Regulated by default</h3>
+        <p>Document-heavy processes with an auditor at the end of them. Nothing ships without a
+          trail showing what the system saw and why it acted.</p>
+        <div class="built">Cheque &amp; invoice OCR · Corporate RAG · Evidence logs · Human
+          approval gates</div>
+      </article>
+
+      <article class="domain">
+        <span class="sector">Payments</span>
+        <h3>Latency and reconciliation</h3>
+        <p>High-volume flows where a duplicate is worse than a delay, and a wrongly held
+          transaction is a customer lost.</p>
+        <div class="built">Fraud scoring &amp; alert triage · Card disputes · Reconciliation ·
+          Idempotent retries</div>
+      </article>
+
+      <article class="domain">
+        <span class="sector">Telecom</span>
+        <h3>Volume and voice</h3>
+        <p>Enormous ticket and call volumes where a few points of deflection is real money, and
+          the NOC never stops.</p>
+        <div class="built">STT / TTS care agents · Alarm correlation · Runbook automation ·
+          Knowledge retrieval</div>
+      </article>
+
+      <article class="domain">
+        <span class="sector">Logistics</span>
+        <h3>Documents in motion</h3>
+        <p>Paperwork that travels with the freight and arrives as photographs, plus disputes that
+          hinge on what a pallet looked like on arrival.</p>
+        <div class="built">Bill-of-lading &amp; customs OCR · Dock damage vision · Exception
+          routing · Edge inference</div>
+      </article>
+
+      <article class="domain">
+        <span class="sector">Ecommerce</span>
+        <h3>Intent, at speed</h3>
+        <p>Consumer-facing AI judged on responsiveness and taste, where every extra hundred
+          milliseconds is measurable in conversion.</p>
+        <div class="built">Semantic product discovery · Recommendations · Returns &amp; refunds ·
+          Support deflection</div>
+      </article>
+
+      <article class="domain">
+        <span class="sector">Government &amp; healthcare</span>
+        <h3>Sovereignty first</h3>
+        <p>Estates where the data legally cannot leave, autonomy is granted last, and the audit
+          chain has to belong to the institution.</p>
+        <div class="built">On-prem &amp; air-gapped inference · PII redaction · Citizen &amp;
+          clinical retrieval · Owned audit trail</div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================ PROJECTS ============================ -->
+  <!--
+       ─────────────────────────────────────────────────────────────
+       EDIT ME: these are solution write-ups built on published,
+       widely-discussed enterprise use cases — not client case
+       studies. No customer names, dates or metrics are claimed.
+       Add real outcomes where you have them.
+       ─────────────────────────────────────────────────────────────
+  -->
+  <section class="band reveal" id="projects">
+    <p class="kicker">Projects · systems I build</p>
+    <h2 class="head" style="max-width:28ch">Twelve builds, and the agents and controls each one
+      runs on.</h2>
+    <p class="lede" style="max-width:64ch">Every one is an open-source, self-hostable design:
+      open weights behind a gateway, agents with typed tools, and an evaluation and guardrail layer
+      that decides when a human takes over. The sector changes; the shape does not.</p>
+
+    <div class="projects" style="margin-top:26px">
+
+      <article class="project">
+        <span class="tag">Banking &amp; logistics · Document AI</span>
+        <h3>Invoice Processing OCR</h3>
+        <div class="rows">
+          <div class="row"><span class="k">Problem</span><span>Invoices arrive as scans, email
+            attachments and phone photographs, then get re-keyed by hand into an ERP with dozens
+            of required fields and no duplicate check.</span></div>
+          <div class="row"><span class="k">Agents</span><span><b>Extractor</b> reads the document
+            and line items · <b>Matcher</b> reconciles against the purchase order and contract ·
+            <b>Poster</b> drafts the ERP record and waits for approval.</span></div>
+          <div class="row"><span class="k">Controls</span><span>Field-level confidence
+            thresholds, duplicate detection across the vendor history, and a human approval gate
+            before anything posts. Every run keeps the image crop it read from.</span></div>
+        </div>
+        <div class="stack">PaddleOCR · docTR · Qwen2-VL · LayoutLMv3 · LangGraph · vLLM ·
+          PGVector · FastAPI · MinIO · Langfuse</div>
+      </article>
+
+      <article class="project">
+        <span class="tag">Banking · Document AI</span>
+        <h3>Cheque OCR &amp; Clearing</h3>
+        <div class="rows">
+          <div class="row"><span class="k">Problem</span><span>Clearing depends on reading
+            handwriting — courtesy amount, legal amount, payee and the MICR band — under a regime
+            where one wrong digit is a real loss.</span></div>
+          <div class="row"><span class="k">Agents</span><span><b>Reader</b> recognises both amount
+            fields independently · <b>Cross-checker</b> compares them against each other and the
+            MICR line · <b>Referrer</b> escalates any disagreement rather than resolving it.</span></div>
+          <div class="row"><span class="k">Controls</span><span>Disagreement between the two
+            amount reads is an automatic referral. Decisions are logged with the crop that
+            produced them so an auditor can replay the call.</span></div>
+        </div>
+        <div class="stack">TrOCR · CRNN · OpenCV · MICR parsing · ONNX Runtime · Triton ·
+          PostgreSQL · Evidently · Grafana</div>
+      </article>
+
+      <article class="project">
+        <span class="tag">Banking &amp; ecommerce · Agentic</span>
+        <h3>Card Dispute &amp; Refund Agent</h3>
+        <div class="rows">
+          <div class="row"><span class="k">Problem</span><span>Chargebacks and refund claims
+            arrive faster than analysts can work them, and each one needs scheme rules, the
+            transaction trail and the merchant's evidence pulled together before a deadline.</span></div>
+          <div class="row"><span class="k">Agents</span><span><b>Intake</b> classifies the reason
+            code · <b>Evidence</b> gathers the transaction, delivery and comms trail through typed
+            tools · <b>Drafter</b> writes the representment against the scheme rulebook.</span></div>
+          <div class="row"><span class="k">Controls</span><span>An LLM-as-judge scores whether the
+            evidence actually supports the claim before a human ever sees it; weak packs go back
+            for more. Money never moves without a person.</span></div>
+        </div>
+        <div class="stack">LangGraph · MCP tools · Qdrant · bge-reranker · Phoenix LLM-as-judge ·
+          LiteLLM gateway · NeMo Guardrails · Keycloak</div>
+      </article>
+
+      <article class="project">
+        <span class="tag">Payments · Risk</span>
+        <h3>Fraud Detection &amp; Alert Triage</h3>
+        <div class="rows">
+          <div class="row"><span class="k">Problem</span><span>Classical scoring flags far more
+            than the team can review, so genuine fraud waits in a queue behind false positives
+            nobody has had time to close.</span></div>
+          <div class="row"><span class="k">Agents</span><span><b>Scorer</b> — a gradient-boosted
+            and graph model, not an LLM · <b>Triage</b> assembles the case narrative and prior
+            behaviour · <b>Responder</b> proposes hold, step-up verification or release.</span></div>
+          <div class="row"><span class="k">Controls</span><span>The model decides risk; the LLM
+            only explains and assembles. Drift and score distribution are monitored continuously,
+            and every autonomous hold is reversible.</span></div>
+        </div>
+        <div class="stack">Kafka · XGBoost · PyTorch Geometric · Feast · Redis · LangGraph ·
+          Evidently · Prometheus · Grafana</div>
+      </article>
+
+      <article class="project">
+        <span class="tag">Finance operations · Agentic</span>
+        <h3>Accounting Close &amp; Reconciliation</h3>
+        <div class="rows">
+          <div class="row"><span class="k">Problem</span><span>Month-end runs on spreadsheets and
+            institutional memory: matching ledgers, chasing unexplained variances and writing the
+            same commentary every period.</span></div>
+          <div class="row"><span class="k">Agents</span><span><b>Reconciler</b> matches ledger and
+            bank lines · <b>Investigator</b> traces unmatched items back through source systems ·
+            <b>Narrator</b> drafts the variance commentary for the controller.</span></div>
+          <div class="row"><span class="k">Controls</span><span>Every figure in the narrative is
+            traceable to a journal line — the agent may not state a number it cannot cite. The
+            controller signs; the agent never posts.</span></div>
+        </div>
+        <div class="stack">LangGraph · Instructor / Pydantic schemas · PostgreSQL · ERP APIs ·
+          Airflow · vLLM · RAGAS · Langfuse</div>
+      </article>
+
+      <article class="project">
+        <span class="tag">Enterprise &amp; government · RAG</span>
+        <h3>Corporate RAG Knowledge System</h3>
+        <div class="rows">
+          <div class="row"><span class="k">Problem</span><span>Policies, contracts and SOPs spread
+            across SharePoint, Confluence and shared drives, where the answer exists but nobody
+            can tell which version is current or who is cleared to read it.</span></div>
+          <div class="row"><span class="k">Agents</span><span><b>Planner</b> decomposes the
+            question · <b>Retriever</b> runs hybrid search with re-ranking · <b>Answerer</b>
+            composes with enforced citations · <b>Judge</b> grades the answer before release.</span></div>
+          <div class="row"><span class="k">Controls</span><span>Permission-aware retrieval at
+            query time, not filtering afterwards. An answer without a source is refused, and a
+            golden dataset catches regressions before a release ships.</span></div>
+        </div>
+        <div class="stack">LangGraph · BM25 + PGVector hybrid · bge-reranker · Qdrant · RAGAS ·
+          DeepEval · Keycloak RBAC · Langfuse</div>
+      </article>
+
+      <article class="project">
+        <span class="tag">Government · Sovereign AI</span>
+        <h3>Sovereign AI Platform</h3>
+        <div class="rows">
+          <div class="row"><span class="k">Problem</span><span>Agencies, banks and hospitals that
+            need the capability but cannot send a record to a third-party API — for law, contract
+            or classification — and do not want to rent the asset indefinitely.</span></div>
+          <div class="row"><span class="k">Agents</span><span>The platform every other agent runs
+            on: open weights served in-estate, a gateway that routes and budgets, and tenant
+            isolation so one team's traffic cannot starve another's.</span></div>
+          <div class="row"><span class="k">Controls</span><span>Autoscaling on queue depth with
+            scale-to-zero overnight, so idle GPUs are not billed. Prompts and outputs never leave
+            the boundary, and the audit chain belongs to the agency.</span></div>
+        </div>
+        <div class="stack">vLLM · Llama / Qwen / Mistral · Kubernetes · KubeRay · KEDA ·
+          NVIDIA GPU Operator · DCGM · LiteLLM gateway · Vault · OPA</div>
+      </article>
+
+      <article class="project">
+        <span class="tag">Telecom · Voice AI</span>
+        <h3>Customer Care Voice Agent</h3>
+        <div class="rows">
+          <div class="row"><span class="k">Problem</span><span>Call centres carrying enormous
+            volume where most calls are the same handful of questions, and the queue is the
+            customer's entire experience of the brand.</span></div>
+          <div class="row"><span class="k">Agents</span><span><b>Transcriber</b> streams speech to
+            text · <b>Resolver</b> answers from the knowledge base with citations and can act on
+            the account · <b>Handover</b> passes to a human with the context already assembled.</span></div>
+          <div class="row"><span class="k">Controls</span><span>A hard latency budget per turn,
+            barge-in so the caller can interrupt, and an explicit escalation rule — a confidently
+            wrong answer in a customer's ear is worse than a transfer.</span></div>
+        </div>
+        <div class="stack">faster-whisper · Piper / XTTS · LiveKit · Asterisk SIP · LangGraph ·
+          Redis · vLLM · Langfuse</div>
+      </article>
+
+      <article class="project">
+        <span class="tag">Telecom · Operations</span>
+        <h3>Network Operations Assistant</h3>
+        <div class="rows">
+          <div class="row"><span class="k">Problem</span><span>A NOC drowning in alarms, where the
+            same incident is diagnosed from scratch each shift because the runbook lives in three
+            wikis and one engineer's head.</span></div>
+          <div class="row"><span class="k">Agents</span><span><b>Correlator</b> groups alarms into
+            one incident · <b>Diagnostician</b> queries metrics, logs and topology through typed
+            tools · <b>Runbook</b> proposes the remediation step and the rollback.</span></div>
+          <div class="row"><span class="k">Controls</span><span>Read-only by default. Any command
+            that changes network state is proposed, not executed, until an engineer approves —
+            and every proposal cites the metric that justified it.</span></div>
+        </div>
+        <div class="stack">Prometheus · Loki · Grafana · LangGraph · MCP tools · Qwen ·
+          vLLM · OpenTelemetry</div>
+      </article>
+
+      <article class="project">
+        <span class="tag">Logistics · Vision &amp; documents</span>
+        <h3>Freight Documents &amp; Dock Vision</h3>
+        <div class="rows">
+          <div class="row"><span class="k">Problem</span><span>Paperwork moves with the freight —
+            bills of lading, customs forms, proofs of delivery — arriving as creased photographs,
+            while damage disputes are argued from memory.</span></div>
+          <div class="row"><span class="k">Agents</span><span><b>Router</b> classifies each
+            document and picks the specialist model · <b>Extractor</b> pulls consignee, weights
+            and line items · <b>Inspector</b> detects damage and missing labels at the dock.</span></div>
+          <div class="row"><span class="k">Controls</span><span>Vision runs at the edge so a bad
+            connection does not stop a truck, and every claim decision is bound to the frame that
+            produced it.</span></div>
+        </div>
+        <div class="stack">YOLO · RT-DETR · docTR · ONNX / TensorRT · Triton · K3s edge ·
+          LangGraph · MinIO</div>
+      </article>
+
+      <article class="project">
+        <span class="tag">Ecommerce · Retrieval</span>
+        <h3>Product Discovery &amp; Recommendations</h3>
+        <div class="rows">
+          <div class="row"><span class="k">Problem</span><span>Catalogue search that fails on
+            intent — shoppers describe what they want in words that match no product title, and
+            the recommendation rail shows what they already bought.</span></div>
+          <div class="row"><span class="k">Agents</span><span><b>Interpreter</b> turns natural
+            language into filters and constraints · <b>Retriever</b> runs a two-tower vector
+            search with re-ranking · <b>Merchandiser</b> balances relevance against stock and
+            margin.</span></div>
+          <div class="row"><span class="k">Controls</span><span>Latency budget enforced at each
+            hop, results held to an offline relevance set, and every ranking change shipped behind
+            an experiment rather than a hunch.</span></div>
+        </div>
+        <div class="stack">BGE embeddings · Qdrant · bge-reranker · Redis feature cache · Kafka ·
+          PyTorch · vLLM · Evidently</div>
+      </article>
+
+      <article class="project">
+        <span class="tag">Cross-cutting · Security &amp; observability</span>
+        <h3>AI Guardrails &amp; Observability</h3>
+        <div class="rows">
+          <div class="row"><span class="k">Problem</span><span>Once agents can act, the risk stops
+            being a bad sentence and becomes a bad action — and nobody can say whether quality
+            improved last week or what any of it cost.</span></div>
+          <div class="row"><span class="k">Agents</span><span><b>Sentry</b> screens input and
+            output for injection, PII and unsafe tool calls · <b>Judge</b> scores sampled traffic
+            against a rubric · <b>Reporter</b> turns traces into a weekly quality and cost view.</span></div>
+          <div class="row"><span class="k">Controls</span><span>Prompt-injection and jailbreak
+            suites run in CI, PII is redacted before it reaches a model, and tool calls are
+            policy-checked — self-hosted throughout, so telemetry never leaves the estate.</span></div>
+        </div>
+        <div class="stack">NeMo Guardrails · Presidio · Garak red-teaming · OPA · Phoenix ·
+          Langfuse · OpenTelemetry · Prometheus · Grafana</div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================ EXPERIENCE ============================ -->
+  <!--
+       ─────────────────────────────────────────────────────────────
+       EDIT ME: employer names and date ranges below are placeholders
+       drawn from the public GitHub bio ("banking, payments and SaaS").
+       Replace the .when values and .org values with the real ones.
+       ─────────────────────────────────────────────────────────────
+  -->
+  <section class="band reveal" id="experience">
+    <p class="kicker">Experience · the record</p>
+    <h2 class="head" style="max-width:26ch">Enterprise delivery, then the AI layer on top of it.</h2>
+
+    <div class="ledger">
+
+      <article class="job">
+        <div class="when">Present<em>Singapore</em></div>
+        <div class="what">
+          <h3>Founder &amp; Forward Deployed AI Engineer</h3>
+          <div class="org">KaviAI · kaviagentic.com</div>
+        </div>
+        <div class="detail">
+          <ul>
+            <li>Builds and deploys agentic AI systems with customers — multi-agent orchestration,
+              tool calling, and self-correcting reasoning loops that survive real inputs.</li>
+            <li>Runs the full LLMOps chain: serving, gateway routing, evaluation harnesses and
+              observability, so quality regressions are caught before customers find them.</li>
+            <li>Ships production infrastructure on Kubernetes with GPU autoscaling, and publishes
+              the patterns as open workshops.</li>
+          </ul>
+          <div class="stack">LangGraph · FastAPI · vLLM · Kubernetes · Langfuse · Terraform</div>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="when">Prior<em>SaaS</em></div>
+        <div class="what">
+          <h3>AI Platform / LLM Ops Engineer</h3>
+          <div class="org">Enterprise SaaS</div>
+        </div>
+        <div class="detail">
+          <ul>
+            <li>Stood up the shared inference platform — model gateway, quota and usage-based
+              billing, and semantic caching to hold cost per request down as traffic grew.</li>
+            <li>Introduced evaluation gates into CI so prompt and model changes shipped on
+              evidence rather than vibes.</li>
+            <li>Moved batch and streaming inference onto autoscaling GPU node pools with
+              scale-to-zero for off-peak hours.</li>
+          </ul>
+          <div class="stack">LiteLLM · KServe · KEDA · MLflow · Redis · Kafka</div>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="when">Prior<em>Payments</em></div>
+        <div class="what">
+          <h3>Full Stack AI Engineer</h3>
+          <div class="org">Payments</div>
+        </div>
+        <div class="detail">
+          <ul>
+            <li>Delivered customer-facing AI features end to end — Next.js and FastAPI through to
+              the retrieval and ranking layers behind them.</li>
+            <li>Built hybrid search and RAG over transaction and policy corpora, with citation
+              enforcement for audit trails.</li>
+            <li>Hardened the path to production: async workers, idempotent retries and structured
+              tracing across services.</li>
+          </ul>
+          <div class="stack">Next.js · TypeScript · FastAPI · PGVector · Qdrant · Celery</div>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="when">Earlier<em>Banking</em></div>
+        <div class="what">
+          <h3>Software Engineer — Enterprise Applications</h3>
+          <div class="org">Banking</div>
+        </div>
+        <div class="detail">
+          <ul>
+            <li>Built and maintained enterprise-grade applications under regulated change control,
+              where a failed release is an incident report.</li>
+            <li>Microservices and API platforms on Spring Boot and Node.js, containerised and
+              delivered through automated pipelines.</li>
+            <li>The grounding that makes the AI work deployable: security review, access control
+              and data handling as defaults rather than afterthoughts.</li>
+          </ul>
+          <div class="stack">Java · Spring Boot · Node.js · PostgreSQL · Docker · GitHub Actions</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================ WORK ============================ -->
+  <section class="band reveal" id="work">
+    <p class="kicker">Selected work · open source</p>
+    <h2 class="head" style="max-width:26ch">Proof, not claims — every one of these is public and
+      runnable.</h2>
+
+    <div class="dispatches">
+
+      <article class="dispatch">
+        <span class="tag">Kubernetes · GPU</span>
+        <h3><a href="https://github.com/machhakiran/llm-on-kubernetes-workshop" target="_blank" rel="noopener">LLM on Kubernetes Workshop</a></h3>
+        <p>How to run your first local LLM on Kubernetes — manifests, demo scripts and narration,
+          end to end.</p>
+        <div class="foot">Workshop · Manifests</div>
+      </article>
+
+      <article class="dispatch">
+        <span class="tag">GPU · Ray</span>
+        <h3><a href="https://github.com/machhakiran/kuberay-gpu-llm-quickstart" target="_blank" rel="noopener">KubeRay GPU LLM Quickstart</a></h3>
+        <p>A sample LLM served via KubeRay on Kubernetes, running on GPUs on Akamai Cloud — a
+          Qwen-based coding assistant.</p>
+        <div class="foot">KubeRay · Akamai Cloud</div>
+      </article>
+
+      <article class="dispatch">
+        <span class="tag">Platform · AWS</span>
+        <h3><a href="https://github.com/machhakiran/sample-eks-genai-platform" target="_blank" rel="noopener">EKS GenAI Platform</a></h3>
+        <p>A reference GenAI platform on EKS: the cluster, the serving layer and the glue between
+          them.</p>
+        <div class="foot">EKS · Terraform</div>
+      </article>
+
+      <article class="dispatch">
+        <span class="tag">RAG · Kubernetes</span>
+        <h3><a href="https://github.com/machhakiran/rag-langgraph-k8s-quickstart" target="_blank" rel="noopener">RAG + LangGraph on K8s</a></h3>
+        <p>An evidence-based Q&amp;A assistant over airline policies, built with RAG and LangGraph,
+          running on Linode Kubernetes.</p>
+        <div class="foot">LangGraph · LKE</div>
+      </article>
+
+      <article class="dispatch">
+        <span class="tag">RAG · Banking</span>
+        <h3><a href="https://github.com/machhakiran/SmartDoc-Curator" target="_blank" rel="noopener">SmartDoc Curator</a></h3>
+        <p>An enterprise-grade agentic RAG platform built for banking document workflows and
+          regulated retrieval.</p>
+        <div class="foot">Python · Agentic RAG</div>
+      </article>
+
+      <article class="dispatch">
+        <span class="tag">Agents · Local</span>
+        <h3><a href="https://github.com/machhakiran/KaviAgent" target="_blank" rel="noopener">KaviAgent</a></h3>
+        <p>A local-first personal AI assistant that runs on your laptop, in code you can read in
+          an afternoon.</p>
+        <div class="foot">Python · Local-first</div>
+      </article>
+
+      <article class="dispatch">
+        <span class="tag">Agents · SDLC</span>
+        <h3><a href="https://github.com/machhakiran/Agents-1" target="_blank" rel="noopener">Agents-1</a></h3>
+        <p>From Jira to PR — AI agents that write code, test it and review it, wired into the
+          delivery pipeline.</p>
+        <div class="foot">Python · Multi-agent</div>
+      </article>
+
+      <article class="dispatch">
+        <span class="tag">Finance · Agents</span>
+        <h3><a href="https://github.com/machhakiran/FinBot-AI" target="_blank" rel="noopener">FinBot AI</a></h3>
+        <p>An agentic financial intelligence system — retrieval, analysis and reporting over
+          market and filing data.</p>
+        <div class="foot">Agentic · Finance</div>
+      </article>
+
+      <article class="dispatch">
+        <span class="tag">Curriculum</span>
+        <h3><a href="https://github.com/machhakiran/ai-infra-engineer-learning" target="_blank" rel="noopener">AI Infra Engineer Track</a></h3>
+        <p>A production ML infrastructure curriculum — the path from application engineer to
+          running AI workloads at scale.</p>
+        <div class="foot">Learning track</div>
+      </article>
+
+    </div>
+
+    <p class="meta" style="margin-top:20px">
+      <a href="https://github.com/machhakiran?tab=repositories" target="_blank" rel="noopener"
+         style="border-bottom:1px solid var(--hair)">All 70+ repositories on GitHub →</a>
+    </p>
+  </section>
+
+  <!-- ============================ THE WIRE ============================ -->
+  <section class="band reveal" id="wire">
+    <p class="kicker">Contact · currently open to work</p>
+    <h2 class="head" style="max-width:30ch">Hiring for an FDE or AI engineering role? Send a
+      brief, not a meeting invite.</h2>
+
+    <p class="lede" style="max-width:64ch">Forward deployed engineering, applied AI, AI platform
+      or AI infrastructure — permanent or engagement-based, in Singapore or remote across APAC and
+      EMEA. Tell me the workload and the constraint and I will tell you honestly whether I am the
+      right person for it.</p>
+
+    <div class="wire" style="margin-top:26px">
+      <div class="wire-col">
+        <div class="t">Direct</div>
+        <a href="mailto:machhakiran@gmail.com">Email →</a>
+        <p class="note">machhakiran@gmail.com<br>Fastest route. Tell me the workload and the
+          constraint.</p>
+      </div>
+      <div class="wire-col">
+        <div class="t">Professional</div>
+        <a href="https://www.linkedin.com/in/machhakiran/" target="_blank" rel="noopener">LinkedIn →</a>
+        <p class="note">/in/machhakiran<br>Full employment history and recommendations.</p>
+      </div>
+      <div class="wire-col">
+        <div class="t">Code</div>
+        <a href="https://github.com/machhakiran" target="_blank" rel="noopener">GitHub →</a>
+        <p class="note">70+ repositories<br>Agents, infra, RAG platforms, workshops.</p>
+      </div>
+      <div class="wire-col">
+        <div class="t">Teaching</div>
+        <a href="https://www.youtube.com/channel/UCGvNdo-r87Q12zW2MK01BFw" target="_blank" rel="noopener">YouTube →</a>
+        <a href="https://www.kaviagentic.com/" target="_blank" rel="noopener">KaviAI →</a>
+        <p class="note">Build-alongs and the company behind the work.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="colophon wrap">
+  <span>© <span id="year">2026</span> Kiran Machha · Singapore</span>
+  <span>Set in Fraunces, Newsreader &amp; IBM Plex Mono</span>
+  <span>“The future isn’t just AI that talks. It’s AI that acts.”</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Day in the FDE — Kiran Machha</title>
+<meta name="description" content="How Kiran Machha works as a Forward Deployed Engineer: a deployment day hour by hour, the weekly discover-prototype-show-iterate loop, and what ships at the end of a 6–12 week engagement.">
+<meta name="author" content="Kiran Machha">
+<link rel="canonical" href="https://machhakiran.io/fde.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Day in the FDE">
+<meta property="og:description" content="A deployment day hour by hour, the weekly loop, and what ships at the end of an engagement.">
+<meta property="og:url" content="https://machhakiran.io/fde.html">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23141310'/><text x='50' y='72' font-family='Georgia,serif' font-size='64' font-weight='900' fill='%23FAF7F0' text-anchor='middle'>K</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<script>
+  /* Runs before first paint: opts in to the reveal animation and restores the
+     saved colour scheme, so there is no flash of the wrong theme. */
+  (function () {
+    var r = document.documentElement;
+    r.className = (r.className ? r.className + ' ' : '') + 'js';
+    try {
+      var t = localStorage.getItem('mk-theme');
+      if (t === 'light' || t === 'dark') r.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<!-- ============================ MASTHEAD ============================ -->
+<header class="mast wrap">
+  <div class="dateline">
+    <span><a class="backlink" href="index.html">← Front page</a></span>
+    <span class="mid" id="today">On Site</span>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle colour scheme">
+      <span class="on" data-mode="light">Day</span><span data-mode="dark">Night</span>
+    </button>
+    <span>machhakiran.io</span>
+  </div>
+
+  <h1 class="name">A DAY <span class="surname">IN THE FDE</span></h1>
+
+  <div class="role-line">
+    <span class="role-mark">How I work on site</span>
+    <span class="where">Forward deployment · In practice</span>
+  </div>
+
+  <ul class="rail">
+    <li>Observe</li>
+    <li>Build</li>
+    <li>Evaluate</li>
+    <li>Show</li>
+    <li>Hand Over</li>
+  </ul>
+
+  <nav class="strip" id="nav">
+    <span class="brand">Kiran Machha</span>
+    <a href="#day">The Day</a>
+    <a href="#week">The Week</a>
+    <a href="#outputs">What Ships</a>
+    <a class="tab" href="workflow.html">The FDE Workflow →</a>
+    <a class="tab" href="index.html">Front page →</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- ============================ THE DAY ============================ -->
+  <section class="band reveal" id="day">
+    <div class="paper-grid">
+      <div class="col">
+        <p class="kicker">The day · how I work on site</p>
+        <h2 class="head" style="max-width:28ch">A deployment day, hour by hour.</h2>
+
+        <p class="lede">Forward deployment is not a desk job. The day is built around the people
+          who do the work, and around getting something in front of them before they lose interest.
+          This is how mine runs on a customer site.</p>
+
+        <ol class="week" style="margin-top:24px">
+          <li>
+            <span class="day">08:30</span>
+            <p>On site before the team. Read yesterday's run log and the overnight errors — I
+              want to know what broke before anyone tells me.</p>
+            <span class="phase">Check</span>
+          </li>
+          <li>
+            <span class="day">09:00</span>
+            <p>Stand with the operators. Watch the actual workflow being done, not the version
+              in the process document. Note every exception they handle by hand.</p>
+            <span class="phase">Observe</span>
+          </li>
+          <li>
+            <span class="day">10:30</span>
+            <p>Whiteboard with whoever owns the data. Where does this field come from, who is
+              allowed to see it, and what happens today when it is missing?</p>
+            <span class="phase">Model</span>
+          </li>
+          <li>
+            <span class="day">11:30</span>
+            <p>Build. Wire the tool, extend the agent, fix the retrieval that returned the wrong
+              policy version this morning.</p>
+            <span class="phase">Build</span>
+          </li>
+          <li>
+            <span class="day">14:00</span>
+            <p>Run it against real cases from their own data. Add the ones that fail to the eval
+              set so the same mistake cannot come back quietly.</p>
+            <span class="phase">Evaluate</span>
+          </li>
+          <li>
+            <span class="day">16:00</span>
+            <p>Show the operator, not the sponsor. Sit next to them while they use it and write
+              down every hesitation — that is the real backlog.</p>
+            <span class="phase">Show</span>
+          </li>
+          <li>
+            <span class="day">17:30</span>
+            <p>Rebuild what they hesitated over. Small, same-day changes are what earn the right
+              to keep coming back.</p>
+            <span class="phase">Iterate</span>
+          </li>
+          <li>
+            <span class="day">18:30</span>
+            <p>Write it down. What changed, what it cost, what is still open — a short note the
+              sponsor can read in a minute and the next engineer can read in ten.</p>
+            <span class="phase">Record</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="col">
+        <p class="kicker">Rules I work by</p>
+
+        <div class="notice">
+          <div class="t">Ship something every day</div>
+          <p>A working ugly thing today beats a beautiful design next week. Momentum is what
+            keeps an engagement alive.</p>
+        </div>
+
+        <div class="notice">
+          <div class="t">Show the operator first</div>
+          <p>The person doing the work knows things no engineer will. If it does not survive
+            their desk, it will not survive the rollout.</p>
+        </div>
+
+        <div class="notice">
+          <div class="t">Escalate rather than guess</div>
+          <p>Below the confidence threshold, the system asks a human. In a regulated estate a
+            wrong answer costs more than a slow one.</p>
+        </div>
+
+        <div class="notice">
+          <div class="t">Leave evidence</div>
+          <p>Every run logs its prompts, tools, results and errors. If an auditor cannot replay
+            it, it is not finished.</p>
+        </div>
+
+        <div class="notice">
+          <div class="t">Build to hand over</div>
+          <p>The engagement ends with their team running it — documented, tested and owned by
+            someone who is not me.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ THE WEEK ============================ -->
+  <section class="band reveal" id="week">
+    <p class="kicker">The week · the same loop, five days wide</p>
+    <h2 class="head" style="max-width:26ch">Discover, prototype, show, iterate — until it is in
+      production.</h2>
+
+    <ol class="week">
+      <li>
+        <span class="day">Monday</span>
+        <p>On site. Back-to-back stakeholder interviews. Understand the workflow and who owns
+          each step of it.</p>
+        <span class="phase">Discover</span>
+      </li>
+      <li>
+        <span class="day">Tuesday</span>
+        <p>Whiteboard the domain. Sketch the object model. Identify the datasets the system
+          actually needs.</p>
+        <span class="phase">Model</span>
+      </li>
+      <li>
+        <span class="day">Wednesday</span>
+        <p>Pair with their data engineer to pull the first export. Stand up the pipeline and the
+          retrieval layer.</p>
+        <span class="phase">Plumb</span>
+      </li>
+      <li>
+        <span class="day">Thursday</span>
+        <p>Build the first working version of the operator's app and put it in front of them the
+          same afternoon.</p>
+        <span class="phase">Prototype</span>
+      </li>
+      <li>
+        <span class="day">Friday</span>
+        <p>They disliked the layout. Rebuild it, then show the sponsor something that runs
+          end to end before the week closes.</p>
+        <span class="phase">Iterate</span>
+      </li>
+    </ol>
+
+    <p class="kicker" style="margin-top:30px">The cadence</p>
+    <p class="loop">
+      <span>Discover</span><i>→</i>
+      <span>Prototype</span><i>→</i>
+      <span>Show</span><i>→</i>
+      <span>Iterate</span><i>↺</i>
+    </p>
+  </section>
+
+  <!-- ============================ WHAT SHIPS ============================ -->
+  <section class="band reveal" id="outputs">
+    <p class="kicker">What ships · a 6–12 week engagement</p>
+    <h2 class="head" style="max-width:24ch">Seven things that exist at the end that did not exist
+      at the start.</h2>
+
+    <ol class="deliverables">
+      <li><span><b>A problem statement</b> the customer signs off on.</span></li>
+      <li><span><b>A domain model</b> — objects, links and actions — of their business.</span></li>
+      <li><span><b>Data integrations</b> from their source systems.</span></li>
+      <li><span><b>Operational applications</b> that their people use daily.</span></li>
+      <li><span><b>A deployment</b> in their production environment, on their infrastructure.</span></li>
+      <li><span><b>An evaluation set</b> and the runbook to keep quality honest.</span></li>
+      <li><span><b>A trained customer team</b> that can run it without me.</span></li>
+    </ol>
+
+    <p class="source-note" style="margin-top:28px">
+      The weekly cadence and the engagement deliverables follow the forward-deployed model as
+      described in <a href="https://superml.org/courses/forward-deploy-engineer-mastery/fde-what-is-an-fde" target="_blank" rel="noopener">SuperML's Forward Deploy Engineer Mastery</a>.
+      The daily routine and the working rules are my own.
+    </p>
+  </section>
+
+</main>
+
+<footer class="colophon wrap">
+  <span>© <span id="year">2026</span> Kiran Machha · Singapore</span>
+  <span><a href="index.html" class="backlink">← Back to the front page</a></span>
+  <span>“Running software, not slide decks.”</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

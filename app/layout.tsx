@@ -15,6 +15,13 @@ export const metadata: Metadata = {
     siteName: site.name,
   },
   twitter: { card: 'summary_large_image' },
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

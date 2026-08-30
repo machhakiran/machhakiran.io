@@ -10,8 +10,8 @@ export const jobs: Job[] = [
   {
     when: 'Present',
     location: 'Singapore',
-    title: 'Founder & Forward Deployed AI Engineer',
-    org: 'KaviAI · kaviagentic.com',
+    title: 'Forward Deployed AI Engineer',
+    org: 'KaviAI · Private AI & Agent Systems',
     bullets: [
       'Builds and deploys agentic AI systems with customers — multi-agent orchestration, tool calling, and self-correcting reasoning loops that survive real inputs.',
       'Runs the full LLMOps chain: serving, gateway routing, evaluation harnesses and observability, so quality regressions are caught before customers find them.',

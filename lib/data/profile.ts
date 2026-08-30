@@ -1,7 +1,7 @@
 export const profile = {
   name: 'Kiran Machha',
-  role: 'Senior AI Engineer | Forward Deployed Engineer',
-  shortRole: 'FDE AI Engineer',
+  role: 'Forward Deployed AI Engineer',
+  shortRole: 'Forward Deployed AI Engineer',
   company: 'KaviAI',
   companyUrl: 'https://www.kaviagentic.com/',
   location: 'Singapore',

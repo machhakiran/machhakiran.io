@@ -31,7 +31,7 @@ export default function HomePage() {
               <span className="font-bold text-base tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">
                 {site.name}
               </span>
-              <span className="text-[11px] font-mono text-slate-500 font-medium -mt-0.5">Senior AI & FDE Specialist</span>
+              <span className="text-[11px] font-mono text-slate-500 font-medium -mt-0.5">Forward Deployed AI Engineer</span>
             </div>
           </a>
 
@@ -82,13 +82,11 @@ export default function HomePage() {
                 <span>Singapore · Sovereign AI & FDE Specialist · Open to Roles</span>
               </div>
 
-              <div className="mb-5">
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                  Senior AI Engineer
+              <div className="mb-6">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
+                  Forward Deployed <br />
+                  <span className="text-indigo-600">AI Engineer</span>
                 </h1>
-                <p className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-indigo-600 tracking-tight leading-tight mt-1">
-                  Forward Deployed Engineer
-                </p>
               </div>
 
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mb-8 font-normal">
@@ -149,9 +147,9 @@ export default function HomePage() {
 
                 <h2 className="text-2xl font-bold text-slate-900 mb-1">{profile.name}</h2>
                 <p className="text-xs font-mono font-bold text-indigo-600 uppercase tracking-wider mb-2">
-                  Senior AI & Forward Deployed Engineer
+                  Forward Deployed AI Engineer
                 </p>
-                <p className="text-xs text-slate-500 mb-5">{profile.location} · Founder @ KaviAI</p>
+                <p className="text-xs text-slate-500 mb-5">{profile.location}</p>
 
                 {/* Tech chips */}
                 <div className="flex flex-wrap justify-center gap-1.5 mb-6">
@@ -320,7 +318,7 @@ export default function HomePage() {
               />
               <h2 className="text-2xl font-bold text-slate-900 mb-1">{profile.name}</h2>
               <p className="text-xs font-mono text-indigo-600 font-bold uppercase tracking-wide mb-2">{profile.role}</p>
-              <p className="text-xs text-slate-500 mb-6">{profile.location} · Founder @ KaviAI</p>
+              <p className="text-xs text-slate-500 mb-6">{profile.location}</p>
 
               <div className="flex flex-col gap-2.5 w-full">
                 <a
@@ -359,7 +357,7 @@ export default function HomePage() {
 
               <div className="space-y-4 text-slate-600 leading-relaxed text-base mb-8">
                 <p>
-                  As a <strong className="text-slate-900">Senior AI Engineer & Forward Deployed Engineer (FDE)</strong>, I sit inside customer engineering repositories, infrastructure clusters, and compliance reviews to design, build, and deploy production-grade AI systems.
+                  As a <strong className="text-slate-900">Forward Deployed AI Engineer</strong>, I sit inside customer engineering repositories, infrastructure clusters, and compliance reviews to design, build, and deploy production-grade AI systems.
                 </p>
                 <p>
                   My specialization is <strong className="text-indigo-600">Sovereign AI & Private On-Premises Infrastructure</strong> — fine-tuning and serving open-weight models (Llama 3, Qwen2, DeepSeek, Mistral) inside private VPCs, air-gapped data centers, or local GPU nodes for banks, healthcare providers, and regulated enterprises.
@@ -541,10 +539,10 @@ export default function HomePage() {
             Direct Contact
           </span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white mb-5 tracking-tight">
-            Need a Senior AI Engineer or FDE?
+            Need a Forward Deployed AI Engineer?
           </h2>
           <p className="text-slate-300 max-w-2xl mx-auto mb-10 text-base leading-relaxed font-normal">
-            Available for Senior AI Engineer, Forward Deployed Engineer (FDE), or Sovereign AI Infrastructure contracts and permanent roles across Singapore, APAC, and EMEA.
+            Available for Forward Deployed AI Engineer and Sovereign AI Infrastructure roles across Singapore, APAC, and EMEA.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
@@ -579,7 +577,7 @@ export default function HomePage() {
               { title: 'Direct Email', link: `mailto:${profile.email}`, label: profile.email, note: 'Fastest response route.' },
               { title: 'LinkedIn', link: profile.linkedin, label: '/in/machhakiran', note: 'Career history.' },
               { title: 'GitHub', link: profile.github, label: 'machhakiran', note: '70+ repositories.' },
-              { title: 'Company', link: profile.companyUrl, label: 'KaviAI →', note: 'AI agent workshops.' },
+              { title: 'Company', link: profile.companyUrl, label: 'KaviAI →', note: 'AI agent platform.' },
             ].map((c) => (
               <div key={c.title} className="p-4 rounded-xl bg-slate-800/80 border border-slate-700">
                 <p className="font-mono text-[10px] tracking-wider uppercase text-slate-400 font-bold mb-1">{c.title}</p>

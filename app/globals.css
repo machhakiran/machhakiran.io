@@ -109,6 +109,30 @@ a { text-decoration: none; }
 }
 .animate-modal { animation: modal-fade-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
+/* ─── Marquee Infinite Scroll ───────────────────────────── */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-scroll-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 24s linear infinite;
+}
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll-reverse 26s linear infinite;
+}
+.animate-marquee:hover,
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
 /* ─── Timeline ──────────────────────────────────────────── */
 .timeline-item-light {
   position: relative;

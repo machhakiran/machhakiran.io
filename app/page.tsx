@@ -7,6 +7,7 @@ import { stackCategories } from '@/lib/data/stack';
 import { jobs } from '@/lib/data/experience';
 import { Reveal } from '@/components/ui/Reveal';
 import { ProjectArchitectureModal, DetailedProject } from '@/components/ProjectArchitectureModal';
+import { ProductionFlowVisualizer } from '@/components/ProductionFlowVisualizer';
 import { detailedProjectsList } from '@/lib/data/detailedProjects';
 
 const marqueeRow1 = [
@@ -245,24 +246,7 @@ export default function HomePage() {
             </span>
           </div>
 
-          {/* Clean 10-node light card grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-5 md:grid-cols-10 gap-2.5">
-            {productionPipeline.map((node, i) => (
-              <div
-                key={i}
-                className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-indigo-50/60 hover:border-indigo-300 transition-all flex flex-col justify-between group shadow-2xs"
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="font-mono text-xs text-indigo-600 font-extrabold">{String(i + 1).padStart(2, '0')}</span>
-                  {i < productionPipeline.length - 1 && (
-                    <span className="hidden md:inline text-slate-300 text-xs">→</span>
-                  )}
-                </div>
-                <p className="text-xs font-bold text-slate-900 group-hover:text-indigo-900 leading-tight mb-1">{node.name}</p>
-                <p className="text-[10px] text-slate-500 leading-snug">{node.detail}</p>
-              </div>
-            ))}
-          </div>
+          <ProductionFlowVisualizer />
         </Reveal>
       </section>
 

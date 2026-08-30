@@ -7,9 +7,10 @@ interface RevealProps {
   className?: string;
   id?: string;
   as?: React.ElementType;
+  delay?: number;
 }
 
-export function Reveal({ children, className, id, as: Tag = 'div' }: RevealProps) {
+export function Reveal({ children, className, id, as: Tag = 'div', delay = 0 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -38,8 +39,8 @@ export function Reveal({ children, className, id, as: Tag = 'div' }: RevealProps
       className={className}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(16px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+        transform: visible ? 'translateY(0)' : 'translateY(20px)',
+        transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
       }}
     >
       {children}

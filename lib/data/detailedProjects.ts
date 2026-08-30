@@ -81,7 +81,7 @@ export const detailedProjectsList: DetailedProject[] = [
   {
     id: 'kavi-agent',
     number: '02',
-    title: 'KaviAgent — Local-First Personal AI Assistant',
+    title: 'Personal AI Agent (KaviAgent)',
     tagline: 'Local-first personal assistant with SQLite memory state, local web cockpit, and 95-line plain Python loop',
     badge: 'Autonomous Local Agent',
     description:
@@ -145,7 +145,7 @@ export const detailedProjectsList: DetailedProject[] = [
   {
     id: 'kavi-space',
     number: '03',
-    title: 'KaviSpace — Tauri v2 Multi-Agent Desktop & Swarm Platform',
+    title: 'Agentic Workspace IDE (KaviSpace)',
     tagline: 'Desktop application with Tauri v2, xterm.js terminals, and KaviSwarm multi-agent pipeline',
     badge: 'Desktop Multi-Agent IDE',
     description:
@@ -199,7 +199,7 @@ export const detailedProjectsList: DetailedProject[] = [
   {
     id: 'kavi-growth-platform',
     number: '04',
-    title: 'KaviAI — Growth & Multi-Channel Content Platform',
+    title: 'Business Growth Agents Platform (KaviAI)',
     tagline: 'AI agent platform planning, generating, and publishing content across 10+ platforms automatically',
     badge: 'Multi-Channel AI SaaS',
     description:
@@ -298,7 +298,7 @@ export const detailedProjectsList: DetailedProject[] = [
   {
     id: 'corporate-rag-system',
     number: '06',
-    title: 'Corporate Organization RAG System',
+    title: 'Corporate Enterprise RAG',
     tagline: 'Production-grade Retrieval-Augmented Generation for enterprise knowledge management',
     badge: 'Enterprise Hybrid RAG',
     description:
@@ -404,7 +404,7 @@ export const detailedProjectsList: DetailedProject[] = [
   {
     id: 'customer-voice-agent',
     number: '08',
-    title: 'Realtime Customer Service Voice Agent',
+    title: 'Customer Call Support Voice Agent',
     tagline: 'Production-ready realtime voice agent for customer service call centers',
     badge: 'Realtime Voice AI',
     description:
@@ -503,7 +503,7 @@ export const detailedProjectsList: DetailedProject[] = [
   {
     id: 'invoice-ocr-automation',
     number: '10',
-    title: 'Invoice OCR & Multi-Scale Processing Pipeline',
+    title: 'Invoice Automation OCR',
     tagline: 'High-throughput document parsing with vLLM, Rust API gateway, and async GPU queues',
     badge: 'Sovereign GPU Pipeline',
     description:

@@ -9,6 +9,10 @@ export interface PostMeta {
   title: string;
   date: string;
   slug: string;
+  tags?: string[];
+  author?: string;
+  excerpt?: string;
+  readingTime?: string;
 }
 
 export interface Post extends PostMeta {
@@ -31,6 +35,13 @@ function ensurePostsDir() {
   }
 }
 
+function calculateReadingTime(text: string): string {
+  const wordsPerMinute = 200;
+  const words = text.trim().split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} min read`;
+}
+
 export function getAllPosts(): Post[] {
   ensurePostsDir();
 
@@ -42,14 +53,17 @@ export function getAllPosts(): Post[] {
     const { data, content } = matter(raw);
     const html = marked.parse(content) as string;
 
-    // Create excerpt from first paragraph
+    // Create excerpt from first paragraph if not provided in frontmatter
     const plainText = content.replace(/^#.*$/gm, '').trim();
-    const excerpt = plainText.split('\n\n')[0]?.replace(/\n/g, ' ').substring(0, 200) || '';
+    const excerpt = data.excerpt || plainText.split('\n\n')[0]?.replace(/\n/g, ' ').substring(0, 240) || '';
 
     return {
-      title: data.title || 'Untitled',
+      title: data.title || 'Untitled Post',
       date: data.date || new Date().toISOString().split('T')[0],
       slug: data.slug || slugify(data.title || 'untitled'),
+      tags: Array.isArray(data.tags) ? data.tags : data.tags ? [data.tags] : ['Engineering'],
+      author: data.author || 'Kiran Machha',
+      readingTime: calculateReadingTime(content),
       content,
       html,
       excerpt,
@@ -76,21 +90,25 @@ export function getAdjacentPosts(slug: string): { prev: PostMeta | null; next: P
   const next = index > 0 ? posts[index - 1] : null;
 
   return {
-    prev: prev ? { title: prev.title, date: prev.date, slug: prev.slug } : null,
-    next: next ? { title: next.title, date: next.date, slug: next.slug } : null,
+    prev: prev ? { title: prev.title, date: prev.date, slug: prev.slug, excerpt: prev.excerpt, tags: prev.tags } : null,
+    next: next ? { title: next.title, date: next.date, slug: next.slug, excerpt: next.excerpt, tags: next.tags } : null,
   };
 }
 
-export function savePost(title: string, content: string): PostMeta {
+export function savePost(title: string, content: string, tags?: string[], customSlug?: string, excerpt?: string): PostMeta {
   ensurePostsDir();
 
-  const slug = slugify(title);
+  const slug = customSlug || slugify(title);
   const date = new Date().toISOString().split('T')[0];
+  const postTags = tags && tags.length > 0 ? tags : ['AI', 'Engineering'];
 
   const frontmatter = `---
 title: "${title.replace(/"/g, '\\"')}"
 date: "${date}"
 slug: "${slug}"
+tags: ${JSON.stringify(postTags)}
+author: "Kiran Machha"
+excerpt: "${(excerpt || '').replace(/"/g, '\\"')}"
 ---
 
 `;
@@ -98,5 +116,5 @@ slug: "${slug}"
   const filePath = path.join(POSTS_DIR, `${slug}.md`);
   fs.writeFileSync(filePath, frontmatter + content, 'utf-8');
 
-  return { title, date, slug };
+  return { title, date, slug, tags: postTags, author: 'Kiran Machha' };
 }

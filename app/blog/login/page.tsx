@@ -39,18 +39,21 @@ function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen bg-[#12110E] text-[#F1ECE1] flex items-center justify-center px-6">
-      <div className="w-full max-w-sm">
-        <div className="mb-10 text-center">
-          <a href="/" className="font-serif font-semibold text-lg tracking-tight text-white/80 hover:text-white transition-colors">
-            {site.name}
-          </a>
-          <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-white/20 mt-3">Admin Access</p>
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 flex items-center justify-center px-6">
+      <div className="w-full max-w-md bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-xl">
+        <div className="mb-8 text-center">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center font-bold text-white text-lg mx-auto mb-4 shadow-md shadow-indigo-600/20">
+            KM
+          </div>
+          <h1 className="text-2xl font-bold text-slate-900">{site.name}</h1>
+          <p className="font-mono text-xs uppercase tracking-widest text-indigo-600 font-bold mt-1">
+            Blog Admin Portal
+          </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-3">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="username" className="block font-mono text-[10px] tracking-[0.12em] uppercase text-white/30 mb-2">
+            <label htmlFor="username" className="block font-mono text-xs uppercase tracking-wider text-slate-600 font-bold mb-1.5">
               Username
             </label>
             <input
@@ -60,13 +63,13 @@ function LoginForm() {
               onChange={(e) => setUsername(e.target.value)}
               required
               autoComplete="username"
-              className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.07] rounded-lg text-sm text-white/80 placeholder-white/20 focus:outline-none focus:border-white/20 transition-colors"
-              placeholder="username"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all"
+              placeholder="admin"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block font-mono text-[10px] tracking-[0.12em] uppercase text-white/30 mb-2">
+            <label htmlFor="password" className="block font-mono text-xs uppercase tracking-wider text-slate-600 font-bold mb-1.5">
               Password
             </label>
             <input
@@ -76,28 +79,30 @@ function LoginForm() {
               onChange={(e) => setPassword(e.target.value)}
               required
               autoComplete="current-password"
-              className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.07] rounded-lg text-sm text-white/80 placeholder-white/20 focus:outline-none focus:border-white/20 transition-colors"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all"
               placeholder="••••••••"
             />
           </div>
 
           {error && (
-            <p className="text-xs text-red-400/80 font-mono tracking-[0.04em]">{error}</p>
+            <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-600 font-mono font-medium">
+              {error}
+            </div>
           )}
 
           <button
             type="submit"
             disabled={loading}
             id="login-submit"
-            className="w-full py-3 bg-white text-[#12110E] rounded-lg text-sm font-medium hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+            className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-mono uppercase tracking-wider font-bold transition-all shadow-md shadow-indigo-600/20 disabled:opacity-50 mt-2"
           >
-            {loading ? 'Signing in…' : 'Sign in'}
+            {loading ? 'Signing in…' : 'Sign in to Admin'}
           </button>
         </form>
 
-        <div className="mt-8 text-center">
-          <a href="/blog" className="font-mono text-[10px] tracking-[0.1em] uppercase text-white/20 hover:text-white/40 transition-colors">
-            ← Back to blog
+        <div className="mt-8 text-center border-t border-slate-100 pt-4">
+          <a href="/blog" className="font-mono text-xs text-slate-500 hover:text-indigo-600 transition-colors font-semibold">
+            ← Back to Blog
           </a>
         </div>
       </div>
@@ -107,11 +112,13 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-[#12110E] flex items-center justify-center">
-        <span className="font-mono text-xs text-white/20">Loading…</span>
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center">
+          <span className="font-mono text-xs text-slate-400">Loading admin portal…</span>
+        </div>
+      }
+    >
       <LoginForm />
     </Suspense>
   );

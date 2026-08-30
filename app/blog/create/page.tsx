@@ -4,7 +4,10 @@ import { useState } from 'react';
 import { site } from '@/lib/data/site';
 
 export default function CreatePostPage() {
+  const [activeTab, setActiveTab] = useState<'editor' | 'mcp'>('editor');
   const [title, setTitle] = useState('');
+  const [tags, setTags] = useState('');
+  const [excerpt, setExcerpt] = useState('');
   const [content, setContent] = useState('');
   const [status, setStatus] = useState<'idle' | 'saving' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
@@ -21,21 +24,28 @@ export default function CreatePostPage() {
     setErrorMsg('');
 
     try {
+      const parsedTags = tags
+        .split(',')
+        .map((t) => t.trim())
+        .filter(Boolean);
+
       const res = await fetch('/api/posts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, content }),
+        body: JSON.stringify({ title, content, tags: parsedTags, excerpt }),
       });
 
       if (res.ok) {
         const data = await res.json();
-        setSavedSlug(data.slug);
+        setSavedSlug(data.post?.slug || data.slug);
         setStatus('success');
         setTitle('');
+        setTags('');
+        setExcerpt('');
         setContent('');
       } else {
         const data = await res.json();
-        setErrorMsg(data.error || 'Failed to save post.');
+        setErrorMsg(data.error || 'Failed to publish post.');
         setStatus('error');
       }
     } catch {
@@ -45,95 +55,201 @@ export default function CreatePostPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#12110E] text-[#F1ECE1]">
-      {/* NAV */}
-      <header className="fixed top-0 inset-x-0 z-50 bg-[#12110E]/90 backdrop-blur-md border-b border-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
-          <a href="/" className="font-serif font-semibold text-lg tracking-tight">{site.name}</a>
-          <nav className="flex items-center gap-4 text-xs text-white/40">
-            <a href="/blog" className="hover:text-white/80 transition-colors">Blog</a>
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 font-sans">
+      {/* ===== HEADER NAVIGATION ===== */}
+      <header className="fixed top-0 inset-x-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-xs">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
+          <a href="/blog" className="flex items-center gap-2 text-xs font-mono font-bold text-slate-600 hover:text-indigo-600 transition-colors">
+            <span>←</span> Back to Blog
+          </a>
+
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-mono font-bold text-slate-700 hidden sm:inline">Admin: {site.name}</span>
             <button
               onClick={handleLogout}
-              className="hover:text-white/80 transition-colors font-mono tracking-[0.06em]"
+              className="px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-xs font-mono font-bold text-slate-600 transition-colors"
             >
               Sign out
             </button>
-          </nav>
+          </div>
         </div>
       </header>
 
-      <main className="max-w-3xl mx-auto px-6 pt-28 pb-24">
-        <div className="mb-10">
-          <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-white/25 mb-2">Admin</p>
-          <h1 className="font-serif font-bold text-3xl text-white tracking-[-0.02em]">New Post</h1>
+      <main className="max-w-4xl mx-auto px-6 pt-28 pb-24">
+        {/* Tab Switcher */}
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <span className="text-xs font-mono uppercase tracking-widest text-indigo-600 font-bold block mb-1">
+              Authoring Hub
+            </span>
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Publish Engineering Article
+            </h1>
+          </div>
+
+          <div className="flex items-center gap-1 bg-white border border-slate-200 p-1 rounded-xl shadow-xs">
+            <button
+              onClick={() => setActiveTab('editor')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${activeTab === 'editor' ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}`}
+            >
+              ✏️ Manual Editor
+            </button>
+            <button
+              onClick={() => setActiveTab('mcp')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${activeTab === 'mcp' ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}`}
+            >
+              🤖 MCP & Agent API
+            </button>
+          </div>
         </div>
 
-        {status === 'success' && (
-          <div className="mb-8 p-4 rounded-xl border border-white/[0.06] bg-white/[0.02]">
-            <p className="text-sm text-white/60 mb-2">Post published successfully.</p>
-            <a
-              href={`/blog/${savedSlug}`}
-              className="font-mono text-xs text-white/40 hover:text-white/70 transition-colors underline underline-offset-2"
-            >
-              View post →
-            </a>
+        {/* TAB 1: MANUAL EDITOR */}
+        {activeTab === 'editor' && (
+          <div className="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-md">
+            {status === 'success' && (
+              <div className="mb-8 p-5 rounded-2xl border border-emerald-200 bg-emerald-50 text-emerald-800 flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-bold">✅ Article published successfully!</p>
+                  <p className="text-xs font-mono mt-0.5">Slug: {savedSlug}</p>
+                </div>
+                <a
+                  href={`/blog/${savedSlug}`}
+                  className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-mono font-bold transition-colors shadow-xs"
+                >
+                  View Article →
+                </a>
+              </div>
+            )}
+
+            {status === 'error' && (
+              <div className="mb-8 p-4 rounded-2xl border border-red-200 bg-red-50 text-red-700 text-xs font-mono font-bold">
+                {errorMsg}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="post-title" className="block font-mono text-xs uppercase tracking-wider text-slate-700 font-bold mb-2">
+                  Article Title
+                </label>
+                <input
+                  id="post-title"
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
+                  placeholder="e.g. Fine-Tuning Llama 3 with LoRA on Kubernetes GPU Pools"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-lg font-bold placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="post-tags" className="block font-mono text-xs uppercase tracking-wider text-slate-700 font-bold mb-2">
+                    Tags <span className="text-slate-400 font-normal">(comma-separated)</span>
+                  </label>
+                  <input
+                    id="post-tags"
+                    type="text"
+                    value={tags}
+                    onChange={(e) => setTags(e.target.value)}
+                    placeholder="Sovereign AI, vLLM, RAG, Kubernetes"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="post-excerpt" className="block font-mono text-xs uppercase tracking-wider text-slate-700 font-bold mb-2">
+                    Short Excerpt <span className="text-slate-400 font-normal">(1-2 sentences)</span>
+                  </label>
+                  <input
+                    id="post-excerpt"
+                    type="text"
+                    value={excerpt}
+                    onChange={(e) => setExcerpt(e.target.value)}
+                    placeholder="Brief summary for social cards and list view..."
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="post-content" className="block font-mono text-xs uppercase tracking-wider text-slate-700 font-bold mb-2">
+                  Markdown Content
+                </label>
+                <textarea
+                  id="post-content"
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  required
+                  rows={16}
+                  placeholder="# Introduction&#10;&#10;Write your deep-dive engineering article here in Markdown..."
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 font-mono text-sm leading-relaxed placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all resize-y"
+                />
+              </div>
+
+              <div className="flex items-center gap-3 pt-2">
+                <button
+                  type="submit"
+                  id="create-post-submit"
+                  disabled={status === 'saving'}
+                  className="px-7 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-mono uppercase tracking-wider font-bold transition-all shadow-md shadow-indigo-600/20 disabled:opacity-50"
+                >
+                  {status === 'saving' ? 'Publishing Post…' : '🚀 Publish Article'}
+                </button>
+                <a
+                  href="/blog"
+                  className="px-6 py-3 border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 rounded-xl text-xs font-mono font-bold transition-colors"
+                >
+                  Cancel
+                </a>
+              </div>
+            </form>
           </div>
         )}
 
-        {status === 'error' && (
-          <div className="mb-8 p-4 rounded-xl border border-red-500/20 bg-red-500/[0.04]">
-            <p className="text-sm text-red-400/80">{errorMsg}</p>
+        {/* TAB 2: AGENT & MCP API INSTRUCTIONS */}
+        {activeTab === 'mcp' && (
+          <div className="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-md space-y-6">
+            <div className="flex items-center gap-3">
+              <span className="w-3 h-3 rounded-full bg-emerald-500 dot-pulse" />
+              <h2 className="text-xl font-bold text-slate-900 font-mono">
+                MCP Agent & API Direct Integration
+              </h2>
+            </div>
+
+            <p className="text-sm text-slate-600 leading-relaxed font-normal">
+              Your AI coding agents (Cursor, Claude Desktop, Windsurf, LangChain, or custom autonomous scripts) can directly publish blog posts without needing a browser.
+            </p>
+
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+              <p className="font-mono text-xs font-bold text-slate-800">1. MCP Server Discovery Endpoint</p>
+              <code className="text-xs font-mono text-indigo-600 block bg-white p-2.5 rounded-lg border border-slate-200">
+                GET https://machhakiran.pro/api/mcp
+              </code>
+            </div>
+
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+              <p className="font-mono text-xs font-bold text-slate-800">2. Agent Post Submission Endpoint</p>
+              <code className="text-xs font-mono text-indigo-600 block bg-white p-2.5 rounded-lg border border-slate-200">
+                POST https://machhakiran.pro/api/posts
+              </code>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-950 text-emerald-400 font-mono text-xs overflow-x-auto shadow-inner space-y-2">
+              <p className="text-slate-400"># Direct curl example for agents:</p>
+              <pre>{`curl -X POST https://machhakiran.pro/api/posts \\
+  -H "Content-Type: application/json" \\
+  -H "Authorization: Bearer kavi-agent-mcp-key-2026" \\
+  -d '{
+    "title": "Autonomous Agent Tool Calling with FastRTC",
+    "content": "# Realtime Voice Agent Deep-Dive\\n\\nHere is how we wire FastRTC with Moonshine...",
+    "tags": ["Voice AI", "FastRTC", "Agents"],
+    "excerpt": "Architecting realtime voice loops with sub-second STT and tool-calling models."
+  }'`}</pre>
+            </div>
           </div>
         )}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="post-title" className="block font-mono text-[10px] tracking-[0.12em] uppercase text-white/30 mb-2">
-              Title
-            </label>
-            <input
-              id="post-title"
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-              placeholder="Post title…"
-              className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.07] rounded-lg text-white/80 placeholder-white/20 focus:outline-none focus:border-white/20 transition-colors font-serif text-lg"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="post-content" className="block font-mono text-[10px] tracking-[0.12em] uppercase text-white/30 mb-2">
-              Content <span className="text-white/15 normal-case tracking-normal ml-1">(Markdown)</span>
-            </label>
-            <textarea
-              id="post-content"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              required
-              rows={20}
-              placeholder="Write your post in Markdown…"
-              className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.07] rounded-lg text-white/70 placeholder-white/15 focus:outline-none focus:border-white/20 transition-colors font-mono text-sm leading-relaxed resize-y"
-            />
-          </div>
-
-          <div className="flex items-center gap-3 pt-2">
-            <button
-              type="submit"
-              id="create-post-submit"
-              disabled={status === 'saving'}
-              className="px-6 py-2.5 bg-white text-[#12110E] rounded-lg text-sm font-medium hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {status === 'saving' ? 'Publishing…' : 'Publish post'}
-            </button>
-            <a
-              href="/blog"
-              className="px-6 py-2.5 border border-white/[0.08] rounded-lg text-sm text-white/40 hover:text-white/70 hover:border-white/15 transition-colors"
-            >
-              Cancel
-            </a>
-          </div>
-        </form>
       </main>
     </div>
   );

@@ -5,7 +5,7 @@ export const profile = {
   company: 'KaviAI',
   companyUrl: 'https://www.kaviagentic.com/',
   location: 'Singapore',
-  status: 'Open to opportunities',
+  status: 'Sovereign AI & FDE Specialist',
   email: 'machhakiran@gmail.com',
   linkedin: 'https://www.linkedin.com/in/machhakiran/',
   github: 'https://github.com/machhakiran',

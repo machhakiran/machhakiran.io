@@ -16,23 +16,39 @@ function LoginForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError('');
+
+    const trimmedUser = username.trim();
+    if (!trimmedUser && !password) {
+      setError('Please enter both username and password.');
+      return;
+    }
+    if (!trimmedUser) {
+      setError('Username is required. Please enter your username.');
+      return;
+    }
+    if (!password) {
+      setError('Password is required. Please enter your password.');
+      return;
+    }
+
     setLoading(true);
 
     try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username: trimmedUser, password }),
       });
 
-      if (res.ok) {
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.success) {
         window.location.href = redirect;
       } else {
-        const data = await res.json();
-        setError(data.error || 'Invalid credentials');
+        setError(data.error || 'Invalid credentials. Please try again.');
       }
     } catch {
-      setError('Something went wrong. Please try again.');
+      setError('Something went wrong connecting to the server. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -53,38 +69,45 @@ function LoginForm() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="username" className="block font-mono text-xs uppercase tracking-wider text-slate-600 font-bold mb-1.5">
-              Username <span className="text-slate-400 font-normal lowercase">(optional)</span>
+            <label htmlFor="username" className="block font-mono text-xs uppercase tracking-wider text-slate-700 font-bold mb-1.5">
+              Username
             </label>
             <input
               id="username"
               type="text"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => {
+                setUsername(e.target.value);
+                if (error) setError('');
+              }}
               autoComplete="username"
-              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all"
-              placeholder="Leave empty or any name"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all font-sans"
+              placeholder="Enter your username"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block font-mono text-xs uppercase tracking-wider text-slate-600 font-bold mb-1.5">
-              Password <span className="text-slate-400 font-normal lowercase">(optional)</span>
+            <label htmlFor="password" className="block font-mono text-xs uppercase tracking-wider text-slate-700 font-bold mb-1.5">
+              Password
             </label>
             <input
               id="password"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                if (error) setError('');
+              }}
               autoComplete="current-password"
-              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all"
-              placeholder="Leave empty or any password"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all font-sans"
+              placeholder="Enter your password"
             />
           </div>
 
           {error && (
-            <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-600 font-mono font-medium">
-              {error}
+            <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-700 font-mono font-medium flex items-center gap-2.5">
+              <span className="text-base shrink-0">⚠️</span>
+              <span className="leading-snug">{error}</span>
             </div>
           )}
 
@@ -92,9 +115,9 @@ function LoginForm() {
             type="submit"
             disabled={loading}
             id="login-submit"
-            className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-mono uppercase tracking-wider font-bold transition-all shadow-md shadow-indigo-600/20 disabled:opacity-50 mt-2 cursor-pointer"
+            className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-mono uppercase tracking-wider font-bold transition-all shadow-md shadow-indigo-600/20 disabled:opacity-50 mt-2 cursor-pointer flex items-center justify-center gap-2"
           >
-            {loading ? 'Accessing…' : 'Enter Editor / Sign in'}
+            {loading ? 'Validating credentials…' : 'Sign in to Editor'}
           </button>
         </form>
 

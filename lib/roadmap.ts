@@ -8,7 +8,7 @@ export interface StageMeta {
   phaseName: string;
   phaseRoman: string;
   color: string; // Official brand hex
-  bgGlow: string; // Tailwind glow / opacity helper
+  lightBadge: string; // Tailwind light badge classes matching site
   borderHex: string;
   icon: string;
   tech: string;
@@ -71,8 +71,8 @@ export const STAGES: Record<string, StageMeta> = {
     phaseId: 'phase-1',
     phaseName: 'Foundations & Quantitative Analytics',
     phaseRoman: 'PHASE I',
-    color: '#3776AB', // Python Blue
-    bgGlow: 'rgba(55, 118, 171, 0.15)',
+    color: '#3776AB',
+    lightBadge: 'bg-blue-50 text-blue-700 border-blue-200',
     borderHex: '#3776AB',
     icon: '🐍',
     tech: 'Python 3.11+, AsyncIO, Pydantic v2, FastAPI',
@@ -87,8 +87,8 @@ export const STAGES: Record<string, StageMeta> = {
     phaseId: 'phase-1',
     phaseName: 'Foundations & Quantitative Analytics',
     phaseRoman: 'PHASE I',
-    color: '#06B6D4', // Cyan
-    bgGlow: 'rgba(6, 182, 212, 0.15)',
+    color: '#06B6D4',
+    lightBadge: 'bg-cyan-50 text-cyan-700 border-cyan-200',
     borderHex: '#06B6D4',
     icon: '📊',
     tech: 'DuckDB, PostgreSQL, Pandas, Statsmodels',
@@ -103,8 +103,8 @@ export const STAGES: Record<string, StageMeta> = {
     phaseId: 'phase-1',
     phaseName: 'Foundations & Quantitative Analytics',
     phaseRoman: 'PHASE I',
-    color: '#8B5CF6', // Purple
-    bgGlow: 'rgba(139, 92, 246, 0.15)',
+    color: '#8B5CF6',
+    lightBadge: 'bg-purple-50 text-purple-700 border-purple-200',
     borderHex: '#8B5CF6',
     icon: '🤖',
     tech: 'LightGBM, XGBoost, Optuna, SHAP, Scikit-Learn',
@@ -119,8 +119,8 @@ export const STAGES: Record<string, StageMeta> = {
     phaseId: 'phase-1',
     phaseName: 'Foundations & Quantitative Analytics',
     phaseRoman: 'PHASE I',
-    color: '#EE4C2C', // PyTorch Flame Orange
-    bgGlow: 'rgba(238, 76, 44, 0.15)',
+    color: '#EE4C2C',
+    lightBadge: 'bg-orange-50 text-orange-700 border-orange-200',
     borderHex: '#EE4C2C',
     icon: '🔥',
     tech: 'PyTorch, TorchVision, PyG, CUDA, Lightning',
@@ -135,8 +135,8 @@ export const STAGES: Record<string, StageMeta> = {
     phaseId: 'phase-2',
     phaseName: 'Specialized Multimodal Perception',
     phaseRoman: 'PHASE II',
-    color: '#F59E0B', // Gold / Amber
-    bgGlow: 'rgba(245, 158, 11, 0.15)',
+    color: '#F59E0B',
+    lightBadge: 'bg-amber-50 text-amber-800 border-amber-200',
     borderHex: '#F59E0B',
     icon: '📚',
     tech: 'HuggingFace, Pegasus, DistilBERT, RoBERTa',
@@ -151,8 +151,8 @@ export const STAGES: Record<string, StageMeta> = {
     phaseId: 'phase-2',
     phaseName: 'Specialized Multimodal Perception',
     phaseRoman: 'PHASE II',
-    color: '#F43F5E', // Rose
-    bgGlow: 'rgba(244, 63, 94, 0.15)',
+    color: '#F43F5E',
+    lightBadge: 'bg-rose-50 text-rose-700 border-rose-200',
     borderHex: '#F43F5E',
     icon: '🎯',
     tech: 'Ultralytics YOLOv11, DBNet OCR, OpenCV, TensorRT',
@@ -167,8 +167,8 @@ export const STAGES: Record<string, StageMeta> = {
     phaseId: 'phase-3',
     phaseName: 'Generative AI & Knowledge Systems',
     phaseRoman: 'PHASE III',
-    color: '#EA580C', // GenAI Deep Orange
-    bgGlow: 'rgba(234, 88, 12, 0.15)',
+    color: '#EA580C',
+    lightBadge: 'bg-orange-50 text-orange-800 border-orange-300',
     borderHex: '#EA580C',
     icon: '✨',
     tech: 'Unsloth QLoRA, Llama 3.3, Mistral, GGUF, vLLM',
@@ -183,8 +183,8 @@ export const STAGES: Record<string, StageMeta> = {
     phaseId: 'phase-3',
     phaseName: 'Generative AI & Knowledge Systems',
     phaseRoman: 'PHASE III',
-    color: '#10B981', // Emerald
-    bgGlow: 'rgba(16, 185, 129, 0.15)',
+    color: '#10B981',
+    lightBadge: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     borderHex: '#10B981',
     icon: '🔍',
     tech: 'Qdrant, Cohere Rerank, LlamaIndex, Neo4j GraphRAG',
@@ -199,8 +199,8 @@ export const STAGES: Record<string, StageMeta> = {
     phaseId: 'phase-3',
     phaseName: 'Generative AI & Knowledge Systems',
     phaseRoman: 'PHASE III',
-    color: '#0D9488', // Teal
-    bgGlow: 'rgba(13, 148, 136, 0.15)',
+    color: '#0D9488',
+    lightBadge: 'bg-teal-50 text-teal-700 border-teal-200',
     borderHex: '#0D9488',
     icon: '⛓️',
     tech: 'LangChain, LCEL, LangSmith, Google Gemini Flash',
@@ -215,8 +215,8 @@ export const STAGES: Record<string, StageMeta> = {
     phaseId: 'phase-4',
     phaseName: 'Autonomous Agents & Protocol Standards',
     phaseRoman: 'PHASE IV',
-    color: '#EF4444', // Red / Coral
-    bgGlow: 'rgba(239, 68, 68, 0.15)',
+    color: '#EF4444',
+    lightBadge: 'bg-red-50 text-red-700 border-red-200',
     borderHex: '#EF4444',
     icon: '🕸️',
     tech: 'LangGraph, SqliteSaver Checkpointer, ReAct Loops',
@@ -231,8 +231,8 @@ export const STAGES: Record<string, StageMeta> = {
     phaseId: 'phase-4',
     phaseName: 'Autonomous Agents & Protocol Standards',
     phaseRoman: 'PHASE IV',
-    color: '#6366F1', // Indigo
-    bgGlow: 'rgba(99, 102, 241, 0.15)',
+    color: '#6366F1',
+    lightBadge: 'bg-indigo-50 text-indigo-700 border-indigo-200',
     borderHex: '#6366F1',
     icon: '🔌',
     tech: 'Model Context Protocol (MCP), FastMCP, Claude SDK',
@@ -240,15 +240,15 @@ export const STAGES: Record<string, StageMeta> = {
   },
   '14': {
     id: '14',
-    order: 11, // Placed logically in Phase IV with Agents
+    order: 11,
     name: 'AI Agents Core (Loop, Graph, Context, Memory, Tools)',
     shortTitle: 'AI Agents Core',
     slug: 'ai-agents-core',
     phaseId: 'phase-4',
     phaseName: 'Autonomous Agents & Protocol Standards',
     phaseRoman: 'PHASE IV',
-    color: '#EC4899', // Hot Pink
-    bgGlow: 'rgba(236, 72, 153, 0.15)',
+    color: '#EC4899',
+    lightBadge: 'bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200',
     borderHex: '#EC4899',
     icon: '🤖',
     tech: 'LangGraph, ReAct Loops, FastMCP, Mem0, Groq',
@@ -263,8 +263,8 @@ export const STAGES: Record<string, StageMeta> = {
     phaseId: 'phase-5',
     phaseName: 'Production AI Platform Engineering',
     phaseRoman: 'PHASE V',
-    color: '#00C49F', // Mint
-    bgGlow: 'rgba(0, 196, 159, 0.15)',
+    color: '#00C49F',
+    lightBadge: 'bg-teal-50 text-teal-800 border-teal-200',
     borderHex: '#00C49F',
     icon: '⚡',
     tech: 'vLLM PagedAttention, NVIDIA Triton, Modal.com',
@@ -279,8 +279,8 @@ export const STAGES: Record<string, StageMeta> = {
     phaseId: 'phase-5',
     phaseName: 'Production AI Platform Engineering',
     phaseRoman: 'PHASE V',
-    color: '#0284C7', // Sky Blue
-    bgGlow: 'rgba(2, 132, 199, 0.15)',
+    color: '#0284C7',
+    lightBadge: 'bg-sky-50 text-sky-700 border-sky-200',
     borderHex: '#0284C7',
     icon: '🔄',
     tech: 'DVC, MLflow, Evidently AI, Ragas, DeepEval',
@@ -295,8 +295,8 @@ export const STAGES: Record<string, StageMeta> = {
     phaseId: 'phase-5',
     phaseName: 'Production AI Platform Engineering',
     phaseRoman: 'PHASE V',
-    color: '#2563EB', // Royal Blue
-    bgGlow: 'rgba(37, 99, 235, 0.15)',
+    color: '#2563EB',
+    lightBadge: 'bg-blue-50 text-blue-700 border-blue-200',
     borderHex: '#2563EB',
     icon: '☸️',
     tech: 'Kubernetes (K8s), KubeRay, LiteLLM Gateway, KServe',
@@ -311,28 +311,28 @@ export interface PostStageInfo {
   projectNum?: string;
   projectIndex?: number;
   domain?: string;
-  domainColor?: string;
+  domainClasses?: { bg: string; text: string; border: string; dot: string };
   breadcrumb: string;
 }
 
-export function getDomainColor(domainOrTag: string): { bg: string; text: string; border: string } {
+export function getDomainBadgeClasses(domainOrTag: string): { bg: string; text: string; border: string; dot: string } {
   const d = domainOrTag.toLowerCase();
   if (d.includes('fintech') || d.includes('bank') || d.includes('finance')) {
-    return { bg: 'rgba(16, 185, 129, 0.15)', text: '#34D399', border: 'rgba(16, 185, 129, 0.35)' }; // Emerald
+    return { bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200', dot: 'bg-emerald-500' };
   }
   if (d.includes('telecom') || d.includes('network') || d.includes('bandwidth')) {
-    return { bg: 'rgba(2, 132, 199, 0.15)', text: '#38BDF8', border: 'rgba(2, 132, 199, 0.35)' }; // Sky Blue
+    return { bg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-200', dot: 'bg-sky-500' };
   }
   if (d.includes('ecommerce') || d.includes('retail') || d.includes('price')) {
-    return { bg: 'rgba(245, 158, 11, 0.15)', text: '#FBBF24', border: 'rgba(245, 158, 11, 0.35)' }; // Amber
+    return { bg: 'bg-amber-50', text: 'text-amber-800', border: 'border-amber-200', dot: 'bg-amber-500' };
   }
   if (d.includes('government') || d.includes('public') || d.includes('civic') || d.includes('law')) {
-    return { bg: 'rgba(139, 92, 246, 0.15)', text: '#C084FC', border: 'rgba(139, 92, 246, 0.35)' }; // Purple
+    return { bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200', dot: 'bg-purple-500' };
   }
   if (d.includes('agent') || d.includes('mcp') || d.includes('social') || d.includes('autonomous')) {
-    return { bg: 'rgba(236, 72, 153, 0.15)', text: '#F472B6', border: 'rgba(236, 72, 153, 0.35)' }; // Pink
+    return { bg: 'bg-fuchsia-50', text: 'text-fuchsia-700', border: 'border-fuchsia-200', dot: 'bg-fuchsia-500' };
   }
-  return { bg: 'rgba(99, 102, 241, 0.15)', text: '#818CF8', border: 'rgba(99, 102, 241, 0.35)' }; // Indigo default
+  return { bg: 'bg-indigo-50', text: 'text-indigo-700', border: 'border-indigo-200', dot: 'bg-indigo-500' };
 }
 
 export function parsePostStageInfo(slug: string, tags?: string[]): PostStageInfo {
@@ -352,7 +352,7 @@ export function parsePostStageInfo(slug: string, tags?: string[]): PostStageInfo
       else domain = tags[tags.length - 1];
     }
 
-    const domainColor = getDomainColor(domain).text;
+    const domainClasses = getDomainBadgeClasses(domain);
 
     return {
       isRoadmap: true,
@@ -361,16 +361,17 @@ export function parsePostStageInfo(slug: string, tags?: string[]): PostStageInfo
       projectNum,
       projectIndex: parseInt(projectNum, 10),
       domain,
-      domainColor,
+      domainClasses,
       breadcrumb: `${stage?.phaseRoman || 'Roadmap'} · Stage ${stageId} · Project ${projectNum}`,
     };
   }
 
   // Standalone whitepapers
+  const defaultDomain = tags?.[0] || 'Architecture Whitepaper';
   return {
     isRoadmap: false,
-    domain: tags?.[0] || 'Architecture Whitepaper',
-    domainColor: '#38BDF8',
+    domain: defaultDomain,
+    domainClasses: getDomainBadgeClasses(defaultDomain),
     breadcrumb: 'Production Architecture Whitepapers',
   };
 }

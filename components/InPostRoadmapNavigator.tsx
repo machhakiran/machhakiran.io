@@ -14,7 +14,6 @@ export function InPostRoadmapNavigator({ currentSlug, allPosts }: Props) {
 
   const currentPost = allPosts.find((p) => p.slug === currentSlug);
   const currentStage = currentPost?.stageInfo.stage;
-  const stageColor = currentStage?.color || '#38BDF8';
 
   // Group roadmap posts by stageId
   const postsByStage: Record<string, PostMeta[]> = {};
@@ -28,32 +27,23 @@ export function InPostRoadmapNavigator({ currentSlug, allPosts }: Props) {
   return (
     <>
       {/* ===== IN-ARTICLE QUICK TREE BAR ===== */}
-      <div
-        className="mb-8 p-4 rounded-2xl bg-[#0B1120] border flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg"
-        style={{ borderColor: `${stageColor}40` }}
-      >
+      <div className="mb-8 p-4 rounded-2xl bg-white border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
         <div className="flex items-center gap-3">
-          <span
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-mono font-bold"
-            style={{ backgroundColor: `${stageColor}25`, color: stageColor }}
-          >
+          <span className="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-sm font-mono font-bold text-indigo-700 shadow-2xs">
             {currentStage ? currentStage.icon : '📑'}
           </span>
           <div>
             <div className="flex items-center gap-2">
-              <span
-                className="text-xs font-mono font-bold"
-                style={{ color: stageColor }}
-              >
+              <span className="text-xs font-mono font-bold text-slate-900">
                 {currentStage ? `Stage ${currentStage.id} · ${currentStage.name}` : 'Special Architecture Whitepaper'}
               </span>
               {currentPost?.stageInfo.projectNum && (
-                <span className="text-[10px] px-1.5 py-0.2 rounded bg-white/10 font-mono text-slate-300">
+                <span className="text-[10px] px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 font-mono text-slate-700 font-semibold">
                   Project #{currentPost.stageInfo.projectNum} of 4
                 </span>
               )}
             </div>
-            <p className="text-[11px] font-mono text-slate-400">
+            <p className="text-[11px] font-mono text-slate-500">
               {currentStage?.phaseRoman ? `${currentStage.phaseRoman}: ${currentStage.phaseName}` : 'Production Engineering Case Study'}
             </p>
           </div>
@@ -62,32 +52,32 @@ export function InPostRoadmapNavigator({ currentSlug, allPosts }: Props) {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="px-3.5 py-2 rounded-xl text-xs font-mono font-bold text-white transition-all flex items-center justify-center gap-1.5 hover:brightness-110 shadow-md"
-          style={{ backgroundColor: stageColor }}
+          className="btn-primary px-4 py-2.5 rounded-xl text-xs font-mono font-bold text-white shadow-xs transition-all flex items-center justify-center gap-2"
+          style={{ color: '#ffffff' }}
         >
           <span>🌳 Jump Across 15 Stages</span>
-          <span className="text-[10px] bg-black/20 px-1.5 py-0.5 rounded">60 Projects</span>
+          <span className="text-[10px] bg-white/20 px-1.5 py-0.5 rounded font-mono">60 Projects</span>
         </button>
       </div>
 
       {/* ===== FULL ROADMAP TREE MODAL ===== */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-modal">
-          <div className="bg-[#0B1120] border border-slate-700 rounded-3xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 animate-modal">
+          <div className="bg-white border border-slate-200 rounded-3xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
             {/* Modal Header */}
-            <div className="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/50">
+            <div className="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
               <div>
-                <h3 className="text-sm font-mono font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                <h3 className="text-sm font-mono font-bold text-slate-900 uppercase tracking-wider flex items-center gap-2">
                   <span>🌳</span> Master Roadmap Tree Navigator
                 </h3>
-                <p className="text-xs font-mono text-slate-400 mt-0.5">
+                <p className="text-xs font-mono text-slate-500 mt-0.5">
                   Select any stage or project to jump directly without leaving the reading flow
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center font-mono font-bold transition-colors"
+                className="w-8 h-8 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-700 flex items-center justify-center font-mono font-bold transition-colors"
               >
                 ✕
               </button>
@@ -97,8 +87,8 @@ export function InPostRoadmapNavigator({ currentSlug, allPosts }: Props) {
             <div className="p-6 overflow-y-auto space-y-6">
               {PHASES.map((phase) => (
                 <div key={phase.id} className="space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-cyan-400 pb-1 border-b border-slate-800">
-                    <span className="px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-slate-900 pb-1 border-b border-slate-100">
+                    <span className="px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">
                       {phase.roman}
                     </span>
                     <span>{phase.title}</span>
@@ -114,24 +104,21 @@ export function InPostRoadmapNavigator({ currentSlug, allPosts }: Props) {
                       return (
                         <div
                           key={stageId}
-                          className="p-3.5 rounded-2xl bg-slate-900/70 border transition-all"
-                          style={{
-                            borderColor: isCurrentStage ? stg.color : 'rgba(51, 65, 85, 0.4)',
-                            backgroundColor: isCurrentStage ? `${stg.color}10` : undefined,
-                          }}
+                          className={`p-3.5 rounded-2xl border transition-all ${
+                            isCurrentStage
+                              ? 'bg-indigo-50/70 border-indigo-300 shadow-xs'
+                              : 'bg-slate-50/50 border-slate-200'
+                          }`}
                         >
                           <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 truncate">
                               <span>{stg.icon}</span>
-                              <span
-                                className="text-xs font-mono font-bold truncate"
-                                style={{ color: stg.color }}
-                              >
+                              <span className="text-xs font-mono font-bold text-slate-900 truncate">
                                 Stage {stg.id}: {stg.shortTitle}
                               </span>
                             </div>
                             {isCurrentStage && (
-                              <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-cyan-400 text-slate-950 font-bold">
+                              <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-indigo-600 text-white font-bold shrink-0">
                                 Current
                               </span>
                             )}
@@ -147,8 +134,8 @@ export function InPostRoadmapNavigator({ currentSlug, allPosts }: Props) {
                                   onClick={() => setIsOpen(false)}
                                   className={`block text-[11px] font-mono truncate px-2 py-1 rounded transition-colors ${
                                     isThisPost
-                                      ? 'bg-cyan-500/20 text-cyan-300 font-bold'
-                                      : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                                      ? 'bg-indigo-600 text-white font-bold'
+                                      : 'text-slate-600 hover:text-indigo-600 hover:bg-slate-100'
                                   }`}
                                 >
                                   #{p.stageInfo.projectNum} · {p.title}
@@ -165,9 +152,9 @@ export function InPostRoadmapNavigator({ currentSlug, allPosts }: Props) {
             </div>
 
             {/* Modal Footer */}
-            <div className="p-4 border-t border-slate-800 bg-slate-900/50 flex items-center justify-between text-xs font-mono text-slate-500">
+            <div className="p-4 border-t border-slate-100 bg-slate-50 flex items-center justify-between text-xs font-mono text-slate-500">
               <span>60 Production Customer Case Studies</span>
-              <a href="/blog" className="text-cyan-400 hover:underline">
+              <a href="/blog" className="text-indigo-600 hover:underline font-bold">
                 View Full Field Notes Index →
               </a>
             </div>

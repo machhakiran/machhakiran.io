@@ -25,6 +25,16 @@ export function BlogTreeExplorer({ posts }: Props) {
     setExpandedStages((prev) => ({ ...prev, [stageId]: !prev[stageId] }));
   };
 
+  const expandAll = () => {
+    const all: Record<string, boolean> = {};
+    Object.keys(STAGES).forEach((k) => (all[k] = true));
+    setExpandedStages(all);
+  };
+
+  const collapseAll = () => {
+    setExpandedStages({});
+  };
+
   // Group roadmap posts by stageId
   const postsByStage = useMemo(() => {
     const map: Record<string, Post[]> = {};
@@ -82,7 +92,7 @@ export function BlogTreeExplorer({ posts }: Props) {
     });
   }, [posts, searchQuery, selectedStage, selectedPhase, selectedDomain]);
 
-  // Domain badge options styled with exact site color palette
+  // Domain badge options matching main site palette
   const domainOptions = [
     { label: 'All Domains', id: 'all', count: posts.length, badge: 'bg-slate-900 text-white border-slate-900', dot: 'bg-white' },
     { label: 'Banking & FinTech', id: 'fintech', count: posts.filter((p) => p.stageInfo.domain?.toLowerCase().includes('fintech') || p.tags?.some((t) => t.toLowerCase().includes('fintech') || t.toLowerCase().includes('bank'))).length, badge: 'bg-emerald-50 text-emerald-700 border-emerald-200', activeBadge: 'bg-emerald-600 text-white border-emerald-600', dot: 'bg-emerald-500' },
@@ -92,140 +102,99 @@ export function BlogTreeExplorer({ posts }: Props) {
     { label: 'AI Agents Core', id: 'agent', count: posts.filter((p) => p.stageInfo.stageId === '14' || p.stageInfo.domain?.toLowerCase().includes('agent') || p.tags?.some((t) => t.toLowerCase().includes('agent'))).length, badge: 'bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200', activeBadge: 'bg-fuchsia-600 text-white border-fuchsia-600', dot: 'bg-fuchsia-500' },
   ];
 
+  const activeStage = selectedStage !== 'all' ? STAGES[selectedStage] : null;
+
   return (
     <div className="relative">
-      {/* ===== SEARCH & DOMAIN FILTER TOOLBAR ===== */}
-      <div className="mb-10 space-y-4">
-        <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
-          {/* Real-time search bar */}
-          <div className="relative flex-1 max-w-xl">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-mono text-sm">🔍</span>
-            <input
-              type="text"
-              placeholder="Search by topic, keyword, tech stack (e.g. LangGraph, vLLM, DuckDB, FinTech)..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-2xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 transition-all font-sans shadow-xs"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-800 text-xs font-mono px-2 py-0.5 rounded bg-slate-100 border border-slate-200"
-              >
-                Clear
-              </button>
-            )}
-          </div>
-
-          {/* Mobile Tree Drawer Toggle Button */}
-          <div className="flex items-center gap-2 lg:hidden">
-            <button
-              onClick={() => setMobileTreeOpen(!mobileTreeOpen)}
-              className="flex-1 px-4 py-3 bg-white border border-slate-200 hover:border-indigo-500 text-slate-800 rounded-2xl text-xs font-mono font-bold flex items-center justify-center gap-2 shadow-xs"
-            >
-              <span>📁 {mobileTreeOpen ? 'Hide Tree Navigator' : 'Open Tree Navigator'}</span>
-              <span className="px-2 py-0.5 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-md text-[10px]">
-                15 Stages
-              </span>
-            </button>
-          </div>
-        </div>
-
-        {/* Domain Filter Pills matching main site */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
-          {domainOptions.map((domain) => {
-            const isSelected = selectedDomain === domain.id;
-            return (
-              <button
-                key={domain.id}
-                onClick={() => {
-                  setSelectedDomain(domain.id);
-                  if (domain.id !== 'all') setSelectedStage('all');
-                }}
-                className={`px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all flex items-center gap-2 border shadow-xs ${
-                  isSelected
-                    ? domain.activeBadge || 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
-                    : `${domain.badge} hover:shadow-sm`
-                }`}
-              >
-                <span
-                  className={`w-2 h-2 rounded-full ${
-                    isSelected ? 'bg-white' : domain.dot
-                  }`}
-                />
-                <span>{domain.label}</span>
-                <span
-                  className={`px-1.5 py-0.5 rounded text-[10px] font-mono ${
-                    isSelected ? 'bg-white/20 text-white' : 'bg-white/60 text-slate-600'
-                  }`}
-                >
-                  {domain.count}
-                </span>
-              </button>
-            );
-          })}
-        </div>
+      {/* Mobile Drawer Button */}
+      <div className="lg:hidden mb-4">
+        <button
+          type="button"
+          onClick={() => setMobileTreeOpen(!mobileTreeOpen)}
+          className="w-full py-3 px-4 bg-white border border-slate-200 rounded-xl text-xs font-mono font-bold text-slate-800 flex items-center justify-between shadow-xs"
+        >
+          <span className="flex items-center gap-2">
+            <span>🌳</span>
+            <span>{mobileTreeOpen ? 'Hide Roadmap Tree' : 'Open Roadmap Tree Navigator'}</span>
+          </span>
+          <span className="px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200 text-[10px]">
+            15 Stages
+          </span>
+        </button>
       </div>
 
-      {/* ===== 2-COLUMN TREE-WISE LAYOUT ===== */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      {/* ===== 2-COLUMN FIT LAYOUT ===== */}
+      <div className="flex flex-col lg:flex-row gap-6 items-start">
         {/* ========================================================
-            LEFT COLUMN: TREE-WISE ARCHIVE NAVIGATOR (STICKY)
+            LEFT COLUMN: COMPACT, SLEEK ARCHIVAL TREE (STICKY)
            ======================================================== */}
         <aside
-          className={`lg:col-span-4 lg:sticky lg:top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-1 no-scrollbar space-y-4 ${
+          className={`w-full lg:w-[320px] xl:w-[340px] shrink-0 lg:sticky lg:top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pr-1 no-scrollbar space-y-3 ${
             mobileTreeOpen ? 'block' : 'hidden lg:block'
           }`}
         >
-          <div className="p-5 rounded-3xl bg-white border border-slate-200 shadow-sm">
-            {/* Tree Header */}
+          <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-xs">
+            {/* Tree Top Controls */}
             <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
-                <span className="text-base">🌳</span>
-                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-900">
-                  Master Roadmap Tree
-                </h3>
+                <span className="text-sm">🌳</span>
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-900">
+                  Roadmap Tree
+                </span>
+                <span className="text-[10px] px-1.5 py-0.2 rounded bg-slate-100 font-mono text-slate-600">
+                  15 Stg
+                </span>
               </div>
-              <button
-                onClick={() => {
-                  setSelectedStage('all');
-                  setSelectedPhase('all');
-                  setSelectedDomain('all');
-                  setSearchQuery('');
-                }}
-                className="text-[11px] font-mono text-indigo-600 hover:text-indigo-800 font-semibold"
-              >
-                Reset Filter
-              </button>
+
+              <div className="flex items-center gap-1.5 text-[10px] font-mono">
+                <button
+                  type="button"
+                  onClick={expandAll}
+                  className="px-1.5 py-0.5 rounded hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-colors"
+                  title="Expand all stages"
+                >
+                  Expand
+                </button>
+                <span className="text-slate-300">·</span>
+                <button
+                  type="button"
+                  onClick={collapseAll}
+                  className="px-1.5 py-0.5 rounded hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-colors"
+                  title="Collapse all stages"
+                >
+                  Collapse
+                </button>
+              </div>
             </div>
 
-            {/* Tree Phase Nodes */}
-            <div className="space-y-4">
+            {/* Tree Nodes List */}
+            <div className="space-y-3 text-xs font-mono">
               {PHASES.map((phase) => {
-                const phaseIsActive = selectedPhase === phase.id;
+                const isPhaseSelected = selectedPhase === phase.id;
                 return (
                   <div key={phase.id} className="space-y-1">
-                    {/* Phase Header Node */}
+                    {/* Phase Header */}
                     <div
                       onClick={() => {
-                        setSelectedPhase(phase.id === selectedPhase ? 'all' : phase.id);
+                        setSelectedPhase(isPhaseSelected ? 'all' : phase.id);
                         setSelectedStage('all');
                       }}
-                      className={`px-3 py-1.5 rounded-lg cursor-pointer flex items-center justify-between text-xs font-mono font-bold tracking-tight transition-colors ${
-                        phaseIsActive
+                      className={`px-2 py-1 rounded-md cursor-pointer flex items-center justify-between text-[11px] font-bold tracking-tight transition-colors ${
+                        isPhaseSelected
                           ? 'bg-indigo-50 text-indigo-700 border border-indigo-200'
-                          : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                          : 'text-slate-400 hover:text-slate-700 hover:bg-slate-50'
                       }`}
                     >
-                      <div className="flex items-center gap-2 truncate">
-                        <span className="text-[10px] text-indigo-600 font-bold">{phase.roman}</span>
-                        <span className="truncate">{phase.title}</span>
-                      </div>
-                      <span className="text-[10px] text-slate-400">{phase.stageIds.length} stg</span>
+                      <span className="truncate">
+                        {phase.roman} · {phase.title}
+                      </span>
+                      <span className="text-[10px] text-slate-400 font-normal">
+                        {phase.stageIds.length}
+                      </span>
                     </div>
 
-                    {/* Stages under this phase */}
-                    <div className="pl-2 border-l border-slate-200 ml-2 space-y-1 mt-1">
+                    {/* Stage Nodes in this Phase */}
+                    <div className="space-y-0.5 pl-1">
                       {phase.stageIds.map((stageId) => {
                         const stage = STAGES[stageId];
                         if (!stage) return null;
@@ -235,7 +204,7 @@ export function BlogTreeExplorer({ posts }: Props) {
 
                         return (
                           <div key={stageId} className="group">
-                            {/* Stage Branch */}
+                            {/* Stage Item Row */}
                             <div
                               onClick={() => {
                                 setSelectedStage(isStageSelected ? 'all' : stageId);
@@ -244,66 +213,62 @@ export function BlogTreeExplorer({ posts }: Props) {
                                   setExpandedStages((p) => ({ ...p, [stageId]: true }));
                                 }
                               }}
-                              className={`px-2.5 py-1.5 rounded-xl cursor-pointer flex items-center justify-between text-xs font-mono transition-all border ${
+                              className={`px-2 py-1.5 rounded-lg cursor-pointer flex items-center justify-between transition-all border ${
                                 isStageSelected
-                                  ? 'bg-indigo-600 text-white font-bold border-indigo-600 shadow-xs'
-                                  : 'border-transparent text-slate-700 hover:text-slate-900 hover:bg-slate-50'
+                                  ? 'bg-indigo-600 text-white font-bold border-indigo-600 shadow-2xs'
+                                  : 'border-transparent text-slate-700 hover:bg-slate-50 hover:text-slate-900'
                               }`}
                             >
-                              <div className="flex items-center gap-2 truncate">
-                                <span>{stage.icon}</span>
-                                <span
-                                  className="w-2 h-2 rounded-full shrink-0"
-                                  style={{ backgroundColor: isStageSelected ? '#ffffff' : stage.color }}
-                                />
-                                <span className="truncate font-semibold">{stage.shortTitle}</span>
-                              </div>
-
-                              <div className="flex items-center gap-1.5">
-                                <span
-                                  className={`px-1.5 py-0.2 rounded text-[10px] font-bold border ${
-                                    isStageSelected
-                                      ? 'bg-white/20 text-white border-white/30'
-                                      : stage.lightBadge
-                                  }`}
-                                >
-                                  {stage.id}
-                                </span>
+                              <div className="flex items-center gap-1.5 truncate">
                                 <button
                                   type="button"
                                   onClick={(e) => toggleStageExpand(stageId, e)}
-                                  className={`w-5 h-5 flex items-center justify-center rounded transition-colors ${
+                                  className={`w-4 h-4 flex items-center justify-center rounded text-[10px] transition-colors shrink-0 ${
                                     isStageSelected
                                       ? 'text-white/80 hover:bg-indigo-700'
-                                      : 'text-slate-400 hover:text-slate-800 hover:bg-slate-100'
+                                      : 'text-slate-400 hover:text-slate-800'
                                   }`}
                                 >
                                   {isExpanded ? '▾' : '▸'}
                                 </button>
+                                <span className="shrink-0">{stage.icon}</span>
+                                <span className="truncate font-semibold text-[11px]">
+                                  {stage.shortTitle}
+                                </span>
                               </div>
+
+                              <span
+                                className={`px-1.5 py-0.2 rounded text-[9px] font-bold shrink-0 border ${
+                                  isStageSelected
+                                    ? 'bg-white/20 text-white border-white/30'
+                                    : stage.lightBadge
+                                }`}
+                              >
+                                {stage.id}
+                              </span>
                             </div>
 
-                            {/* Project Leaf Nodes (Tree children) */}
+                            {/* Connected Tree Leaf Nodes (Projects) */}
                             {isExpanded && stageProjects.length > 0 && (
-                              <div className="pl-4 ml-3 border-l border-dashed border-slate-200 space-y-1 py-1">
+                              <div className="border-l-2 border-slate-100 ml-4 pl-2.5 py-1 space-y-1">
                                 {stageProjects.map((p) => {
                                   const domainClasses = getDomainBadgeClasses(p.stageInfo.domain || 'AI');
                                   return (
                                     <a
                                       key={p.slug}
                                       href={`/blog/${p.slug}`}
-                                      className="group/item flex items-center justify-between gap-2 px-2 py-1 rounded-lg text-[11px] font-mono text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/60 transition-colors"
+                                      className="flex items-center justify-between gap-1.5 px-1.5 py-0.5 rounded text-[11px] text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 transition-colors group/item"
                                     >
-                                      <div className="flex items-center gap-1.5 truncate">
-                                        <span className="text-[10px] text-slate-400 group-hover/item:text-indigo-600">
+                                      <div className="flex items-center gap-1 truncate">
+                                        <span className="text-[10px] text-slate-400 group-hover/item:text-indigo-600 font-semibold">
                                           #{p.stageInfo.projectNum}
                                         </span>
-                                        <span className="truncate group-hover/item:text-slate-900 font-medium">
+                                        <span className="truncate font-medium group-hover/item:text-slate-900">
                                           {p.title}
                                         </span>
                                       </div>
                                       <span
-                                        className={`text-[9px] px-1.5 py-0.5 rounded border shrink-0 font-bold ${domainClasses.bg} ${domainClasses.text} ${domainClasses.border}`}
+                                        className={`text-[8px] px-1 py-0.2 rounded border shrink-0 font-bold ${domainClasses.bg} ${domainClasses.text} ${domainClasses.border}`}
                                       >
                                         {p.stageInfo.domain}
                                       </span>
@@ -322,21 +287,20 @@ export function BlogTreeExplorer({ posts }: Props) {
 
               {/* Special Architecture Whitepapers Section */}
               {whitepapers.length > 0 && (
-                <div className="pt-3 border-t border-slate-200">
-                  <div className="px-3 py-1 text-xs font-mono font-bold text-slate-800 flex items-center gap-2 mb-1">
-                    <span>📑</span>
-                    <span>Production Architecture Whitepapers</span>
-                  </div>
-                  <div className="space-y-1 pl-2">
+                <div className="pt-2 border-t border-slate-100">
+                  <span className="px-2 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                    Whitepapers
+                  </span>
+                  <div className="space-y-0.5 pl-1">
                     {whitepapers.map((p) => (
                       <a
                         key={p.slug}
                         href={`/blog/${p.slug}`}
-                        className="flex items-center justify-between gap-2 px-2.5 py-1.5 rounded-lg text-xs font-mono text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/60 transition-colors"
+                        className="flex items-center justify-between gap-1.5 px-2 py-1 rounded-md text-[11px] text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/60 transition-colors"
                       >
                         <span className="truncate font-medium">{p.title}</span>
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 shrink-0 font-bold">
-                          Whitepaper
+                        <span className="text-[9px] px-1.5 py-0.2 rounded bg-blue-50 text-blue-700 border border-blue-200 shrink-0 font-bold">
+                          WP
                         </span>
                       </a>
                     ))}
@@ -348,81 +312,138 @@ export function BlogTreeExplorer({ posts }: Props) {
         </aside>
 
         {/* ========================================================
-            RIGHT COLUMN: PROJECT SHOWCASE WITH MATCHING COLORS
+            RIGHT COLUMN: CONTROLS & PROJECT GRID (FIT & RESPONSIVE)
            ======================================================== */}
-        <div className="lg:col-span-8 space-y-8">
-          {/* Active Filter Status Bar */}
-          {(selectedStage !== 'all' || selectedPhase !== 'all' || selectedDomain !== 'all' || searchQuery) && (
-            <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-center justify-between flex-wrap gap-2 text-xs font-mono">
-              <div className="flex items-center gap-2 text-slate-700">
-                <span className="text-indigo-600 font-bold">Filtered By:</span>
-                {selectedStage !== 'all' && (
-                  <span
-                    className={`px-2.5 py-1 rounded-lg font-bold border ${STAGES[selectedStage]?.lightBadge}`}
+        <div className="flex-1 min-w-0 space-y-5 w-full">
+          {/* Top Controls: Search + Domain Filter Tabs */}
+          <div className="space-y-3">
+            {/* Search bar */}
+            <div className="relative">
+              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 font-mono text-xs">🔍</span>
+              <input
+                type="text"
+                placeholder="Filter 60 projects by topic, technology (e.g. LangGraph, vLLM, DuckDB, FinTech)..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-16 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 transition-all font-sans shadow-2xs"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-800 text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
+
+            {/* Domain Filter Pills */}
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+              {domainOptions.map((domain) => {
+                const isSelected = selectedDomain === domain.id;
+                return (
+                  <button
+                    key={domain.id}
+                    onClick={() => {
+                      setSelectedDomain(domain.id);
+                      if (domain.id !== 'all') setSelectedStage('all');
+                    }}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold whitespace-nowrap transition-all flex items-center gap-1.5 border shadow-2xs ${
+                      isSelected
+                        ? domain.activeBadge || 'bg-indigo-600 text-white border-indigo-600 shadow-xs'
+                        : `${domain.badge} hover:shadow-2xs`
+                    }`}
                   >
-                    Stage {selectedStage}: {STAGES[selectedStage]?.name}
-                  </span>
-                )}
-                {selectedDomain !== 'all' && (
-                  <span className="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200 font-bold">
-                    Domain: {selectedDomain}
-                  </span>
-                )}
-                {searchQuery && (
-                  <span className="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 border border-slate-200">
-                    &quot;{searchQuery}&quot;
-                  </span>
-                )}
+                    <span
+                      className={`w-1.5 h-1.5 rounded-full ${
+                        isSelected ? 'bg-white' : domain.dot
+                      }`}
+                    />
+                    <span>{domain.label}</span>
+                    <span
+                      className={`px-1 py-0.2 rounded text-[9px] font-mono ${
+                        isSelected ? 'bg-white/20 text-white' : 'bg-white/60 text-slate-600'
+                      }`}
+                    >
+                      {domain.count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Active Stage Banner (When a stage is selected) */}
+          {activeStage && (
+            <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <span className="w-9 h-9 rounded-lg bg-indigo-50 border border-indigo-200 flex items-center justify-center text-base shrink-0">
+                  {activeStage.icon}
+                </span>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className={`px-2 py-0.2 rounded text-[10px] font-mono font-bold border ${activeStage.lightBadge}`}>
+                      Stage {activeStage.id}
+                    </span>
+                    <h2 className="text-sm font-bold text-slate-900 truncate">
+                      {activeStage.name}
+                    </h2>
+                  </div>
+                  <p className="text-[11px] font-mono text-slate-500 mt-0.5">
+                    Stack: {activeStage.tech}
+                  </p>
+                </div>
               </div>
 
               <button
+                type="button"
                 onClick={() => {
                   setSelectedStage('all');
                   setSelectedPhase('all');
-                  setSelectedDomain('all');
-                  setSearchQuery('');
                 }}
-                className="text-indigo-600 hover:text-indigo-800 font-bold underline"
+                className="text-xs font-mono font-bold text-indigo-600 hover:text-indigo-800 shrink-0 self-start sm:self-center"
               >
-                Clear all filters
+                View all 15 stages ↗
               </button>
             </div>
           )}
 
-          {/* Results Summary */}
-          <div className="flex items-center justify-between pb-2 border-b border-slate-200">
-            <span className="text-xs font-mono text-slate-500">
-              Showing <span className="text-slate-900 font-bold">{filteredPosts.length}</span> architecture case studies
+          {/* Results Summary Bar */}
+          <div className="flex items-center justify-between text-xs font-mono text-slate-500 pb-1 border-b border-slate-200">
+            <span>
+              Showing <strong className="text-slate-900">{filteredPosts.length}</strong> of {posts.length} case studies
             </span>
-            <span className="text-xs font-mono text-indigo-600 font-bold">
-              Roadmap Progression: 00 → 14
+            <span className="text-[11px] text-indigo-600 font-semibold hidden sm:inline">
+              Sequence: Stage 00 → Stage 14
             </span>
           </div>
 
-          {/* If No Posts Match */}
+          {/* Empty State */}
           {filteredPosts.length === 0 && (
-            <div className="p-12 text-center rounded-3xl bg-white border border-slate-200 shadow-xs space-y-3">
-              <span className="text-4xl">🔍</span>
-              <h3 className="text-lg font-bold text-slate-900">No Architecture Notes Found</h3>
-              <p className="text-xs font-mono text-slate-500 max-w-md mx-auto">
-                No solutions matched your search criteria. Try a different keyword, clear the filters, or select a stage in the tree on the left.
+            <div className="p-10 text-center rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
+              <span className="text-3xl">🔍</span>
+              <h3 className="text-sm font-bold text-slate-900">No Matching Case Studies</h3>
+              <p className="text-xs font-mono text-slate-500 max-w-sm mx-auto">
+                Try clearing your search query or clicking a stage on the roadmap tree.
               </p>
               <button
+                type="button"
                 onClick={() => {
                   setSelectedStage('all');
                   setSelectedPhase('all');
                   setSelectedDomain('all');
                   setSearchQuery('');
                 }}
-                className="btn-primary mt-2 px-4 py-2 text-white rounded-xl text-xs font-mono font-bold shadow-xs"
+                className="btn-primary mt-2 px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold text-white shadow-xs"
               >
                 Reset All Filters
               </button>
             </div>
           )}
 
-          {/* Post Card Grid with Project-Specific Color Coding */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {/* Project Cards Grid (2-Column Fit Layout) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {filteredPosts.map((post) => {
               const stage = post.stageInfo.stage;
               const stageColor = stage ? stage.color : '#4F46E5';
@@ -431,62 +452,62 @@ export function BlogTreeExplorer({ posts }: Props) {
               return (
                 <article
                   key={post.slug}
-                  className="group flex flex-col justify-between p-6 sm:p-7 rounded-3xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all duration-300 relative overflow-hidden"
+                  className="group flex flex-col justify-between p-5 rounded-2xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all duration-200 relative overflow-hidden shadow-2xs"
                 >
                   {/* Top Color Accent Line matching project stage */}
                   <div
-                    className="absolute top-0 inset-x-0 h-1.5 transition-all group-hover:h-2"
+                    className="absolute top-0 inset-x-0 h-1 transition-all group-hover:h-1.5"
                     style={{ backgroundColor: stageColor }}
                   />
 
                   <div>
-                    {/* Stage & Domain Badges Header */}
-                    <div className="flex items-center justify-between gap-2 mb-3 pt-1">
+                    {/* Stage & Domain Header */}
+                    <div className="flex items-center justify-between gap-1.5 mb-2.5 pt-0.5">
                       <div className="flex items-center gap-1.5 flex-wrap">
                         {stage ? (
                           <span
-                            className={`px-2.5 py-0.5 rounded-lg text-[11px] font-mono font-bold border ${stage.lightBadge}`}
+                            className={`px-2 py-0.5 rounded-md text-[10px] font-mono font-bold border ${stage.lightBadge}`}
                           >
-                            {stage.icon} Stage {stage.id} · #{post.stageInfo.projectNum}
+                            {stage.icon} {stage.id} · #{post.stageInfo.projectNum}
                           </span>
                         ) : (
-                          <span className="px-2.5 py-0.5 rounded-lg text-[11px] font-mono font-bold bg-blue-50 text-blue-700 border border-blue-200">
-                            ⭐ Special Note
+                          <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-blue-50 text-blue-700 border border-blue-200">
+                            ⭐ Note
                           </span>
                         )}
 
                         <span
-                          className={`px-2 py-0.5 rounded-lg text-[10px] font-mono font-bold border ${domainClasses.bg} ${domainClasses.text} ${domainClasses.border}`}
+                          className={`px-1.5 py-0.5 rounded-md text-[9px] font-mono font-bold border ${domainClasses.bg} ${domainClasses.text} ${domainClasses.border}`}
                         >
                           {post.stageInfo.domain}
                         </span>
                       </div>
 
-                      <span className="text-[11px] font-mono text-slate-400 shrink-0">
+                      <span className="text-[10px] font-mono text-slate-400 shrink-0">
                         {post.readingTime}
                       </span>
                     </div>
 
                     {/* Post Title */}
-                    <a href={`/blog/${post.slug}`} className="block mb-2.5">
-                      <h4 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-snug">
+                    <a href={`/blog/${post.slug}`} className="block mb-2">
+                      <h4 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-snug">
                         {post.title}
                       </h4>
                     </a>
 
                     {/* Excerpt */}
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3 mb-5 font-normal">
+                    <p className="text-xs text-slate-600 leading-relaxed line-clamp-2 mb-4 font-normal">
                       {post.excerpt}
                     </p>
                   </div>
 
-                  {/* Card Footer with Tech Stack and Link */}
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                  {/* Card Footer */}
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
                     <div className="flex flex-wrap gap-1">
                       {post.tags?.slice(0, 2).map((tag) => (
                         <span
                           key={tag}
-                          className="px-2 py-0.5 text-[10px] rounded-md bg-slate-50 border border-slate-200 text-slate-600 font-mono"
+                          className="px-1.5 py-0.2 text-[9px] rounded bg-slate-50 border border-slate-200 text-slate-600 font-mono"
                         >
                           {tag}
                         </span>
@@ -495,7 +516,7 @@ export function BlogTreeExplorer({ posts }: Props) {
 
                     <a
                       href={`/blog/${post.slug}`}
-                      className="text-xs font-mono font-bold text-indigo-600 group-hover:text-indigo-700 flex items-center gap-1.5 transition-all group-hover:translate-x-1"
+                      className="font-bold text-indigo-600 group-hover:text-indigo-700 flex items-center gap-1 transition-all group-hover:translate-x-0.5"
                     >
                       <span>Read Note</span>
                       <span>→</span>

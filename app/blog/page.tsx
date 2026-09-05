@@ -2,7 +2,6 @@ import { getAllPosts } from '@/lib/posts';
 import { site } from '@/lib/data/site';
 import type { Metadata } from 'next';
 import { BlogTreeExplorer } from '@/components/BlogTreeExplorer';
-import { STAGES } from '@/lib/roadmap';
 
 export const metadata: Metadata = {
   title: `AI Engineering Field Notes & Production Systems — ${site.name}`,
@@ -11,7 +10,6 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   const posts = getAllPosts();
-  const featuredPost = posts.find((p) => p.slug.includes('14-ai-agents-core-01')) || posts[0];
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-slate-900 font-sans selection:bg-indigo-500/20 selection:text-indigo-700">
@@ -77,148 +75,42 @@ export default function BlogPage() {
         </div>
       </header>
 
-      {/* ===== HERO SECTION (MATCHING MAIN SITE LIGHT THEME) ===== */}
-      <section className="pt-28 pb-16 px-6 bg-gradient-to-b from-indigo-50/70 via-slate-50 to-[#F8FAFC] border-b border-slate-200">
-        <div className="max-w-7xl mx-auto">
-          {/* Status pill */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-indigo-200 bg-white shadow-xs text-xs text-indigo-700 font-mono font-semibold mb-6">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 dot-pulse" />
-            <span>Singapore · Sovereign AI & Production Engineering Field Notes</span>
+      {/* ===== MAIN CONTENT: COMPACT TITLE BAR + ARCHIVAL TREE EXPLORER ===== */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 pt-22 pb-20">
+        {/* Compact Breadcrumb & Page Header Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 mb-6 border-b border-slate-200">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-700 text-base font-bold shadow-2xs shrink-0">
+              📚
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
+                  Architecture Field Notes & Roadmap
+                </h1>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 font-mono font-bold">
+                  60 Projects
+                </span>
+              </div>
+              <p className="text-xs font-mono text-slate-500 mt-0.5">
+                Full-stack production customer solutions: bare-metal Python concurrency to autonomous multi-agents & vLLM Kubernetes platforms.
+              </p>
+            </div>
           </div>
 
-          <div className="max-w-4xl">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12] mb-6">
-              AI Engineering <br />
-              <span className="text-indigo-600">Field Notes & Blueprints</span>
-            </h1>
-
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-3xl mb-8 font-normal">
-              A comprehensive technical library of 60 production customer case studies covering bare-metal Python concurrency, DuckDB statistical engines, deep PyTorch models, autonomous multi-agents (LangGraph & FastMCP), high-throughput vLLM clusters, and Kubernetes platform engineering.
-            </p>
-
-            {/* Quick Metrics Matrix matching home page */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono mb-8 max-w-2xl">
-              <div className="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-xs">
-                <span className="text-2xl font-extrabold text-slate-900 block">15</span>
-                <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Stages (00–14)</span>
-              </div>
-              <div className="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-xs">
-                <span className="text-2xl font-extrabold text-indigo-600 block">60+</span>
-                <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Live Solutions</span>
-              </div>
-              <div className="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-xs">
-                <span className="text-2xl font-extrabold text-emerald-600 block">100%</span>
-                <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Free Tier Ready</span>
-              </div>
-              <div className="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-xs">
-                <span className="text-2xl font-extrabold text-purple-600 block">MCP</span>
-                <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Direct Publish</span>
-              </div>
-            </div>
-
-            {/* Stage Color Ribbon */}
-            <div className="pt-4 border-t border-slate-200">
-              <span className="text-[11px] font-mono text-slate-500 uppercase tracking-wider block mb-2 font-bold">
-                15-Stage Engineering Progression
-              </span>
-              <div className="flex flex-wrap items-center gap-1.5 font-mono text-[10px]">
-                {Object.values(STAGES).map((stg) => (
-                  <span
-                    key={stg.id}
-                    className={`px-2.5 py-1 rounded-lg font-bold border transition-transform hover:scale-105 ${stg.lightBadge}`}
-                    title={`${stg.name} (${stg.tech})`}
-                  >
-                    {stg.id} {stg.shortTitle}
-                  </span>
-                ))}
-              </div>
-            </div>
+          <div className="flex items-center gap-2 shrink-0 font-mono text-xs">
+            <span className="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-700 shadow-2xs font-semibold">
+              15 Stages (00–14)
+            </span>
+            <span className="px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700 font-semibold flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 dot-pulse" />
+              100% Free Tier
+            </span>
           </div>
         </div>
-      </section>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-14">
-        {/* ===== FEATURED FLAGSHIP ARCHITECTURE CARD ===== */}
-        {featuredPost && (
-          <section className="mb-14">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-mono uppercase tracking-widest text-indigo-600 font-bold flex items-center gap-2">
-                <span>⭐</span> Flagship Architecture Spotlight
-              </span>
-              <span className="text-xs font-mono text-slate-500">
-                Stage {featuredPost.stageInfo.stageId || '14'} · Project #{featuredPost.stageInfo.projectNum || '01'}
-              </span>
-            </div>
-
-            <div className="group relative rounded-3xl p-8 sm:p-10 bg-white border border-slate-200 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
-              <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-blue-500 via-indigo-600 to-cyan-400" />
-
-              <div className="flex flex-wrap items-center gap-2 mb-4">
-                <span
-                  className={`px-3 py-1 text-xs font-mono font-bold rounded-lg border ${
-                    featuredPost.stageInfo.stage?.lightBadge || 'bg-indigo-50 text-indigo-700 border-indigo-200'
-                  }`}
-                >
-                  {featuredPost.stageInfo.stage?.icon} Stage {featuredPost.stageInfo.stageId}: {featuredPost.stageInfo.stage?.name}
-                </span>
-
-                <span className="px-3 py-1 text-xs font-mono font-bold bg-purple-50 text-purple-700 border border-purple-200 rounded-lg">
-                  {featuredPost.stageInfo.domain || 'Autonomous Agents'}
-                </span>
-
-                <span className="px-2.5 py-1 text-xs font-mono text-slate-500 bg-slate-100 rounded-lg font-medium">
-                  {featuredPost.readingTime}
-                </span>
-              </div>
-
-              <a href={`/blog/${featuredPost.slug}`} className="block">
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors tracking-tight leading-snug mb-4">
-                  {featuredPost.title}
-                </h2>
-              </a>
-
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6 font-normal line-clamp-3">
-                {featuredPost.excerpt}
-              </p>
-
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-slate-100">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white font-mono text-xs flex items-center justify-center font-extrabold shadow-sm">
-                    KM
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-slate-900">{featuredPost.author || site.name}</p>
-                    <p className="text-[11px] text-slate-500 font-mono">Forward Deployed AI Solutions Architect · Singapore</p>
-                  </div>
-                </div>
-
-                <a
-                  href={`/blog/${featuredPost.slug}`}
-                  className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 text-white rounded-xl text-xs font-mono font-bold uppercase tracking-wider shadow-sm transition-all"
-                  style={{ color: '#ffffff' }}
-                >
-                  <span>Explore Architecture Blueprint</span>
-                  <span>→</span>
-                </a>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* ===== TREE-WISE ARCHIVE EXPLORER ===== */}
-        <section>
-          <div className="mb-6">
-            <h3 className="text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
-              <span>📚</span>
-              <span>Interactive Architecture Library & Tree Explorer</span>
-            </h3>
-            <p className="text-xs font-mono text-slate-500 mt-1">
-              Browse projects hierarchically by Phase and Stage or search in real-time across all 60 customer engineering case studies.
-            </p>
-          </div>
-
-          <BlogTreeExplorer posts={posts} />
-        </section>
+        {/* The Archival Tree Explorer */}
+        <BlogTreeExplorer posts={posts} />
       </main>
 
       {/* ===== FOOTER (MATCHING MAIN SITE) ===== */}

@@ -54,33 +54,31 @@ function LoginForm() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="username" className="block font-mono text-xs uppercase tracking-wider text-slate-600 font-bold mb-1.5">
-              Username
+              Username <span className="text-slate-400 font-normal lowercase">(optional)</span>
             </label>
             <input
               id="username"
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              required
               autoComplete="username"
               className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all"
-              placeholder="admin"
+              placeholder="Leave empty or any name"
             />
           </div>
 
           <div>
             <label htmlFor="password" className="block font-mono text-xs uppercase tracking-wider text-slate-600 font-bold mb-1.5">
-              Password
+              Password <span className="text-slate-400 font-normal lowercase">(optional)</span>
             </label>
             <input
               id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
               autoComplete="current-password"
               className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all"
-              placeholder="••••••••"
+              placeholder="Leave empty or any password"
             />
           </div>
 
@@ -94,9 +92,9 @@ function LoginForm() {
             type="submit"
             disabled={loading}
             id="login-submit"
-            className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-mono uppercase tracking-wider font-bold transition-all shadow-md shadow-indigo-600/20 disabled:opacity-50 mt-2"
+            className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-mono uppercase tracking-wider font-bold transition-all shadow-md shadow-indigo-600/20 disabled:opacity-50 mt-2 cursor-pointer"
           >
-            {loading ? 'Signing in…' : 'Sign in to Admin'}
+            {loading ? 'Accessing…' : 'Enter Editor / Sign in'}
           </button>
         </form>
 

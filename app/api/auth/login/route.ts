@@ -3,16 +3,10 @@ import { setAuthCookie } from '@/lib/auth';
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    const { username, password } = body;
-
-    if (username === 'kaviai' && password === 'kaviai') {
-      await setAuthCookie();
-      return NextResponse.json({ success: true });
-    }
-
-    return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
+    // Allow sign in even with empty fields or any username/password
+    await setAuthCookie();
+    return NextResponse.json({ success: true });
   } catch {
-    return NextResponse.json({ error: 'Bad request' }, { status: 400 });
+    return NextResponse.json({ error: 'Failed to sign in' }, { status: 500 });
   }
 }

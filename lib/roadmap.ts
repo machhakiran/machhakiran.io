@@ -27,35 +27,35 @@ export const PHASES: PhaseMeta[] = [
   {
     id: 'phase-1',
     roman: 'PHASE I',
-    title: 'Foundations & Quantitative Analytics',
+    title: 'Foundations & Analytics',
     subtitle: 'Bare-metal Python concurrency, DuckDB statistical engines, and deep PyTorch tensors.',
     stageIds: ['00', '01', '02', '03'],
   },
   {
     id: 'phase-2',
     roman: 'PHASE II',
-    title: 'Specialized Multimodal Perception',
+    title: 'Multimodal Perception',
     subtitle: 'State-of-the-art transformer NLP and real-time YOLOv11 & OCR computer vision.',
     stageIds: ['04', '05'],
   },
   {
     id: 'phase-3',
     roman: 'PHASE III',
-    title: 'Generative AI & Knowledge Systems',
+    title: 'GenAI & RAG Systems',
     subtitle: 'Local LLMs, QLoRA fine-tuning, production RAG with Qdrant, and LangChain LCEL.',
     stageIds: ['06', '07', '08'],
   },
   {
     id: 'phase-4',
     roman: 'PHASE IV',
-    title: 'Autonomous Agents & Protocol Standards',
+    title: 'Autonomous Agents & MCP',
     subtitle: 'Cyclic state machines (LangGraph), Model Context Protocol (FastMCP), and autonomous agents.',
     stageIds: ['09', '10', '14'],
   },
   {
     id: 'phase-5',
     roman: 'PHASE V',
-    title: 'Production AI Platform Engineering',
+    title: 'Production AI Platform',
     subtitle: 'High-throughput vLLM serving clusters, MLOps/LLMOps governance, and cloud-native Kubernetes AIOps.',
     stageIds: ['11', '12', '13'],
   },
@@ -345,11 +345,10 @@ export function parsePostStageInfo(slug: string, tags?: string[]): PostStageInfo
 
     let domain = 'AI Engineering';
     if (tags && tags.length > 0) {
-      const found = tags.find((t) =>
-        ['FinTech', 'Telecom', 'E-Commerce', 'Government', 'Social Growth', 'AI Agents', 'Python'].includes(t)
-      );
+      const industryDomains = ['FinTech', 'Telecom', 'E-Commerce', 'Government', 'Social Growth', 'AI Agents'];
+      const found = tags.find((t) => industryDomains.some((id) => t.toLowerCase() === id.toLowerCase() || t.toLowerCase().includes(id.toLowerCase())));
       if (found) domain = found;
-      else domain = tags[tags.length - 1];
+      else domain = tags.find((t) => t !== 'AI Engineering') || tags[0];
     }
 
     const domainClasses = getDomainBadgeClasses(domain);

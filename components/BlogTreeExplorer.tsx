@@ -173,24 +173,41 @@ export function BlogTreeExplorer({ posts }: Props) {
               {PHASES.map((phase) => {
                 const isPhaseSelected = selectedPhase === phase.id;
                 return (
-                  <div key={phase.id} className="space-y-0.5">
-                    {/* Phase Header */}
+                  <div key={phase.id} className="space-y-1 pt-1 first:pt-0">
+                    {/* Phase Header - High Visibility & Bold */}
                     <div
                       onClick={() => {
                         setSelectedPhase(isPhaseSelected ? 'all' : phase.id);
                         setSelectedStage('all');
                       }}
-                      className={`px-2 py-1 rounded-md cursor-pointer flex items-center justify-between text-[10px] font-bold tracking-tight transition-colors ${
+                      className={`px-2.5 py-1.5 rounded-lg cursor-pointer flex items-center justify-between transition-colors border ${
                         isPhaseSelected
-                          ? 'bg-indigo-50 text-indigo-700 border border-indigo-200'
-                          : 'text-slate-400 hover:text-slate-700 hover:bg-slate-50'
+                          ? 'bg-indigo-600 text-white border-indigo-600 shadow-2xs font-bold'
+                          : 'bg-slate-100/90 hover:bg-slate-200/80 text-slate-800 border-slate-200/80'
                       }`}
                     >
-                      <span className="truncate uppercase">
-                        {phase.roman} · {phase.title}
-                      </span>
-                      <span className="text-[9px] text-slate-400 font-normal">
-                        {phase.stageIds.length}
+                      <div className="flex items-center gap-1.5 truncate">
+                        <span
+                          className={`px-1.5 py-0.2 rounded text-[9px] font-mono font-extrabold ${
+                            isPhaseSelected
+                              ? 'bg-white/20 text-white'
+                              : 'bg-indigo-50 text-indigo-700 border border-indigo-200'
+                          }`}
+                        >
+                          {phase.roman}
+                        </span>
+                        <span className="text-xs font-extrabold tracking-tight truncate">
+                          {phase.title}
+                        </span>
+                      </div>
+                      <span
+                        className={`text-[9px] font-mono font-semibold px-1.5 py-0.2 rounded-full border shrink-0 ${
+                          isPhaseSelected
+                            ? 'bg-white/20 text-white border-white/30'
+                            : 'bg-white text-slate-600 border-slate-200'
+                        }`}
+                      >
+                        {phase.stageIds.length} stg
                       </span>
                     </div>
 

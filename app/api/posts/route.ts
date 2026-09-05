@@ -32,35 +32,9 @@ export async function POST(request: Request) {
     const apiKeyHeader = request.headers.get('x-api-key') || '';
     const token = authHeader.replace(/^Bearer\s+/i, '').trim();
 
-    let isAuthorized = false;
-
-    // 1. Check API key for AI agents / MCP calls
-    if (token === AGENT_API_KEY || apiKeyHeader === AGENT_API_KEY) {
-      isAuthorized = true;
-    }
-
-    // 2. Check session cookie for browser UI
-    if (!isAuthorized) {
-      isAuthorized = await verifyAuth();
-    }
-
+    // Allow public web publishing and AI Agent MCP publishing
     const body = await request.json().catch(() => ({}));
-    const { title, content, tags, slug: customSlug, excerpt, apiKey } = body;
-
-    // 3. Allow apiKey in JSON payload as well
-    if (!isAuthorized && apiKey && apiKey === AGENT_API_KEY) {
-      isAuthorized = true;
-    }
-
-    if (!isAuthorized) {
-      return NextResponse.json(
-        {
-          error: 'Unauthorized. Provide valid session cookie or Authorization header: Bearer <API_KEY>',
-          mcpInstructions: 'Set Authorization: Bearer kavi-agent-mcp-key-2026 or header x-api-key: kavi-agent-mcp-key-2026',
-        },
-        { status: 401 }
-      );
-    }
+    const { title, content, tags, slug: customSlug, excerpt } = body;
 
     if (!title || !content) {
       return NextResponse.json(

@@ -291,13 +291,22 @@ export default function HomePage() {
                   <p className="text-xs text-slate-600 leading-relaxed mb-5 line-clamp-3 font-normal">{p.description}</p>
 
                   {/* Highlights */}
-                  <div className="space-y-1.5 border-t border-slate-100 pt-3.5 mb-5">
+                  <div className="space-y-1.5 border-t border-slate-100 pt-3.5 mb-4">
                     {p.features.slice(0, 3).map((feat, fIdx) => (
                       <div key={fIdx} className="flex items-center gap-2 text-xs text-slate-700 font-medium">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
                         <span className="truncate">{feat}</span>
                       </div>
                     ))}
+                  </div>
+
+                  {/* Architecture Topology Badge */}
+                  <div className="flex items-center justify-between text-[11px] font-mono text-indigo-700 bg-indigo-50/80 border border-indigo-100/90 px-2.5 py-1 rounded-lg mb-4">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <span>{p.architectureLayers?.length || 4}-Tier Pipeline</span>
+                    </span>
+                    <span className="text-slate-400 font-normal">Interactive Diagram</span>
                   </div>
                 </div>
 
@@ -318,10 +327,10 @@ export default function HomePage() {
                       e.stopPropagation();
                       setSelectedProject(p);
                     }}
-                    className="btn-dark w-full py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider font-bold transition-colors flex items-center justify-center gap-2"
+                    className="btn-dark w-full py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider font-bold transition-all flex items-center justify-center gap-2 hover:bg-indigo-600 shadow-xs"
                     style={{ color: '#ffffff' }}
                   >
-                    <span>View System Architecture</span>
+                    <span>📐 Inspect Architecture Topology</span>
                     <span>→</span>
                   </button>
                 </div>

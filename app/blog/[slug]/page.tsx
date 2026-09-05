@@ -2,6 +2,7 @@ import { getPostBySlug, getAdjacentPosts, getAllPosts } from '@/lib/posts';
 import { site } from '@/lib/data/site';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { MermaidScript } from '@/components/MermaidScript';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -94,6 +95,9 @@ export default async function BlogPostPage({ params }: Props) {
             className="prose-post"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
+
+          {/* Dynamic Mermaid Diagram Renderer */}
+          <MermaidScript />
         </article>
 
         {/* Previous & Next Post Navigation Cards */}

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { site } from '@/lib/data/site';
 import { ThemeProvider } from '@/lib/hooks/useTheme';
+import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -36,7 +37,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <AnalyticsTracker />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

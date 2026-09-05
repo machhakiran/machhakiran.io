@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import { site } from '@/lib/data/site';
+import { VisitorAnalyticsDashboard } from '@/components/VisitorAnalyticsDashboard';
 
 export default function CreatePostPage() {
-  const [activeTab, setActiveTab] = useState<'editor' | 'mcp'>('editor');
+  const [activeTab, setActiveTab] = useState<'editor' | 'mcp' | 'analytics'>('editor');
   const [title, setTitle] = useState('');
   const [tags, setTags] = useState('');
   const [excerpt, setExcerpt] = useState('');
@@ -75,19 +76,19 @@ export default function CreatePostPage() {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-6 pt-28 pb-24">
+      <main className={`mx-auto px-6 pt-28 pb-24 transition-all ${activeTab === 'analytics' ? 'max-w-6xl' : 'max-w-4xl'}`}>
         {/* Tab Switcher */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-indigo-600 font-bold block mb-1">
-              Authoring Hub
+              {activeTab === 'analytics' ? 'Traffic Intelligence' : 'Authoring Hub'}
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Publish Engineering Article
+              {activeTab === 'analytics' ? 'Visitor Reports & Geolocation' : 'Publish Engineering Article'}
             </h1>
           </div>
 
-          <div className="flex items-center gap-1 bg-white border border-slate-200 p-1 rounded-xl shadow-xs">
+          <div className="flex flex-wrap items-center gap-1 bg-white border border-slate-200 p-1 rounded-xl shadow-xs self-start sm:self-auto">
             <button
               onClick={() => setActiveTab('editor')}
               className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${activeTab === 'editor' ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}`}
@@ -99,6 +100,13 @@ export default function CreatePostPage() {
               className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${activeTab === 'mcp' ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}`}
             >
               🤖 MCP & Agent API
+            </button>
+            <button
+              onClick={() => setActiveTab('analytics')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-1.5 ${activeTab === 'analytics' ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}`}
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>📊 Visitor Analytics</span>
             </button>
           </div>
         </div>
@@ -250,6 +258,9 @@ export default function CreatePostPage() {
             </div>
           </div>
         )}
+
+        {/* TAB 3: VISITOR GEOGRAPHIC & TRAFFIC REPORTS */}
+        {activeTab === 'analytics' && <VisitorAnalyticsDashboard />}
       </main>
     </div>
   );

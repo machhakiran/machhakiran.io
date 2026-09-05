@@ -13,6 +13,7 @@ export function BlogTreeExplorer({ posts }: Props) {
   const [selectedPhase, setSelectedPhase] = useState<string>('all');
   const [selectedStage, setSelectedStage] = useState<string>('all');
   const [selectedDomain, setSelectedDomain] = useState<string>('all');
+  const [viewMode, setViewMode] = useState<'grid' | 'compact'>('grid');
   const [expandedStages, setExpandedStages] = useState<Record<string, boolean>>({
     '00': true,
     '07': true,
@@ -111,7 +112,7 @@ export function BlogTreeExplorer({ posts }: Props) {
         <button
           type="button"
           onClick={() => setMobileTreeOpen(!mobileTreeOpen)}
-          className="w-full py-3 px-4 bg-white border border-slate-200 rounded-xl text-xs font-mono font-bold text-slate-800 flex items-center justify-between shadow-xs"
+          className="w-full py-2.5 px-4 bg-white border border-slate-200 rounded-xl text-xs font-mono font-bold text-slate-800 flex items-center justify-between shadow-xs"
         >
           <span className="flex items-center gap-2">
             <span>🌳</span>
@@ -129,19 +130,19 @@ export function BlogTreeExplorer({ posts }: Props) {
             LEFT COLUMN: COMPACT, SLEEK ARCHIVAL TREE (STICKY)
            ======================================================== */}
         <aside
-          className={`w-full lg:w-[320px] xl:w-[340px] shrink-0 lg:sticky lg:top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pr-1 no-scrollbar space-y-3 ${
+          className={`w-full lg:w-[300px] xl:w-[320px] shrink-0 lg:sticky lg:top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pr-1 no-scrollbar space-y-3 ${
             mobileTreeOpen ? 'block' : 'hidden lg:block'
           }`}
         >
           <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-xs">
             {/* Tree Top Controls */}
-            <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+            <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <span className="text-sm">🌳</span>
                 <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-900">
                   Roadmap Tree
                 </span>
-                <span className="text-[10px] px-1.5 py-0.2 rounded bg-slate-100 font-mono text-slate-600">
+                <span className="text-[10px] px-1.5 py-0.2 rounded bg-slate-100 font-mono text-slate-600 font-semibold">
                   15 Stg
                 </span>
               </div>
@@ -168,27 +169,27 @@ export function BlogTreeExplorer({ posts }: Props) {
             </div>
 
             {/* Tree Nodes List */}
-            <div className="space-y-3 text-xs font-mono">
+            <div className="space-y-2 text-xs font-mono">
               {PHASES.map((phase) => {
                 const isPhaseSelected = selectedPhase === phase.id;
                 return (
-                  <div key={phase.id} className="space-y-1">
+                  <div key={phase.id} className="space-y-0.5">
                     {/* Phase Header */}
                     <div
                       onClick={() => {
                         setSelectedPhase(isPhaseSelected ? 'all' : phase.id);
                         setSelectedStage('all');
                       }}
-                      className={`px-2 py-1 rounded-md cursor-pointer flex items-center justify-between text-[11px] font-bold tracking-tight transition-colors ${
+                      className={`px-2 py-1 rounded-md cursor-pointer flex items-center justify-between text-[10px] font-bold tracking-tight transition-colors ${
                         isPhaseSelected
                           ? 'bg-indigo-50 text-indigo-700 border border-indigo-200'
                           : 'text-slate-400 hover:text-slate-700 hover:bg-slate-50'
                       }`}
                     >
-                      <span className="truncate">
+                      <span className="truncate uppercase">
                         {phase.roman} · {phase.title}
                       </span>
-                      <span className="text-[10px] text-slate-400 font-normal">
+                      <span className="text-[9px] text-slate-400 font-normal">
                         {phase.stageIds.length}
                       </span>
                     </div>
@@ -250,7 +251,7 @@ export function BlogTreeExplorer({ posts }: Props) {
 
                             {/* Connected Tree Leaf Nodes (Projects) */}
                             {isExpanded && stageProjects.length > 0 && (
-                              <div className="border-l-2 border-slate-100 ml-4 pl-2.5 py-1 space-y-1">
+                              <div className="border-l-2 border-slate-100 ml-3.5 pl-2.5 py-1 space-y-0.5">
                                 {stageProjects.map((p) => {
                                   const domainClasses = getDomainBadgeClasses(p.stageInfo.domain || 'AI');
                                   return (
@@ -288,7 +289,7 @@ export function BlogTreeExplorer({ posts }: Props) {
               {/* Special Architecture Whitepapers Section */}
               {whitepapers.length > 0 && (
                 <div className="pt-2 border-t border-slate-100">
-                  <span className="px-2 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                  <span className="px-2 py-0.5 text-[9px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
                     Whitepapers
                   </span>
                   <div className="space-y-0.5 pl-1">
@@ -299,7 +300,7 @@ export function BlogTreeExplorer({ posts }: Props) {
                         className="flex items-center justify-between gap-1.5 px-2 py-1 rounded-md text-[11px] text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/60 transition-colors"
                       >
                         <span className="truncate font-medium">{p.title}</span>
-                        <span className="text-[9px] px-1.5 py-0.2 rounded bg-blue-50 text-blue-700 border border-blue-200 shrink-0 font-bold">
+                        <span className="text-[8px] px-1.5 py-0.2 rounded bg-blue-50 text-blue-700 border border-blue-200 shrink-0 font-bold">
                           WP
                         </span>
                       </a>
@@ -312,30 +313,62 @@ export function BlogTreeExplorer({ posts }: Props) {
         </aside>
 
         {/* ========================================================
-            RIGHT COLUMN: CONTROLS & PROJECT GRID (FIT & RESPONSIVE)
+            RIGHT COLUMN: CONTROLS & SMART CARD SHOWCASE
            ======================================================== */}
-        <div className="flex-1 min-w-0 space-y-5 w-full">
-          {/* Top Controls: Search + Domain Filter Tabs */}
-          <div className="space-y-3">
-            {/* Search bar */}
-            <div className="relative">
-              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 font-mono text-xs">🔍</span>
-              <input
-                type="text"
-                placeholder="Filter 60 projects by topic, technology (e.g. LangGraph, vLLM, DuckDB, FinTech)..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-16 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 transition-all font-sans shadow-2xs"
-              />
-              {searchQuery && (
+        <div className="flex-1 min-w-0 space-y-4 w-full">
+          {/* Top Controls: Search + Domain Filter Tabs + View Mode Toggle */}
+          <div className="space-y-2.5">
+            {/* Search and View Toggle Bar */}
+            <div className="flex items-center gap-2">
+              <div className="relative flex-1">
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 font-mono text-xs">🔍</span>
+                <input
+                  type="text"
+                  placeholder="Search 60 projects by keyword, tech stack (e.g. LangGraph, vLLM, DuckDB)..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-9 pr-16 py-2 bg-white border border-slate-200 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 transition-all font-sans shadow-2xs"
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-800 text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200"
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
+
+              {/* View Mode Toggle (Grid vs Compact List) */}
+              <div className="flex items-center p-1 bg-white border border-slate-200 rounded-xl shadow-2xs shrink-0">
                 <button
                   type="button"
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-800 text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200"
+                  onClick={() => setViewMode('grid')}
+                  className={`px-2 py-1 rounded-lg text-xs font-mono font-semibold transition-colors flex items-center gap-1 ${
+                    viewMode === 'grid'
+                      ? 'bg-indigo-50 text-indigo-700'
+                      : 'text-slate-500 hover:text-slate-900'
+                  }`}
+                  title="Card View"
                 >
-                  Clear
+                  <span>⊞</span>
+                  <span className="hidden sm:inline text-[11px]">Cards</span>
                 </button>
-              )}
+                <button
+                  type="button"
+                  onClick={() => setViewMode('compact')}
+                  className={`px-2 py-1 rounded-lg text-xs font-mono font-semibold transition-colors flex items-center gap-1 ${
+                    viewMode === 'compact'
+                      ? 'bg-indigo-50 text-indigo-700'
+                      : 'text-slate-500 hover:text-slate-900'
+                  }`}
+                  title="Compact List View"
+                >
+                  <span>☰</span>
+                  <span className="hidden sm:inline text-[11px]">List</span>
+                </button>
+              </div>
             </div>
 
             {/* Domain Filter Pills */}
@@ -349,7 +382,7 @@ export function BlogTreeExplorer({ posts }: Props) {
                       setSelectedDomain(domain.id);
                       if (domain.id !== 'all') setSelectedStage('all');
                     }}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold whitespace-nowrap transition-all flex items-center gap-1.5 border shadow-2xs ${
+                    className={`px-2.5 py-1.5 rounded-lg text-xs font-mono font-bold whitespace-nowrap transition-all flex items-center gap-1.5 border shadow-2xs ${
                       isSelected
                         ? domain.activeBadge || 'bg-indigo-600 text-white border-indigo-600 shadow-xs'
                         : `${domain.badge} hover:shadow-2xs`
@@ -376,21 +409,21 @@ export function BlogTreeExplorer({ posts }: Props) {
 
           {/* Active Stage Banner (When a stage is selected) */}
           {activeStage && (
-            <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div className="flex items-center gap-3">
-                <span className="w-9 h-9 rounded-lg bg-indigo-50 border border-indigo-200 flex items-center justify-center text-base shrink-0">
+            <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5">
+                <span className="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-200 flex items-center justify-center text-sm shrink-0">
                   {activeStage.icon}
                 </span>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className={`px-2 py-0.2 rounded text-[10px] font-mono font-bold border ${activeStage.lightBadge}`}>
+                    <span className={`px-2 py-0.2 rounded text-[9px] font-mono font-bold border ${activeStage.lightBadge}`}>
                       Stage {activeStage.id}
                     </span>
-                    <h2 className="text-sm font-bold text-slate-900 truncate">
+                    <h2 className="text-xs sm:text-sm font-bold text-slate-900 truncate">
                       {activeStage.name}
                     </h2>
                   </div>
-                  <p className="text-[11px] font-mono text-slate-500 mt-0.5">
+                  <p className="text-[10px] font-mono text-slate-500 mt-0.5">
                     Stack: {activeStage.tech}
                   </p>
                 </div>
@@ -414,15 +447,15 @@ export function BlogTreeExplorer({ posts }: Props) {
             <span>
               Showing <strong className="text-slate-900">{filteredPosts.length}</strong> of {posts.length} case studies
             </span>
-            <span className="text-[11px] text-indigo-600 font-semibold hidden sm:inline">
+            <span className="text-[10px] text-indigo-600 font-semibold hidden sm:inline">
               Sequence: Stage 00 → Stage 14
             </span>
           </div>
 
           {/* Empty State */}
           {filteredPosts.length === 0 && (
-            <div className="p-10 text-center rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
-              <span className="text-3xl">🔍</span>
+            <div className="p-8 text-center rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
+              <span className="text-2xl">🔍</span>
               <h3 className="text-sm font-bold text-slate-900">No Matching Case Studies</h3>
               <p className="text-xs font-mono text-slate-500 max-w-sm mx-auto">
                 Try clearing your search query or clicking a stage on the roadmap tree.
@@ -442,90 +475,127 @@ export function BlogTreeExplorer({ posts }: Props) {
             </div>
           )}
 
-          {/* Project Cards Grid (2-Column Fit Layout) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {filteredPosts.map((post) => {
-              const stage = post.stageInfo.stage;
-              const stageColor = stage ? stage.color : '#4F46E5';
-              const domainClasses = getDomainBadgeClasses(post.stageInfo.domain || 'AI');
+          {/* ========================================================
+              SMART CARD VIEW (CLEAN, POLISHED & MINIMALIST)
+             ======================================================== */}
+          {viewMode === 'grid' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {filteredPosts.map((post) => {
+                const stage = post.stageInfo.stage;
+                const domainClasses = getDomainBadgeClasses(post.stageInfo.domain || 'AI');
 
-              return (
-                <article
-                  key={post.slug}
-                  className="group flex flex-col justify-between p-5 rounded-2xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all duration-200 relative overflow-hidden shadow-2xs"
-                >
-                  {/* Top Color Accent Line matching project stage */}
-                  <div
-                    className="absolute top-0 inset-x-0 h-1 transition-all group-hover:h-1.5"
-                    style={{ backgroundColor: stageColor }}
-                  />
-
-                  <div>
-                    {/* Stage & Domain Header */}
-                    <div className="flex items-center justify-between gap-1.5 mb-2.5 pt-0.5">
-                      <div className="flex items-center gap-1.5 flex-wrap">
-                        {stage ? (
-                          <span
-                            className={`px-2 py-0.5 rounded-md text-[10px] font-mono font-bold border ${stage.lightBadge}`}
-                          >
-                            {stage.icon} {stage.id} · #{post.stageInfo.projectNum}
+                return (
+                  <a
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    className="group bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-400 hover:shadow-md transition-all flex flex-col justify-between shadow-xs relative"
+                  >
+                    <div>
+                      {/* Top Row: Large Clean Number + Stage & Domain Badges */}
+                      <div className="flex items-center justify-between gap-2 mb-3">
+                        <div className="flex items-center gap-2">
+                          <span className="font-serif font-extrabold text-xl text-slate-300 group-hover:text-indigo-600 transition-colors leading-none">
+                            {post.stageInfo.projectNum || '01'}
                           </span>
-                        ) : (
-                          <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-blue-50 text-blue-700 border border-blue-200">
-                            ⭐ Note
-                          </span>
-                        )}
+                          {stage ? (
+                            <span
+                              className={`px-2 py-0.5 rounded-md text-[10px] font-mono font-bold border ${stage.lightBadge}`}
+                            >
+                              {stage.icon} Stage {stage.id}
+                            </span>
+                          ) : (
+                            <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-blue-50 text-blue-700 border border-blue-200">
+                              ⭐ Note
+                            </span>
+                          )}
+                        </div>
 
                         <span
-                          className={`px-1.5 py-0.5 rounded-md text-[9px] font-mono font-bold border ${domainClasses.bg} ${domainClasses.text} ${domainClasses.border}`}
+                          className={`px-2 py-0.5 rounded-md text-[9px] font-mono font-bold border ${domainClasses.bg} ${domainClasses.text} ${domainClasses.border}`}
                         >
                           {post.stageInfo.domain}
                         </span>
                       </div>
 
-                      <span className="text-[10px] font-mono text-slate-400 shrink-0">
-                        {post.readingTime}
+                      {/* Project Title */}
+                      <h3 className="text-[15px] font-bold text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-snug mb-2">
+                        {post.title}
+                      </h3>
+
+                      {/* Excerpt */}
+                      <p className="text-xs text-slate-600 leading-relaxed line-clamp-2 font-normal mb-4">
+                        {post.excerpt}
+                      </p>
+                    </div>
+
+                    {/* Bottom Row: Tech Tags + Arrow */}
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
+                      <div className="flex flex-wrap items-center gap-1">
+                        {post.tags?.slice(0, 2).map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-1.5 py-0.2 text-[9px] rounded bg-slate-100 border border-slate-200 text-slate-600 font-mono font-medium"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        <span className="text-[10px] text-slate-400 ml-1">
+                          · {post.readingTime}
+                        </span>
+                      </div>
+
+                      <span className="font-bold text-indigo-600 group-hover:translate-x-1 transition-transform inline-flex items-center text-xs">
+                        →
+                      </span>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          )}
+
+          {/* ========================================================
+              COMPACT LIST VIEW (FOR DENSE FAST SCANNING)
+             ======================================================== */}
+          {viewMode === 'compact' && (
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-xs divide-y divide-slate-100 overflow-hidden">
+              {filteredPosts.map((post) => {
+                const stage = post.stageInfo.stage;
+                const domainClasses = getDomainBadgeClasses(post.stageInfo.domain || 'AI');
+
+                return (
+                  <a
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    className="group px-4 py-3 flex items-center justify-between gap-3 hover:bg-indigo-50/40 transition-colors"
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span className="font-mono text-xs font-extrabold text-slate-400 group-hover:text-indigo-600 shrink-0 w-8">
+                        {stage ? `${stage.id}.${post.stageInfo.projectNum}` : 'WP'}
+                      </span>
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-indigo-600 truncate">
+                        {post.title}
                       </span>
                     </div>
 
-                    {/* Post Title */}
-                    <a href={`/blog/${post.slug}`} className="block mb-2">
-                      <h4 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-snug">
-                        {post.title}
-                      </h4>
-                    </a>
-
-                    {/* Excerpt */}
-                    <p className="text-xs text-slate-600 leading-relaxed line-clamp-2 mb-4 font-normal">
-                      {post.excerpt}
-                    </p>
-                  </div>
-
-                  {/* Card Footer */}
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
-                    <div className="flex flex-wrap gap-1">
-                      {post.tags?.slice(0, 2).map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-1.5 py-0.2 text-[9px] rounded bg-slate-50 border border-slate-200 text-slate-600 font-mono"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                    <div className="flex items-center gap-2 shrink-0 font-mono text-[10px]">
+                      <span
+                        className={`hidden sm:inline px-1.5 py-0.5 rounded border font-semibold ${domainClasses.bg} ${domainClasses.text} ${domainClasses.border}`}
+                      >
+                        {post.stageInfo.domain}
+                      </span>
+                      <span className="text-slate-400 hidden md:inline">
+                        {post.readingTime}
+                      </span>
+                      <span className="text-indigo-600 group-hover:translate-x-0.5 transition-transform font-bold">
+                        →
+                      </span>
                     </div>
-
-                    <a
-                      href={`/blog/${post.slug}`}
-                      className="font-bold text-indigo-600 group-hover:text-indigo-700 flex items-center gap-1 transition-all group-hover:translate-x-0.5"
-                    >
-                      <span>Read Note</span>
-                      <span>→</span>
-                    </a>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
+                  </a>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     </div>

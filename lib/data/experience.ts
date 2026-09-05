@@ -43,7 +43,7 @@ export const jobs: Job[] = [
   {
     when: 'Earlier',
     location: 'Banking',
-    title: 'Software Engineer — Enterprise Applications',
+    title: 'Technical Lead Engineer — Enterprise Applications',
     org: 'Banking',
     bullets: [
       'Built and maintained enterprise-grade applications under regulated change control, where a failed release is an incident report.',

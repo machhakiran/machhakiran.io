@@ -72,10 +72,8 @@ Everything is plain HTML in `index.html`, section by section:
 - `#week` — the weekly discover → prototype → show → iterate loop
 - `#outputs` — what ships at the end of a 6–12 week engagement
 
-The weekly cadence and the deliverables follow the forward-deployed model described in
-[SuperML's FDE Mastery](https://superml.org/courses/forward-deploy-engineer-mastery/fde-what-is-an-fde),
-credited in a source note. The daily routine and working rules are original — edit them to
-match how you actually run a day.
+The weekly cadence, daily routine, operating rules, and deliverables are Kiran Machha's
+own battle-tested methodology developed through on-site enterprise deployments.
 
 ### The workflow page (`workflow.html`)
 

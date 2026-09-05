@@ -144,8 +144,7 @@ export const deliverables: Deliverable[] = [
 ];
 
 export const fdeSourceNote = {
-  text: 'The weekly cadence and the engagement deliverables follow the forward-deployed model as described in',
-  link: 'https://superml.org/courses/forward-deploy-engineer-mastery/fde-what-is-an-fde',
-  linkText: "SuperML's Forward Deploy Engineer Mastery",
-  suffix: 'The daily routine and the working rules are my own.',
+  text: 'This forward deployment playbook, daily operating rhythm, and engagement deliverables are authored and battle-tested by Kiran Machha across real-world client VPCs and air-gapped clusters — bridging high-level enterprise objectives with production-grade Sovereign AI and Autonomous Multi-Agent systems.',
+  author: 'Kiran Machha',
+  role: 'Forward Deployed AI Engineer & Technical Lead',
 };

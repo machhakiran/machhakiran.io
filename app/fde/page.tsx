@@ -198,21 +198,25 @@ export default function FdePage() {
           </div>
         </Reveal>
 
-        {/* Reference Attribution */}
-        {fdeSourceNote && (
-          <div className="text-xs font-mono text-slate-500 border-t border-slate-200 pt-6">
-            <span>{fdeSourceNote.text} </span>
-            <a
-              href={fdeSourceNote.link}
-              target="_blank"
-              rel="noreferrer"
-              className="text-indigo-600 underline hover:text-indigo-800"
-            >
-              {fdeSourceNote.linkText}
-            </a>
-            . <span>{fdeSourceNote.suffix}</span>
+        {/* Author Methodology Sign-Off Card */}
+        <Reveal delay={500}>
+          <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-6">
+            <div className="w-12 h-12 rounded-xl bg-indigo-600 flex items-center justify-center font-bold text-white text-base shadow-sm shrink-0">
+              KM
+            </div>
+            <div className="space-y-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <h3 className="font-bold text-sm text-slate-900">Battle-Tested Field Methodology</h3>
+                <span className="px-2 py-0.5 text-[10px] font-mono font-bold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Authored by Kiran Machha
+                </span>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                {fdeSourceNote.text}
+              </p>
+            </div>
           </div>
-        )}
+        </Reveal>
       </main>
 
       {/* ===== FOOTER ===== */}

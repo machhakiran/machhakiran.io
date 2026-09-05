@@ -11,18 +11,20 @@ import { ProductionFlowVisualizer } from '@/components/ProductionFlowVisualizer'
 import { detailedProjectsList } from '@/lib/data/detailedProjects';
 
 const marqueeRow1 = [
-  { text: 'Open Source AI Stack', color: 'bg-emerald-50 text-emerald-700 border-emerald-200', dot: 'bg-emerald-500' },
-  { text: '100% On-Prem', color: 'bg-blue-50 text-blue-700 border-blue-200', dot: 'bg-blue-500' },
-  { text: 'AI Agents', color: 'bg-purple-50 text-purple-700 border-purple-200', dot: 'bg-purple-500' },
-  { text: 'Kubernetes', color: 'bg-sky-50 text-sky-700 border-sky-200', dot: 'bg-sky-500' },
-  { text: 'AI Observability', color: 'bg-rose-50 text-rose-700 border-rose-200', dot: 'bg-rose-500' },
+  { text: 'Sovereign AI Stack', color: 'bg-emerald-50 text-emerald-700 border-emerald-200', dot: 'bg-emerald-500' },
+  { text: '100% On-Prem & VPC', color: 'bg-blue-50 text-blue-700 border-blue-200', dot: 'bg-blue-500' },
+  { text: 'Autonomous Agents', color: 'bg-purple-50 text-purple-700 border-purple-200', dot: 'bg-purple-500' },
+  { text: 'Kubernetes GPU Ops', color: 'bg-sky-50 text-sky-700 border-sky-200', dot: 'bg-sky-500' },
+  { text: 'vLLM & SGLang Clusters', color: 'bg-indigo-50 text-indigo-700 border-indigo-200', dot: 'bg-indigo-500' },
+  { text: 'Self-Hosted Observability', color: 'bg-rose-50 text-rose-700 border-rose-200', dot: 'bg-rose-500' },
 ];
 
 const marqueeRow2 = [
-  { text: 'Self-Hosted AI Infra & Sandboxes', color: 'bg-amber-50 text-amber-800 border-amber-200', dot: 'bg-amber-500' },
-  { text: 'GPU Inference at Scale', color: 'bg-indigo-50 text-indigo-700 border-indigo-200', dot: 'bg-indigo-500' },
-  { text: 'OCR System Automation', color: 'bg-teal-50 text-teal-700 border-teal-200', dot: 'bg-teal-500' },
-  { text: 'Guardrails', color: 'bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200', dot: 'bg-fuchsia-500' },
+  { text: 'LangGraph Workflows', color: 'bg-amber-50 text-amber-800 border-amber-200', dot: 'bg-amber-500' },
+  { text: 'DeepSeek / Llama 3 / Qwen', color: 'bg-indigo-50 text-indigo-700 border-indigo-200', dot: 'bg-indigo-500' },
+  { text: 'Hybrid RAG & Vector Search', color: 'bg-teal-50 text-teal-700 border-teal-200', dot: 'bg-teal-500' },
+  { text: 'Model Fine-Tuning (LoRA)', color: 'bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200', dot: 'bg-fuchsia-500' },
+  { text: 'Guardrails & SLAs', color: 'bg-emerald-50 text-emerald-700 border-emerald-200', dot: 'bg-emerald-500' },
 ];
 
 export default function HomePage() {
@@ -85,35 +87,35 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* ===== HERO SECTION (MODERN 2-COLUMN BENTO) ===== */}
-      <section className="pt-28 pb-16 px-6 bg-gradient-to-b from-indigo-50/70 via-slate-50 to-[#F8FAFC] border-b border-slate-200">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      {/* ===== HERO SECTION (MODERN 2-COLUMN BENTO - BALANCED DESKTOP FIT) ===== */}
+      <section className="pt-20 lg:pt-24 pb-10 lg:pb-12 px-4 sm:px-6 bg-gradient-to-b from-indigo-50/70 via-slate-50 to-[#F8FAFC] border-b border-slate-200 lg:min-h-[calc(100vh-4rem)] flex items-center">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Left Column: Headline & Action */}
             <div className="lg:col-span-7 flex flex-col items-start text-left">
               {/* Status pill */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-indigo-200 bg-white shadow-xs text-xs text-indigo-700 font-mono font-semibold mb-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-indigo-200 bg-white shadow-xs text-xs text-indigo-700 font-mono font-semibold mb-4">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 dot-pulse" />
-                <span>Singapore · Sovereign AI & AI Engineering Specialist</span>
+                <span>Singapore 🇸🇬 · Sovereign AI &amp; Autonomous Multi-Agents</span>
               </div>
 
-              <div className="mb-6">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
+              <div className="mb-4">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
                   Forward Deployed <br />
                   <span className="text-indigo-600">AI Engineer</span>
                 </h1>
               </div>
 
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mb-8 font-normal">
-                Taking private LLMs, autonomous agent systems, and sovereign AI infrastructure from high-level business problems to production-grade deployments inside client VPCs and air-gapped clusters.
+              <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-2xl mb-6 font-normal">
+                Taking private LLMs, autonomous agent swarms, and sovereign AI infrastructure from high-level business problems to production-grade deployments inside client VPCs and air-gapped clusters.
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3.5 mb-10 w-full sm:w-auto">
+              <div className="flex flex-wrap items-center gap-3 mb-6 w-full sm:w-auto">
                 <a
                   href="#projects"
-                  className="btn-primary px-6 py-3.5 rounded-xl text-sm font-bold shadow-md shadow-indigo-600/20 hover:scale-[1.01] gap-2"
+                  className="btn-primary px-5 py-3 rounded-xl text-xs sm:text-sm font-bold shadow-md shadow-indigo-600/20 hover:scale-[1.01] gap-2"
                   style={{ color: '#ffffff' }}
                 >
                   <span>🚀 Explore 11 Production Systems</span>
@@ -121,65 +123,77 @@ export default function HomePage() {
                 </a>
                 <a
                   href="/fde"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 rounded-xl text-sm font-bold transition-all shadow-xs"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-xs"
                 >
                   <span>📑 FDE Playbook</span>
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 7h12M9 3l4 4-4 4" /></svg>
                 </a>
+                <a
+                  href="/blog"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-3 border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-xl text-xs sm:text-sm font-semibold transition-all"
+                >
+                  <span>📚 60+ Field Notes</span>
+                </a>
               </div>
 
-              {/* Quick Metrics */}
-              <div className="grid grid-cols-3 gap-4 w-full border-t border-slate-200/80 pt-6">
+              {/* Quick Metrics - 4-Column Balanced Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full border-t border-slate-200/80 pt-4">
                 <div>
-                  <p className="text-2xl font-extrabold text-slate-900">11 Repos</p>
-                  <p className="text-xs font-mono text-slate-500 font-medium uppercase">Full Systems Built</p>
+                  <p className="text-xl sm:text-2xl font-extrabold text-slate-900">11 Repos</p>
+                  <p className="text-[11px] font-mono text-slate-500 font-medium uppercase">Full Systems</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-extrabold text-indigo-600">100% On-Prem</p>
-                  <p className="text-xs font-mono text-slate-500 font-medium uppercase">Air-Gapped & VPC</p>
+                  <p className="text-xl sm:text-2xl font-extrabold text-indigo-600">100% Private</p>
+                  <p className="text-[11px] font-mono text-slate-500 font-medium uppercase">Air-Gap &amp; VPC</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-extrabold text-emerald-600">vLLM + K8s</p>
-                  <p className="text-xs font-mono text-slate-500 font-medium uppercase">GPU Inference</p>
+                  <p className="text-xl sm:text-2xl font-extrabold text-emerald-600">vLLM + K8s</p>
+                  <p className="text-[11px] font-mono text-slate-500 font-medium uppercase">GPU Clusters</p>
+                </div>
+                <div>
+                  <p className="text-xl sm:text-2xl font-extrabold text-purple-600">60+ Notes</p>
+                  <p className="text-[11px] font-mono text-slate-500 font-medium uppercase">Production Specs</p>
                 </div>
               </div>
             </div>
 
             {/* Right Column: Refined Profile Bento Card */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="w-full max-w-md bg-white border border-slate-200 rounded-3xl p-7 shadow-xl shadow-slate-200/60 flex flex-col items-center text-center relative overflow-hidden">
+              <div className="w-full max-w-sm lg:max-w-md bg-white border border-slate-200 rounded-3xl p-5 sm:p-6 shadow-xl shadow-slate-200/60 flex flex-col items-center text-center relative overflow-hidden">
                 <div className="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500" />
 
-                <div className="relative mb-5 mt-2">
+                <div className="relative mb-3.5 mt-1">
                   <img
                     src={profile.portrait}
-                    width={160}
-                    height={160}
+                    width={128}
+                    height={128}
                     alt={profile.name}
-                    className="w-36 h-36 rounded-2xl object-cover ring-4 ring-indigo-50 shadow-md"
+                    className="w-28 h-28 lg:w-32 lg:h-32 rounded-2xl object-cover ring-4 ring-indigo-50 shadow-md"
                   />
-                  <span className="absolute bottom-2 right-2 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full" />
+                  <span className="absolute bottom-1.5 right-1.5 w-3.5 h-3.5 bg-emerald-500 border-2 border-white rounded-full" />
                 </div>
 
-                <h2 className="text-2xl font-bold text-slate-900 mb-1">{profile.name}</h2>
-                <p className="text-xs font-mono font-bold text-indigo-600 uppercase tracking-wider mb-2">
+                <h2 className="text-xl lg:text-2xl font-bold text-slate-900 mb-0.5">{profile.name}</h2>
+                <p className="text-xs font-mono font-bold text-indigo-600 uppercase tracking-wider mb-0.5">
                   Forward Deployed AI Engineer
                 </p>
-                <p className="text-xs text-slate-500 mb-5">{profile.location}</p>
+                <p className="text-[11px] font-mono text-slate-500 mb-3">
+                  Technical Lead · Singapore 🇸🇬 · Sovereign AI Systems
+                </p>
 
                 {/* Colorful Scrolling Marquee */}
-                <div className="w-full relative overflow-hidden py-1 mb-6 space-y-2">
+                <div className="w-full relative overflow-hidden py-0.5 mb-3.5 space-y-1.5">
                   {/* Left & right gradient fade masks */}
                   <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-white to-transparent z-10" />
                   <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white to-transparent z-10" />
 
                   {/* Row 1 (scrolls left) */}
                   <div className="flex overflow-hidden">
-                    <div className="animate-marquee flex items-center gap-2">
+                    <div className="animate-marquee flex items-center gap-1.5">
                       {[...marqueeRow1, ...marqueeRow1].map((item, idx) => (
                         <span
                           key={idx}
-                          className={`inline-flex items-center gap-1.5 px-3 py-1 text-[11px] font-mono border rounded-lg font-semibold whitespace-nowrap shadow-2xs ${item.color}`}
+                          className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] sm:text-[11px] font-mono border rounded-lg font-semibold whitespace-nowrap shadow-2xs ${item.color}`}
                         >
                           <span className={`w-1.5 h-1.5 rounded-full ${item.dot}`} />
                           {item.text}
@@ -190,11 +204,11 @@ export default function HomePage() {
 
                   {/* Row 2 (scrolls reverse / right) */}
                   <div className="flex overflow-hidden">
-                    <div className="animate-marquee-reverse flex items-center gap-2">
+                    <div className="animate-marquee-reverse flex items-center gap-1.5">
                       {[...marqueeRow2, ...marqueeRow2].map((item, idx) => (
                         <span
                           key={idx}
-                          className={`inline-flex items-center gap-1.5 px-3 py-1 text-[11px] font-mono border rounded-lg font-semibold whitespace-nowrap shadow-2xs ${item.color}`}
+                          className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] sm:text-[11px] font-mono border rounded-lg font-semibold whitespace-nowrap shadow-2xs ${item.color}`}
                         >
                           <span className={`w-1.5 h-1.5 rounded-full ${item.dot}`} />
                           {item.text}
@@ -230,7 +244,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== ENTERPRISE PIPELINE VISUALIZER (PURE LIGHT THEME) ===== */}
-      <section id="pipeline" className="py-16 px-6 bg-white border-b border-slate-200">
+      <section id="pipeline" className="py-12 lg:py-16 px-4 sm:px-6 bg-white border-b border-slate-200">
         <Reveal className="max-w-7xl mx-auto">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
             <div>
@@ -251,9 +265,9 @@ export default function HomePage() {
       </section>
 
       {/* ===== FEATURED 11 REAL PROJECTS SHOWCASE ===== */}
-      <section id="projects" className="py-24 px-6 bg-[#F8FAFC]">
+      <section id="projects" className="py-14 lg:py-18 px-4 sm:px-6 bg-[#F8FAFC]">
         <Reveal className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
             <div>
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-600 block mb-2">
                 Real System Repositories
@@ -261,7 +275,7 @@ export default function HomePage() {
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
                 11 Featured Production Systems
               </h2>
-              <p className="text-slate-600 text-base mt-2 max-w-2xl font-normal">
+              <p className="text-slate-600 text-sm sm:text-base mt-2 max-w-2xl font-normal">
                 Click any project card to inspect its full architecture flow, problem/solution breakdown, API specs, and tech stack.
               </p>
             </div>
@@ -272,10 +286,10 @@ export default function HomePage() {
               <div
                 key={p.id}
                 onClick={() => setSelectedProject(p)}
-                className="group bg-white p-7 rounded-2xl border border-slate-200 hover:border-indigo-400 hover:shadow-lg transition-all cursor-pointer flex flex-col justify-between shadow-xs"
+                className="group bg-white p-6 rounded-2xl border border-slate-200 hover:border-indigo-400 hover:shadow-lg transition-all cursor-pointer flex flex-col justify-between shadow-xs"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-3.5">
                     <span className="font-serif font-extrabold text-2xl text-slate-300 group-hover:text-indigo-600 transition-colors">
                       {p.number}
                     </span>
@@ -284,14 +298,14 @@ export default function HomePage() {
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-slate-900 mb-1.5 group-hover:text-indigo-600 transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors">
                     {p.title}
                   </h3>
-                  <p className="text-xs font-mono text-indigo-600 font-semibold mb-3 leading-snug">{p.tagline}</p>
-                  <p className="text-xs text-slate-600 leading-relaxed mb-5 line-clamp-3 font-normal">{p.description}</p>
+                  <p className="text-xs font-mono text-indigo-600 font-semibold mb-2.5 leading-snug">{p.tagline}</p>
+                  <p className="text-xs text-slate-600 leading-relaxed mb-4 line-clamp-3 font-normal">{p.description}</p>
 
                   {/* Highlights */}
-                  <div className="space-y-1.5 border-t border-slate-100 pt-3.5 mb-4">
+                  <div className="space-y-1.5 border-t border-slate-100 pt-3 mb-3.5">
                     {p.features.slice(0, 3).map((feat, fIdx) => (
                       <div key={fIdx} className="flex items-center gap-2 text-xs text-slate-700 font-medium">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
@@ -301,7 +315,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Architecture Topology Badge */}
-                  <div className="flex items-center justify-between text-[11px] font-mono text-indigo-700 bg-indigo-50/80 border border-indigo-100/90 px-2.5 py-1 rounded-lg mb-4">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-indigo-700 bg-indigo-50/80 border border-indigo-100/90 px-2.5 py-1 rounded-lg mb-3.5">
                     <span className="flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                       <span>{p.architectureLayers?.length || 4}-Tier Pipeline</span>
@@ -311,7 +325,7 @@ export default function HomePage() {
                 </div>
 
                 <div>
-                  <div className="flex flex-wrap gap-1.5 mb-4">
+                  <div className="flex flex-wrap gap-1.5 mb-3.5">
                     {p.techStack.slice(0, 4).map((tech, tIdx) => (
                       <span
                         key={tIdx}
@@ -341,22 +355,23 @@ export default function HomePage() {
       </section>
 
       {/* ===== OVERVIEW & FORWARD DEPLOYED POSITIONING ===== */}
-      <section id="profile" className="py-24 px-6 bg-white border-t border-slate-200">
+      <section id="profile" className="py-14 lg:py-18 px-4 sm:px-6 bg-white border-t border-slate-200">
         <Reveal className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-4 bg-slate-50 border border-slate-200 rounded-3xl p-8 flex flex-col items-center text-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="lg:col-span-4 bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-7 flex flex-col items-center text-center">
               <img
                 src={profile.portrait}
-                width={130}
-                height={130}
+                width={128}
+                height={128}
                 alt={profile.name}
-                className="w-32 h-32 rounded-2xl object-cover ring-4 ring-white shadow-md mb-4"
+                className="w-28 h-28 lg:w-32 lg:h-32 rounded-2xl object-cover ring-4 ring-white shadow-md mb-3"
               />
-              <h2 className="text-2xl font-bold text-slate-900 mb-1">{profile.name}</h2>
-              <p className="text-xs font-mono text-indigo-600 font-bold uppercase tracking-wide mb-2">{profile.role}</p>
-              <p className="text-xs text-slate-500 mb-6">{profile.location}</p>
+              <h2 className="text-xl lg:text-2xl font-bold text-slate-900 mb-0.5">{profile.name}</h2>
+              <p className="text-xs font-mono text-indigo-600 font-bold uppercase tracking-wide mb-1">{profile.role}</p>
+              <p className="text-[11px] font-mono text-slate-600 font-semibold mb-2">Technical Lead Engineer — Enterprise Applications</p>
+              <p className="text-xs text-slate-500 mb-5">{profile.location} · Available Globally</p>
 
-              <div className="flex flex-col gap-2.5 w-full">
+              <div className="flex flex-col gap-2 w-full">
                 <a
                   href={`mailto:${profile.email}`}
                   className="btn-primary w-full py-2.5 rounded-xl text-xs font-mono uppercase font-bold text-center transition-colors shadow-xs"
@@ -385,28 +400,28 @@ export default function HomePage() {
 
             <div className="lg:col-span-8">
               <span className="text-xs font-mono uppercase tracking-widest text-indigo-600 font-bold mb-2 block">
-                Forward Deployed Engineering
+                Forward Deployed Engineering &amp; Architecture
               </span>
-              <h3 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
-                Embedding inside customer teams to ship Sovereign AI that runs securely inside their walls.
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-5">
+                Embedding inside customer engineering teams to deliver Sovereign AI &amp; Autonomous Agents that run securely inside enterprise walls.
               </h3>
 
-              <div className="space-y-4 text-slate-600 leading-relaxed text-base mb-8">
+              <div className="space-y-3.5 text-slate-600 leading-relaxed text-sm sm:text-base mb-6">
                 <p>
-                  As a <strong className="text-slate-900">Forward Deployed AI Engineer</strong>, I sit inside customer engineering repositories, infrastructure clusters, and compliance reviews to design, build, and deploy production-grade AI systems.
+                  As a <strong className="text-slate-900">Forward Deployed AI Engineer &amp; Technical Lead</strong>, I sit directly inside customer codebases, infrastructure clusters, and strict compliance environments to design, build, and deploy production-grade AI systems.
                 </p>
                 <p>
-                  My specialization is <strong className="text-indigo-600">Sovereign AI & Private On-Premises Infrastructure</strong> — fine-tuning and serving open-weight models (Llama 3, Qwen2, DeepSeek, Mistral) inside private VPCs, air-gapped data centers, or local GPU nodes for banks, healthcare providers, and regulated enterprises.
+                  My core specialization is <strong className="text-indigo-600">Sovereign AI &amp; Private Infrastructure</strong> — serving and fine-tuning open-weight models (DeepSeek, Llama 3, Qwen 2.5, Mistral) inside private VPCs, air-gapped clusters, or local GPU nodes for banks, fintech, and regulated organizations.
                 </p>
                 <p>
-                  From fine-tuning open weights to containerized vLLM serving, hybrid vector retrieval, agent tool calling, and Kubernetes GPU scaling — I deliver fully operational AI systems with complete cost optimization and self-hosted observability.
+                  Backed by over a decade of regulated enterprise engineering experience (banking change control, distributed microservices, zero-trust security), I bridge the gap between high-level AI ambitions and hardened, containerized vLLM serving, hybrid retrieval pipelines, multi-agent orchestration (LangGraph, CrewAI, MCP), and Kubernetes GPU autoscaling.
                 </p>
               </div>
 
-              <span className="text-xs font-mono uppercase tracking-widest text-slate-400 font-bold mb-4 block">Core Expertise</span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <span className="text-xs font-mono uppercase tracking-widest text-slate-400 font-bold mb-3 block">Core Expertise</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {expertiseAreas.map((area) => (
-                  <div key={area} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono text-slate-800">
+                  <div key={area} className="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono text-slate-800">
                     <span className="w-2 h-2 rounded-full bg-indigo-600 shrink-0" />
                     <span className="font-semibold">{area}</span>
                   </div>
@@ -418,16 +433,16 @@ export default function HomePage() {
       </section>
 
       {/* ===== THE COMPLETE PRODUCTION LIFECYCLE ===== */}
-      <section id="lifecycle" className="py-24 px-6 bg-[#F8FAFC] border-t border-slate-200">
+      <section id="lifecycle" className="py-14 lg:py-18 px-4 sm:px-6 bg-[#F8FAFC] border-t border-slate-200">
         <Reveal className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="text-center max-w-3xl mx-auto mb-10">
             <span className="text-xs font-mono uppercase tracking-widest text-indigo-600 font-bold mb-2 block">
               Complete Delivery Model
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-2.5">
               Business Problem → Production AI
             </h2>
-            <p className="text-slate-600 text-base">
+            <p className="text-slate-600 text-sm sm:text-base">
               An FDE who owns the full lifecycle from initial discovery to long-term GPU cost optimization.
             </p>
           </div>
@@ -436,7 +451,7 @@ export default function HomePage() {
             {lifecycleStages.map((stage) => (
               <div
                 key={stage.step}
-                className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-indigo-300 transition-all shadow-xs"
+                className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 hover:border-indigo-300 transition-all shadow-xs"
               >
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-2xl font-extrabold text-indigo-600 font-mono">{stage.step}</span>
@@ -451,31 +466,31 @@ export default function HomePage() {
       </section>
 
       {/* ===== BUSINESS INTEGRATION CAPABILITIES ===== */}
-      <section id="capabilities" className="py-24 px-6 bg-white border-t border-slate-200">
+      <section id="capabilities" className="py-14 lg:py-18 px-4 sm:px-6 bg-white border-t border-slate-200">
         <Reveal className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="text-center max-w-3xl mx-auto mb-10">
             <span className="text-xs font-mono uppercase tracking-widest text-indigo-600 font-bold mb-2 block">
               Capabilities
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-2.5">
               Integrating AI Into Operational Systems
             </h2>
-            <p className="text-slate-600 text-base">
+            <p className="text-slate-600 text-sm sm:text-base">
               Models create value when integrated cleanly into operational workflows, databases, and core APIs.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5 sm:gap-4">
             {integrationAreas.map((area) => (
               <div
                 key={area}
-                className="p-5 rounded-xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:bg-white transition-all text-center group shadow-2xs"
+                className="p-4 sm:p-5 rounded-xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:bg-white transition-all text-center group shadow-2xs"
               >
-                <div className="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center mx-auto mb-2.5 text-indigo-700 font-mono text-base font-bold group-hover:scale-105 transition-transform">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-indigo-100 flex items-center justify-center mx-auto mb-2 text-indigo-700 font-mono text-base font-bold group-hover:scale-105 transition-transform">
                   ⚡
                 </div>
-                <h4 className="font-bold text-sm text-slate-900 mb-0.5">{area}</h4>
-                <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider block font-semibold">Production</span>
+                <h4 className="font-bold text-xs sm:text-sm text-slate-900 mb-0.5">{area}</h4>
+                <span className="font-mono text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-wider block font-semibold">Production</span>
               </div>
             ))}
           </div>
@@ -483,16 +498,16 @@ export default function HomePage() {
       </section>
 
       {/* ===== OPEN SOURCE TECH STACK GRID ===== */}
-      <section id="stack" className="py-24 px-6 bg-[#F8FAFC] border-t border-slate-200">
+      <section id="stack" className="py-14 lg:py-18 px-4 sm:px-6 bg-[#F8FAFC] border-t border-slate-200">
         <Reveal className="max-w-7xl mx-auto">
-          <div className="mb-14 max-w-3xl">
+          <div className="mb-10 max-w-3xl">
             <span className="text-xs font-mono uppercase tracking-widest text-indigo-600 font-bold mb-2 block">
-              Infrastructure & Tooling
+              Infrastructure &amp; Tooling
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
-              Open-Source & Self-Hosted Stack
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-2.5">
+              Open-Source &amp; Self-Hosted Stack
             </h2>
-            <p className="text-slate-600 text-base">
+            <p className="text-slate-600 text-sm sm:text-base">
               Proven technology choices enabling enterprises to run AI models on-premises without third-party API dependencies.
             </p>
           </div>
@@ -501,13 +516,13 @@ export default function HomePage() {
             {stackCategories.map((cat) => (
               <div
                 key={cat.name}
-                className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-indigo-300 transition-all shadow-xs"
+                className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 hover:border-indigo-300 transition-all shadow-xs"
               >
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-3.5">
                   <h3 className="font-mono text-xs font-bold tracking-wider uppercase text-indigo-600">{cat.name}</h3>
                   <span className="text-slate-400 text-xs font-mono font-medium">{cat.tools.length} Tools</span>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {cat.tools.map((t) => (
                     <span
                       key={t}
@@ -524,29 +539,29 @@ export default function HomePage() {
       </section>
 
       {/* ===== CAREER EXPERIENCE TIMELINE ===== */}
-      <section id="experience" className="py-24 px-6 bg-white border-t border-slate-200">
+      <section id="experience" className="py-14 lg:py-18 px-4 sm:px-6 bg-white border-t border-slate-200">
         <Reveal className="max-w-5xl mx-auto">
-          <div className="mb-14">
+          <div className="mb-10">
             <span className="text-xs font-mono uppercase tracking-widest text-indigo-600 font-bold mb-2 block">
               Track Record
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-2.5">
               Enterprise Delivery Experience
             </h2>
-            <p className="text-slate-600 text-base max-w-2xl font-normal">
+            <p className="text-slate-600 text-sm sm:text-base max-w-2xl font-normal">
               From regulated banking change control to SaaS GPU platforms and forward-deployed client engagements.
             </p>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-5 sm:space-y-6">
             {jobs.map((job, i) => (
               <div
                 key={i}
-                className="timeline-item-light p-6 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-300 transition-all shadow-2xs"
+                className="timeline-item-light p-5 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-300 transition-all shadow-2xs"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                   <div>
-                    <h3 className="text-lg font-bold text-slate-900">{job.title}</h3>
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900">{job.title}</h3>
                     <p className="text-xs font-mono text-indigo-600 font-bold mt-0.5">{job.org}</p>
                   </div>
                   <div className="flex items-center gap-3 text-xs font-mono text-slate-500 font-medium">
@@ -555,7 +570,7 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <ul className="space-y-2 pt-1">
+                <ul className="space-y-1.5 sm:space-y-2 pt-1">
                   {job.bullets.map((b, j) => (
                     <li key={j} className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-4 relative before:content-['▹'] before:absolute before:left-0 before:text-indigo-600 font-normal">
                       {b}
@@ -569,22 +584,22 @@ export default function HomePage() {
       </section>
 
       {/* ===== CONTACT CTA ===== */}
-      <section id="contact" className="py-24 px-6 bg-slate-900 text-white relative">
+      <section id="contact" className="py-14 lg:py-18 px-4 sm:px-6 bg-slate-900 text-white relative">
         <Reveal className="max-w-4xl mx-auto text-center">
           <span className="text-xs font-mono uppercase tracking-widest text-indigo-400 font-bold mb-2 block">
             Direct Contact
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white mb-5 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-4 tracking-tight">
             Let&apos;s Connect
           </h2>
-          <p className="text-slate-300 max-w-2xl mx-auto mb-10 text-base leading-relaxed font-normal">
+          <p className="text-slate-300 max-w-2xl mx-auto mb-8 text-sm sm:text-base leading-relaxed font-normal">
             Available for Forward Deployed AI Engineer and Sovereign AI Infrastructure roles across Singapore, APAC, and EMEA.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
+          <div className="flex flex-wrap items-center justify-center gap-3.5 mb-10 sm:mb-12">
             <a
               href={`mailto:${profile.email}`}
-              className="btn-primary px-7 py-3.5 rounded-xl text-sm font-bold shadow-lg gap-2"
+              className="btn-primary px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-sm font-bold shadow-lg gap-2"
               style={{ color: '#ffffff' }}
             >
               Email {profile.email}
@@ -594,7 +609,7 @@ export default function HomePage() {
               href={profile.linkedin}
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-2 px-7 py-3.5 border border-slate-700 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-sm font-bold transition-all"
+              className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 border border-slate-700 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs sm:text-sm font-bold transition-all"
             >
               LinkedIn Profile
             </a>
@@ -602,13 +617,13 @@ export default function HomePage() {
               href={profile.github}
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-2 px-7 py-3.5 border border-slate-700 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-sm font-bold transition-all"
+              className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 border border-slate-700 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs sm:text-sm font-bold transition-all"
             >
               GitHub (70+ Repos)
             </a>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 text-left">
             {[
               { title: 'Direct Email', link: `mailto:${profile.email}`, label: profile.email, note: 'Fastest response route.' },
               { title: 'LinkedIn', link: profile.linkedin, label: '/in/machhakiran', note: 'Career history.' },
